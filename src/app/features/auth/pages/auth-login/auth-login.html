@@ -24,7 +24,9 @@
           }
         </div>
 
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button type="submit" [disabled]="loginForm.invalid || isLoading">
+          {{ isLoading ? 'Đang đăng nhập...' : 'Login' }}
+        </button>
       </form>
 
       <p class="message">

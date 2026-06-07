@@ -15,6 +15,8 @@ import { LoginResponse } from '../../../../core/models/login-response.model';
 export class AuthLogin {
   message = '';
 
+  isLoading = false;
+
   loginForm: FormGroup;
 
   constructor(
@@ -55,6 +57,8 @@ export class AuthLogin {
       return;
     }
 
+    this.isLoading = true;
+
     // lay data
     const loginData: LoginResponse = this.loginForm.value;
 
@@ -64,9 +68,7 @@ export class AuthLogin {
       next: (response) => {
         console.log(response);
 
-        this.message = 'Đăng nhập thành công';
-
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/cooking-activity']);
       },
 
       // loi
@@ -78,6 +80,10 @@ export class AuthLogin {
         } else {
           this.message = 'Có lỗi xảy ra';
         }
+      },
+
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
