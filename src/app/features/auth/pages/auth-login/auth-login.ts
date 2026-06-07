@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../../../core/models/user.model';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LoginResponse } from '../../../../core/models/login-response.model';
 
@@ -51,7 +50,7 @@ export class AuthLogin {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
 
-      this.message = 'Vui lòng nhập đầy đủ thông tin';
+      this.message = 'Vui lòng nhập đầy đủ';
 
       return;
     }
@@ -67,7 +66,7 @@ export class AuthLogin {
 
         this.message = 'Đăng nhập thành công';
 
-        // this.router.navigate(['/home']);
+        this.router.navigate(['/dashboard']);
       },
 
       // loi
