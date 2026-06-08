@@ -1,6 +1,6 @@
-import { User } from './user.model';
+import { UserModel } from './user.model';
 
 export interface LoginResponse {
   accessToken: string;
-  user: User;
+  user: UserModel;
 }

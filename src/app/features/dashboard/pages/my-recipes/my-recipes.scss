@@ -1,0 +1,40 @@
+.main {
+  margin: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: end;
+}
+
+.header p {
+  margin: 0px;
+}
+
+.filter {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.filter button {
+  border-radius: 20px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.recipe-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recipe-card {
+  background-color: grey;
+  border-radius: 20px;
+  padding: 15px;
+  margin-right: 20px;
+}

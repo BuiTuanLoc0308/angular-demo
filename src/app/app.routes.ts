@@ -19,7 +19,7 @@ export const routes: Routes = [
       },
 
       {
-        path: 'recipes',
+        path: 'my-recipes',
         component: MyRecipes,
       },
 

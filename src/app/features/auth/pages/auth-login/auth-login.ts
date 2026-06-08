@@ -48,15 +48,6 @@ export class AuthLogin {
   }
 
   onLogin() {
-    // kiem tra hop le
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
-
-      this.message = 'Vui lòng nhập đầy đủ';
-
-      return;
-    }
-
     this.isLoading = true;
 
     // lay data
@@ -68,7 +59,7 @@ export class AuthLogin {
       next: (response) => {
         console.log(response);
 
-        this.router.navigate(['/cooking-activity']);
+        this.router.navigate(['/my-recipes']);
       },
 
       // loi

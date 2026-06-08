@@ -1,1 +1,29 @@
-<p>my-recipes works!</p>
+<div class="main">
+  <div class="header">
+    <div class="header-text">
+      <h1>Công thức của tôi</h1>
+
+      <p>Quản lý và tổ chức kho tàng ẩm thực cá nhân của bạn. Mổi món ăn là một câu chuyện.</p>
+    </div>
+
+    <button>Thêm công thức mới</button>
+  </div>
+
+  <div class="filter">
+    <button>Tất cả</button>
+    <button>Bữa sáng</button>
+    <button>Bữa trưa</button>
+    <button>Bữa tối</button>
+    <button>Tráng miệng</button>
+  </div>
+
+  <div class="recipe-container">
+    @if (recipe$ | async; as recipe) {
+      @for (recipe of recipe$ | async; track recipe.id) {
+        <p class="recipe-card">{{ recipe.recipeName }}</p>
+      }
+    } @else {
+      <p>Loading...</p>
+    }
+  </div>
+</div>
