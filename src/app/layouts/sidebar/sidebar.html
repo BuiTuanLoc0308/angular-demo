@@ -3,26 +3,32 @@
     <p>CulinaryFriend</p>
   </div>
 
-  <div class="user-profile">
-    <p class="user-name">Chef Kyra</p>
+  <div class="user">
+    <p class="name">Chef Kyra</p>
 
-    <p class="user-level">Level 5 Home Cook</p>
+    <p class="level">Level 5 Home Cook</p>
   </div>
 
   <div class="page-route">
-    <a routerLink="/my-recipes" routerLinkActive="active-route" class="nav-button"> My Recipes </a>
+    <a routerLink="/my-recipes" routerLinkActive="active-route" class="nav-button">
+      <mat-icon>restaurant</mat-icon>
+      <span>My Recipes</span>
+    </a>
 
     <a routerLink="/cooking-activity" routerLinkActive="active-route" class="nav-button"
-      >Cooking Activity</a
-    >
+      ><mat-icon>bar_chart</mat-icon>
+      <span>Cooking Activity</span>
+    </a>
 
     <a routerLink="/meal-planner" routerLinkActive="active-route" class="nav-button"
-      >Meal Planner</a
-    >
+      ><mat-icon>calendar_month</mat-icon>
+      <span>Meal Planner</span>
+    </a>
 
     <a routerLink="/account-settings" routerLinkActive="active-route" class="nav-button"
-      >Account Settings</a
-    >
+      ><mat-icon>settings</mat-icon>
+      <span>Account Settings</span>
+    </a>
   </div>
 
   <div class="footer">

@@ -1,5 +1,6 @@
 .main {
   margin: 48px;
+  font-size: 16px;
 }
 
 .header {
@@ -8,21 +9,26 @@
   justify-content: space-between;
 }
 
-.header p {
-  margin: 0px;
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.header .header-text {
+.header-text .main-text {
   font-size: 48px;
   color: #154212;
-  padding-bottom: 8px;
+  margin: 0px;
+  font-weight: bold;
 }
 
-.header .header-subText {
+.header-text .sub-text {
   color: #42493e;
+  font-size: 16px;
 }
 
 .header .add-btn {
+  font-size: 16px;
   padding: 16px 32px;
   margin-left: 200px;
   border-radius: 12px;
