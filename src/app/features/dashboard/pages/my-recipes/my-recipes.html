@@ -1,29 +1,34 @@
 <div class="main">
   <div class="header">
-    <div class="header-text">
-      <h1>Công thức của tôi</h1>
+    <div>
+      <p class="header-text">Công thức của tôi</p>
 
-      <p>Quản lý và tổ chức kho tàng ẩm thực cá nhân của bạn. Mổi món ăn là một câu chuyện.</p>
+      <p class="header-subText">
+        Quản lý và tổ chức kho tàng ẩm thực cá nhân của bạn. Mổi món ăn là một câu chuyện.
+      </p>
     </div>
 
-    <button>Thêm công thức mới</button>
+    <button class="add-btn">Thêm công thức mới</button>
   </div>
 
-  <div class="filter">
-    <button>Tất cả</button>
-    <button>Bữa sáng</button>
-    <button>Bữa trưa</button>
-    <button>Bữa tối</button>
-    <button>Tráng miệng</button>
-  </div>
+  <app-category-filter
+    [categories]="categories"
+    [selectedCategory]="selectedCategory"
+    (categoryChange)="onCategoryChange($event)"
+  >
+  </app-category-filter>
 
   <div class="recipe-container">
-    @if (recipe$ | async; as recipe) {
-      @for (recipe of recipe$ | async; track recipe.id) {
-        <p class="recipe-card">{{ recipe.recipeName }}</p>
+    @if (vm$ | async; as vm) {
+      @if (vm.isLoading) {
+        <p>Loading...</p>
+      } @else {
+        @for (recipe of vm.recipes; track recipe.id) {
+          <p class="recipe-card">{{ recipe.recipeName }}</p>
+        } @empty {
+          <p>Không có recipe nào.</p>
+        }
       }
-    } @else {
-      <p>Loading...</p>
     }
   </div>
 </div>
