@@ -1,6 +1,8 @@
 .main {
-  margin: 48px;
+  padding: 48px;
   font-size: 16px;
+
+  background-color: #efeeeb;
 }
 
 .header {
@@ -56,8 +58,26 @@
 }
 
 .recipe-card {
-  background-color: grey;
+  background-color: white;
   border-radius: 20px;
-  padding: 15px;
+
   margin-right: 20px;
+  margin-top: 20px;
+
+  height: 450px;
+  width: 270px;
+}
+
+.recipe-card p {
+  margin: 24px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.recipe-card .img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  height: 260px;
+  width: 270px;
 }

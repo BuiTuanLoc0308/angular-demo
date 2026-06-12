@@ -4,10 +4,11 @@ import { catchError, map, Observable, of, startWith } from 'rxjs';
 import { RecipeModel } from '../../../../core/models/recipe.model';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { CategoryFilter } from '../../../../shared/components/category-filter/category-filter';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-my-recipes',
-  imports: [CommonModule, CategoryFilter],
+  imports: [CommonModule, CategoryFilter, RouterLink],
   standalone: true,
   templateUrl: './my-recipes.html',
   styleUrl: './my-recipes.scss',

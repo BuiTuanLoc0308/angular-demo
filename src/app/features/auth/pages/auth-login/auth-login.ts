@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
-import { LoginResponse } from '../../../../core/models/login-response.model';
+import { LoginRequest } from '../../../../core/models/login-request.model';
 
 @Component({
   selector: 'app-auth-login',
@@ -51,7 +51,7 @@ export class AuthLogin {
     this.isLoading = true;
 
     // lay data
-    const loginData: LoginResponse = this.loginForm.value;
+    const loginData: LoginRequest = this.loginForm.value;
 
     // goi api
     this.authService.login(loginData).subscribe({

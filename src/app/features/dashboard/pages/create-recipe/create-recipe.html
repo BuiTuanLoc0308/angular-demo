@@ -1,0 +1,42 @@
+<div class="main">
+  <div class="header">
+    <a (click)="goBack()" class="btn-back">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Quay lại</span>
+    </a>
+
+    <p>Tạo công thức mới</p>
+  </div>
+
+  <mat-stepper linear #stepper>
+    <mat-step label="Thông tin cơ bản">
+      <app-basic-info-step></app-basic-info-step>
+
+      <button mat-button matStepperNext>Tiếp theo</button>
+    </mat-step>
+
+    <mat-step label="Nguyên liệu">
+      <app-ingredients-step></app-ingredients-step>
+
+      <button mat-button matStepperPrevious>Quay lại</button>
+
+      <button mat-button matStepperNext>Tiếp theo</button>
+    </mat-step>
+
+    <mat-step label="Các bước nấu">
+      <app-instructions-step></app-instructions-step>
+
+      <button mat-button matStepperPrevious>Quay lại</button>
+
+      <button mat-button matStepperNext>Tiếp theo</button>
+    </mat-step>
+
+    <mat-step label="Hoàn tất">
+      <app-review-step></app-review-step>
+
+      <button mat-button matStepperPrevious>Quay lại</button>
+
+      <button mat-raised-button color="primary">Lưu công thức</button>
+    </mat-step>
+  </mat-stepper>
+</div>

@@ -5,8 +5,14 @@ import { CookingActivity } from './features/dashboard/pages/cooking-activity/coo
 import { MealPlanner } from './features/dashboard/pages/meal-planner/meal-planner';
 import { AccountSettings } from './features/dashboard/pages/account-settings/account-settings';
 import { AuthLogin } from './features/auth/pages/auth-login/auth-login';
+import { CreateRecipe } from './features/dashboard/pages/create-recipe/create-recipe';
 
 export const routes: Routes = [
+  {
+    path: 'login',
+    component: AuthLogin,
+  },
+
   {
     path: '',
     component: DashboardLayout,
@@ -39,8 +45,8 @@ export const routes: Routes = [
       },
 
       {
-        path: 'login',
-        component: AuthLogin,
+        path: 'create-recipe',
+        component: CreateRecipe,
       },
     ],
   },
