@@ -29,7 +29,9 @@
 
             <p>{{ recipe.recipeName }}</p>
 
-            <button (click)="onDelete(recipe.id)">Xóa</button>
+            <button (click)="onDelete(recipe.id)" [disabled]="deletingRecipeId === recipe.id">
+              {{ deletingRecipeId === recipe.id ? 'Đang Xóa' : 'Xóa' }}
+            </button>
 
             <button>Sửa</button>
           </div>

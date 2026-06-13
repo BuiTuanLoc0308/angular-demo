@@ -16,6 +16,8 @@ export class MyRecipes {
   private recipeService = inject(RecipeService);
   private refresh$ = new Subject<void>();
 
+  deletingRecipeId: string | null = null;
+
   vm$ = this.refresh$.pipe(
     startWith(void 0),
     switchMap(() =>
@@ -38,14 +40,20 @@ export class MyRecipes {
   }
 
   onDelete(id: string) {
+    this.deletingRecipeId = id;
+
     this.recipeService.deleteRecipe(id).subscribe({
       next: () => {
         console.log('Delete success');
 
         this.refresh$.next();
+
+        this.deletingRecipeId = null;
       },
       error: (err) => {
         console.error('Delete failed', err);
+
+        this.deletingRecipeId = null;
       },
     });
   }
