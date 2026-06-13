@@ -13,4 +13,18 @@ export class RecipeService {
   getMyRecipe(): Observable<RecipeModel[]> {
     return this.http.get<RecipeModel[]>(api_endpoint.recipe.myRecipe);
   }
+
+  createRecipe(recipeName: string) {
+    return this.http.post(api_endpoint.recipe.myRecipe, {
+      recipeName,
+    });
+  }
+
+  updateRecipe(id: string, data: RecipeModel) {
+    return this.http.put(`${api_endpoint.recipe.myRecipe}/${id}`, data);
+  }
+
+  deleteRecipe(id: string) {
+    return this.http.delete(`${api_endpoint.recipe.myRecipe}/${id}`);
+  }
 }

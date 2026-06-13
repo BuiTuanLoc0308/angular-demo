@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { catchError, map, Observable, of, startWith } from 'rxjs';
-import { RecipeModel } from '../../../../core/models/recipe.model';
+import { catchError, map, of, startWith, Subject, switchMap } from 'rxjs';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { CategoryFilter } from '../../../../shared/components/category-filter/category-filter';
 import { RouterLink } from '@angular/router';
@@ -15,11 +14,17 @@ import { RouterLink } from '@angular/router';
 })
 export class MyRecipes {
   private recipeService = inject(RecipeService);
+  private refresh$ = new Subject<void>();
 
-  vm$ = this.recipeService.getMyRecipe().pipe(
-    map((recipes) => ({ recipes, isLoading: false })),
-    startWith({ recipes: [], isLoading: true }),
-    catchError(() => of({ recipes: [], isLoading: false })),
+  vm$ = this.refresh$.pipe(
+    startWith(void 0),
+    switchMap(() =>
+      this.recipeService.getMyRecipe().pipe(
+        map((recipes) => ({ recipes, isLoading: false })),
+        startWith({ recipes: [], isLoading: true }),
+        catchError(() => of({ recipes: [], isLoading: false })),
+      ),
+    ),
   );
 
   categories = ['Tất cả', 'Bữa sáng', 'Bữa trưa', 'Bữa tối', 'Tráng miệng'];
@@ -30,5 +35,18 @@ export class MyRecipes {
     this.selectedCategory = category;
 
     console.log(category);
+  }
+
+  onDelete(id: string) {
+    this.recipeService.deleteRecipe(id).subscribe({
+      next: () => {
+        console.log('Delete success');
+
+        this.refresh$.next();
+      },
+      error: (err) => {
+        console.error('Delete failed', err);
+      },
+    });
   }
 }

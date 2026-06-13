@@ -28,6 +28,10 @@
             <img src="{{ recipe.image }}" alt="image" class="img" />
 
             <p>{{ recipe.recipeName }}</p>
+
+            <button (click)="onDelete(recipe.id)">Xóa</button>
+
+            <button>Sửa</button>
           </div>
         } @empty {
           <p>Không có recipe nào.</p>
