@@ -1,13 +1,36 @@
-.container {
+.main {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 400px;
+  height: 65vh;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.name {
+  margin: 0px;
+}
+
+.description {
+  margin-bottom: 0px;
+}
+
+.description-input {
+  height: 130px;
+  font: inherit;
+  border-radius: 8px;
+  border: 1px solid grey;
+  padding: 8px;
 }
 
 input {
   padding: 10px;
   font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid grey;
 }
 
 button {

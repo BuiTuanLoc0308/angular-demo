@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class BasicInfoStep {
   recipeName = '';
+  description = '';
 
   isSaving = false;
 

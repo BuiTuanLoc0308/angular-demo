@@ -6,6 +6,7 @@ import { MealPlanner } from './features/dashboard/pages/meal-planner/meal-planne
 import { AccountSettings } from './features/dashboard/pages/account-settings/account-settings';
 import { AuthLogin } from './features/auth/pages/auth-login/auth-login';
 import { CreateRecipe } from './features/dashboard/pages/create-recipe/create-recipe';
+import { RecipeDetail } from './features/dashboard/pages/recipe-detail/recipe-detail';
 
 export const routes: Routes = [
   {
@@ -47,6 +48,11 @@ export const routes: Routes = [
       {
         path: 'create-recipe',
         component: CreateRecipe,
+      },
+
+      {
+        path: 'my-recipes/:id',
+        component: RecipeDetail,
       },
     ],
   },

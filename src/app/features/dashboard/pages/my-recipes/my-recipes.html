@@ -27,13 +27,17 @@
           <div class="recipe-card">
             <img src="{{ recipe.image }}" alt="image" class="img" />
 
-            <p>{{ recipe.recipeName }}</p>
+            <div class="recipe-detail">
+              <p class="name">{{ recipe.recipeName }}</p>
 
-            <button (click)="onDelete(recipe.id)" [disabled]="deletingRecipeId === recipe.id">
+              <p class="detail" (click)="onClick(recipe.id)">Chi tiết</p>
+            </div>
+
+            <!-- <button (click)="onDelete(recipe.id)" [disabled]="deletingRecipeId === recipe.id">
               {{ deletingRecipeId === recipe.id ? 'Đang Xóa' : 'Xóa' }}
             </button>
 
-            <button>Sửa</button>
+            <button>Sửa</button> -->
           </div>
         } @empty {
           <p>Không có recipe nào.</p>

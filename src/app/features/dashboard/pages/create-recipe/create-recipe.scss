@@ -1,6 +1,7 @@
 .main {
   font-size: 16px;
   padding: 25px 250px;
+  background-color: #efeeeb;
 }
 
 .header .btn-back {
@@ -8,6 +9,22 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+}
+
+.place-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-next {
+  border-radius: 8px;
+  border: 1px solid #154212;
+  display: flex;
+  align-items: center;
+  padding: 8px 40px;
+  gap: 4px;
+  background-color: #154212;
+  color: white;
 }
 
 .header p {

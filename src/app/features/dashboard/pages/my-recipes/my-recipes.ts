@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { catchError, map, of, startWith, Subject, switchMap } from 'rxjs';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { CategoryFilter } from '../../../../shared/components/category-filter/category-filter';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-recipes',
@@ -15,6 +15,8 @@ import { RouterLink } from '@angular/router';
 export class MyRecipes {
   private recipeService = inject(RecipeService);
   private refresh$ = new Subject<void>();
+
+  constructor(private router: Router) {}
 
   deletingRecipeId: string | null = null;
 
@@ -56,5 +58,9 @@ export class MyRecipes {
         this.deletingRecipeId = null;
       },
     });
+  }
+
+  onClick(id: string) {
+    this.router.navigate(['/my-recipes', id]);
   }
 }

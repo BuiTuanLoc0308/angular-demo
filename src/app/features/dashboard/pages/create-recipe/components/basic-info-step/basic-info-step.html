@@ -1,9 +1,17 @@
-<div class="container">
-  <p>basic-info-step works!</p>
+<div class="main">
+  <p class="header">Thông tin cơ bản</p>
 
-  <h2>Create Recipe</h2>
+  <p class="name">Tên món ăn</p>
 
-  <input type="text" placeholder="Recipe name" [(ngModel)]="recipeName" />
+  <input type="text" placeholder="Ví dụ: Phở bò" [(ngModel)]="recipeName" />
+
+  <p class="description">Mô tả</p>
+
+  <textarea
+    class="description-input"
+    placeholder="Chia sẻ câu chuyện đằng sau món ăn..."
+    [(ngModel)]="description"
+  ></textarea>
 
   <button (click)="onSave()" [disabled]="isSaving">
     {{ isSaving ? 'Đang lưu...' : 'Lưu' }}
