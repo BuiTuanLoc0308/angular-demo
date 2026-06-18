@@ -1,1 +1,24 @@
-<p>ingredients-step works!</p>
+<div class="main">
+  <p class="header">Thông tin nguyên liệu</p>
+
+  <form [formGroup]="form" class="ingredient-form">
+    <div formArrayName="ingredients" class="ingredients-list">
+      @for (item of ingredients.controls; track item; let i = $index) {
+        <div [formGroupName]="i" class="ingredient-row">
+          <input type="text" placeholder="Tên nguyên liệu" formControlName="ingredientName" />
+
+          <input type="text" placeholder="Số lượng" formControlName="quantity" />
+
+          <select formControlName="unit">
+            <option value="gram">gram</option>
+            <option value="quả">quả</option>
+          </select>
+
+          <button type="button" class="delete-btn" (click)="removeIngredient(i)">Xóa</button>
+        </div>
+      }
+    </div>
+  </form>
+
+  <button type="button" class="add-btn" (click)="addIngredient()">Thêm nguyên liệu</button>
+</div>

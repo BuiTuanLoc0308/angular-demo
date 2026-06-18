@@ -23,25 +23,33 @@
     <mat-step label="Nguyên liệu">
       <app-ingredients-step></app-ingredients-step>
 
-      <button mat-button matStepperPrevious>Quay lại</button>
-
-      <button mat-button matStepperNext>Tiếp theo</button>
+      <div class="place-btn">
+        <button class="btn-next" mat-button matStepperNext>
+          <span>Tiếp tục</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
     </mat-step>
 
     <mat-step label="Các bước nấu">
       <app-instructions-step></app-instructions-step>
 
-      <button mat-button matStepperPrevious>Quay lại</button>
-
-      <button mat-button matStepperNext>Tiếp theo</button>
+      <div class="place-btn">
+        <button class="btn-next" mat-button matStepperNext>
+          <span>Tiếp tục</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
     </mat-step>
 
     <mat-step label="Hoàn tất">
       <app-review-step></app-review-step>
 
-      <button mat-button matStepperPrevious>Quay lại</button>
-
-      <button mat-raised-button color="primary">Lưu công thức</button>
+      <div class="place-btn">
+        <button class="btn-next" mat-button matStepperNext>
+          <p class="btn-submit">Hoàn tất</p>
+        </button>
+      </div>
     </mat-step>
   </mat-stepper>
 </div>

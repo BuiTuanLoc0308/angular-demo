@@ -1,0 +1,102 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 65vh;
+  overflow-y: auto;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.instruction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instructions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instruction-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instruction-column .text {
+  margin: 0px;
+}
+
+.input-detail {
+  height: 130px;
+  font: inherit;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 12px;
+  outline: none;
+}
+
+input,
+select {
+  height: 42px;
+  padding: 0 12px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.add-btn {
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover {
+  background: #1d4ed8;
+}
+
+.delete-btn {
+  align-self: flex-end;
+
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ef4444;
+  color: white;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}

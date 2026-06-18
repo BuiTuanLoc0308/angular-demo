@@ -1,1 +1,24 @@
-<p>instructions-step works!</p>
+<div class="main">
+  <p class="header">Các bước thực hiện</p>
+
+  <form [formGroup]="form" class="instruction-form">
+    <div formArrayName="instructions" class="instructions-list">
+      @for (item of instructions.controls; track item; let i = $index) {
+        <div [formGroupName]="i" class="instruction-column">
+          <p class="text">Bước {{ i + 1 }}</p>
+
+          <textarea
+            class="input-detail"
+            type="text"
+            placeholder="Mô tả chi tiết..."
+            formControlName="content"
+          ></textarea>
+
+          <button type="button" class="delete-btn" (click)="removeInstruction(i)">Xóa</button>
+        </div>
+      }
+    </div>
+  </form>
+
+  <button type="button" class="add-btn" (click)="addInstruction()">Thêm bước tiếp theo</button>
+</div>

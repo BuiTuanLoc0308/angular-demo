@@ -1,0 +1,18 @@
+.main {
+  font-size: 16px;
+  padding: 25px;
+  background-color: #efeeeb;
+}
+
+.header .btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.recipe-detail .image {
+  width: 1550px;
+  height: auto;
+  display: block;
+}

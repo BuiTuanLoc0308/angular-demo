@@ -45,3 +45,13 @@ body {
   background-color: #efeeeb;
   padding-bottom: 32px;
 }
+
+.mat-horizontal-content-container {
+  border-radius: 12px;
+  background-color: white;
+}
+
+.mat-stepper-vertical,
+.mat-stepper-horizontal {
+  background-color: #efeeeb !important;
+}

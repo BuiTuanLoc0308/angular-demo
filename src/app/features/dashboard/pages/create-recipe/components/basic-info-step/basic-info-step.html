@@ -3,17 +3,28 @@
 
   <p class="name">Tên món ăn</p>
 
-  <input type="text" placeholder="Ví dụ: Phở bò" [(ngModel)]="recipeName" />
+  <input type="text" placeholder="Ví dụ: Phở bò" name="recipeName" />
+
+  @if (recipeNameInvalid) {
+    <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+  }
 
   <p class="description">Mô tả</p>
 
   <textarea
     class="description-input"
     placeholder="Chia sẻ câu chuyện đằng sau món ăn..."
-    [(ngModel)]="description"
+    name="description"
   ></textarea>
 
-  <button (click)="onSave()" [disabled]="isSaving">
-    {{ isSaving ? 'Đang lưu...' : 'Lưu' }}
-  </button>
+  @if (descriptionInvalid) {
+    <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+  }
+
+  <!-- <div class="place-btn">
+    <button class="btn-next" mat-button matStepperNext>
+      <span>Tiếp tục</span>
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+  </div> -->
 </div>

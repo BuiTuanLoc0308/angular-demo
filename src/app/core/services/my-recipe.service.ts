@@ -14,10 +14,12 @@ export class RecipeService {
     return this.http.get<RecipeModel[]>(api_endpoint.recipe.myRecipe);
   }
 
-  createRecipe(recipeName: string) {
-    return this.http.post(api_endpoint.recipe.myRecipe, {
-      recipeName,
-    });
+  getRecipeById(id: string): Observable<RecipeModel> {
+    return this.http.get<RecipeModel>(`${api_endpoint.recipe.myRecipe}/${id}`);
+  }
+
+  createRecipe(recipe: RecipeModel) {
+    return this.http.post(api_endpoint.recipe.myRecipe, recipe);
   }
 
   updateRecipe(id: string, data: RecipeModel) {

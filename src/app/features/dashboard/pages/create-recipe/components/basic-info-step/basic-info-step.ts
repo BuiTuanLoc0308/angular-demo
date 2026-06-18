@@ -1,39 +1,46 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RecipeService } from '../../../../../../core/services/my-recipe.service';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-basic-info-step',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './basic-info-step.html',
   styleUrl: './basic-info-step.scss',
 })
 export class BasicInfoStep {
-  recipeName = '';
-  description = '';
+  private recipeState = inject(RecipeCreateStateService);
 
-  isSaving = false;
+  basicInfoStepForm: FormGroup;
 
-  constructor(
-    private recipeService: RecipeService,
-    private router: Router,
-  ) {}
+  constructor(private fb: FormBuilder) {
+    this.basicInfoStepForm = this.fb.group({
+      recipeName: ['', Validators.required],
 
-  onSave() {
-    this.isSaving = true;
-
-    this.recipeService.createRecipe(this.recipeName).subscribe({
-      next: (response) => {
-        console.log('Saved successfully', response);
-
-        this.router.navigate(['/my-recipes']);
-      },
-      error: (error) => {
-        console.error('Save failed', error);
-
-        this.isSaving = false;
-      },
+      description: ['', Validators.required],
     });
+  }
+
+  get recipeName() {
+    return this.basicInfoStepForm.get('recipeName');
+  }
+
+  get description() {
+    return this.basicInfoStepForm.get('description');
+  }
+
+  get recipeNameInvalid(): boolean {
+    return !!(this.recipeName?.invalid && this.recipeName?.touched);
+  }
+
+  get descriptionInvalid(): boolean {
+    return !!(this.description?.invalid && this.description?.touched);
   }
 }

@@ -32,12 +32,6 @@
 
               <p class="detail" (click)="onClick(recipe.id)">Chi tiết</p>
             </div>
-
-            <!-- <button (click)="onDelete(recipe.id)" [disabled]="deletingRecipeId === recipe.id">
-              {{ deletingRecipeId === recipe.id ? 'Đang Xóa' : 'Xóa' }}
-            </button>
-
-            <button>Sửa</button> -->
           </div>
         } @empty {
           <p>Không có recipe nào.</p>

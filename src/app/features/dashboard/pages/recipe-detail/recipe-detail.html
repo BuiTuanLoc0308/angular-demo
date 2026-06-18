@@ -1,1 +1,28 @@
-<p>recipe-detail works!</p>
+<div class="main">
+  <div class="header">
+    <a (click)="goBack()" class="btn-back">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Quay lại</span>
+    </a>
+  </div>
+
+  @if (vm$ | async; as vm) {
+    @if (vm.isLoading) {
+      <p>Đang tải...</p>
+    } @else if (vm.error) {
+      <p>Không thể tải công thức.</p>
+    } @else if (vm.recipe; as recipe) {
+      <div class="recipe-detail">
+        <img class="image" [src]="recipe.image" alt="image" />
+
+        <p>Tên: {{ recipe.recipeName }}</p>
+
+        <p>Mô tả: {{ recipe.description }}</p>
+      </div>
+
+      <button (click)="onDelete(recipe.id)" [disabled]="isDeleting">
+        {{ isDeleting ? 'Đang xóa...' : 'Xóa' }}
+      </button>
+    }
+  }
+</div>
