@@ -16,4 +16,15 @@ export class RecipeCreateStateService {
     ingredients: [],
     instructions: [],
   };
+
+  getRecipe(): RecipeModel {
+    return this.recipe;
+  }
+
+  updateRecipe(data: Partial<RecipeModel>) {
+    this.recipe = {
+      ...this.recipe,
+      ...data,
+    };
+  }
 }

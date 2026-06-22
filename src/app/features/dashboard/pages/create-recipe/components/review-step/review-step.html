@@ -1,3 +1,17 @@
 <div class="main">
-  <p>review-step works!</p>
+  <h2>Name: {{ recipe.recipeName }}</h2>
+
+  <p>Description: {{ recipe.description }}</p>
+
+  @for (ingredient of recipe.ingredients; track $index) {
+    <p>ingredientName: {{ ingredient.ingredientName }}</p>
+
+    <p>quantity: {{ ingredient.quantity }}</p>
+
+    <p>unit: {{ ingredient.unit }}</p>
+  }
+
+  @for (instruction of recipe.instructions; track $index) {
+    <p>ingredientName: {{ instruction.content }}</p>
+  }
 </div>

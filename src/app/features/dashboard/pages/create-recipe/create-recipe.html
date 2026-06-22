@@ -9,33 +9,43 @@
   </div>
 
   <mat-stepper linear #stepper>
-    <mat-step label="Thông tin cơ bản">
-      <app-basic-info-step></app-basic-info-step>
+    <mat-step label="Thông tin cơ bản" [stepControl]="basicStep.form">
+      <app-basic-info-step #basicStep></app-basic-info-step>
 
       <div class="place-btn">
-        <button class="btn-next" mat-button matStepperNext>
+        <button class="btn-next" mat-button matStepperNext [disabled]="basicStep.form.invalid">
           <span>Tiếp tục</span>
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </mat-step>
 
-    <mat-step label="Nguyên liệu">
-      <app-ingredients-step></app-ingredients-step>
+    <mat-step label="Nguyên liệu" [stepControl]="ingredientsStep.form">
+      <app-ingredients-step #ingredientsStep></app-ingredients-step>
 
       <div class="place-btn">
-        <button class="btn-next" mat-button matStepperNext>
+        <button
+          class="btn-next"
+          mat-button
+          matStepperNext
+          [disabled]="ingredientsStep.form.invalid"
+        >
           <span>Tiếp tục</span>
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </mat-step>
 
-    <mat-step label="Các bước nấu">
-      <app-instructions-step></app-instructions-step>
+    <mat-step label="Các bước nấu" [stepControl]="instructionsStep.form">
+      <app-instructions-step #instructionsStep></app-instructions-step>
 
       <div class="place-btn">
-        <button class="btn-next" mat-button matStepperNext>
+        <button
+          class="btn-next"
+          mat-button
+          matStepperNext
+          [disabled]="instructionsStep.form.invalid"
+        >
           <span>Tiếp tục</span>
           <mat-icon>arrow_forward</mat-icon>
         </button>

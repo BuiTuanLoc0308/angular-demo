@@ -18,10 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
 export class BasicInfoStep {
   private recipeState = inject(RecipeCreateStateService);
 
-  basicInfoStepForm: FormGroup;
+  form: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.basicInfoStepForm = this.fb.group({
+    this.form = this.fb.group({
       recipeName: ['', Validators.required],
 
       description: ['', Validators.required],
@@ -29,11 +29,11 @@ export class BasicInfoStep {
   }
 
   get recipeName() {
-    return this.basicInfoStepForm.get('recipeName');
+    return this.form.get('recipeName');
   }
 
   get description() {
-    return this.basicInfoStepForm.get('description');
+    return this.form.get('description');
   }
 
   get recipeNameInvalid(): boolean {
@@ -42,5 +42,14 @@ export class BasicInfoStep {
 
   get descriptionInvalid(): boolean {
     return !!(this.description?.invalid && this.description?.touched);
+  }
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe((value) => {
+      this.recipeState.updateRecipe(value);
+
+      console.log('Form Value:', value);
+      console.log('Recipe State:', this.recipeState.recipe);
+    });
   }
 }

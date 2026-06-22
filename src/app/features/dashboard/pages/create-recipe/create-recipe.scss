@@ -29,6 +29,11 @@
   cursor: pointer;
 }
 
+.btn-next:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .btn-submit {
   margin: 5px;
 }

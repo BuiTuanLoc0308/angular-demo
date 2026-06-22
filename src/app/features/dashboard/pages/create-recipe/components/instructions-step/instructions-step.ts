@@ -13,8 +13,6 @@ export class InstructionsStep {
   private fb = inject(FormBuilder);
   private recipeState = inject(RecipeCreateStateService);
 
-  instructionList = this.recipeState.recipe.instructions;
-
   form = this.fb.group({
     instructions: this.fb.array([this.createInstruction()]),
   });
@@ -35,5 +33,16 @@ export class InstructionsStep {
 
   removeInstruction(index: number) {
     this.instructions.removeAt(index);
+  }
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe((value) => {
+      this.recipeState.updateRecipe({
+        ingredients: value.instructions,
+      });
+
+      console.log('Ingredients:', value.instructions);
+      console.log('Recipe State:', this.recipeState.recipe);
+    });
   }
 }

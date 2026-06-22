@@ -13,8 +13,6 @@ export class IngredientsStep {
   private fb = inject(FormBuilder);
   private recipeState = inject(RecipeCreateStateService);
 
-  ingredientList = this.recipeState.recipe.ingredients;
-
   form = this.fb.group({
     ingredients: this.fb.array([this.createIngredient()]),
   });
@@ -37,5 +35,16 @@ export class IngredientsStep {
 
   removeIngredient(index: number) {
     this.ingredients.removeAt(index);
+  }
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe((value) => {
+      this.recipeState.updateRecipe({
+        ingredients: value.ingredients,
+      });
+
+      console.log('Ingredients:', value.ingredients);
+      console.log('Recipe State:', this.recipeState.recipe);
+    });
   }
 }

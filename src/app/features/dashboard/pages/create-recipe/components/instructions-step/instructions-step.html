@@ -14,6 +14,10 @@
             formControlName="content"
           ></textarea>
 
+          @if (item.get('content')?.invalid && item.get('content')?.touched) {
+            <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+          }
+
           <button type="button" class="delete-btn" (click)="removeInstruction(i)">Xóa</button>
         </div>
       }

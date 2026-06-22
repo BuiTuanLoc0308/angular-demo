@@ -87,3 +87,8 @@ select:focus {
 .delete-btn:hover {
   background: #dc2626;
 }
+
+.invalid-text {
+  color: red;
+  grid-column: 1 / 2;
+}

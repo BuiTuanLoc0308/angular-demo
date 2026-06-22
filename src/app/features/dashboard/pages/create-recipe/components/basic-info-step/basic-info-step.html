@@ -1,9 +1,9 @@
-<div class="main">
+<form [formGroup]="form" class="main">
   <p class="header">Thông tin cơ bản</p>
 
   <p class="name">Tên món ăn</p>
 
-  <input type="text" placeholder="Ví dụ: Phở bò" name="recipeName" />
+  <input type="text" placeholder="Ví dụ: Phở bò" formControlName="recipeName" />
 
   @if (recipeNameInvalid) {
     <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
@@ -14,17 +14,10 @@
   <textarea
     class="description-input"
     placeholder="Chia sẻ câu chuyện đằng sau món ăn..."
-    name="description"
+    formControlName="description"
   ></textarea>
 
   @if (descriptionInvalid) {
     <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
   }
-
-  <!-- <div class="place-btn">
-    <button class="btn-next" mat-button matStepperNext>
-      <span>Tiếp tục</span>
-      <mat-icon>arrow_forward</mat-icon>
-    </button>
-  </div> -->
-</div>
+</form>

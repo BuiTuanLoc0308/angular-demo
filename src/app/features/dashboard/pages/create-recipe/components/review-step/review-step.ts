@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
-import { RecipeService } from '../../../../../../core/services/my-recipe.service';
+import { RecipeModel } from '../../../../../../core/models/recipe.model';
 
 @Component({
   selector: 'app-review-step',
@@ -9,19 +9,9 @@ import { RecipeService } from '../../../../../../core/services/my-recipe.service
   styleUrl: './review-step.scss',
 })
 export class ReviewStep {
-  constructor(
-    private recipeState: RecipeCreateStateService,
-    private recipeService: RecipeService,
-  ) {}
+  constructor(public recipeState: RecipeCreateStateService) {}
 
-  // submitRecipe() {
-  //   this.recipeService.createRecipe(this.recipeState.recipe).subscribe({
-  //     next: () => {
-  //       console.log('Created successfully');
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //     },
-  //   });
-  // }
+  get recipe() {
+    return this.recipeState.recipe;
+  }
 }

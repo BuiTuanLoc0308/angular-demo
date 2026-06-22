@@ -15,6 +15,13 @@
           </select>
 
           <button type="button" class="delete-btn" (click)="removeIngredient(i)">Xóa</button>
+
+          @if (
+            (item.get('ingredientName')?.invalid && item.get('ingredientName')?.touched) ||
+            (item.get('quantity')?.invalid && item.get('quantity')?.touched)
+          ) {
+            <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+          }
         </div>
       }
     </div>
