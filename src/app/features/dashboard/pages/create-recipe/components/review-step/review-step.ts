@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
-import { RecipeModel } from '../../../../../../core/models/recipe.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-review-step',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './review-step.html',
   styleUrl: './review-step.scss',
 })

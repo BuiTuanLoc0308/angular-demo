@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { catchError, map, of, startWith, switchMap } from 'rxjs';
 import { RecipeModel } from '../../../../core/models/recipe.model';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
+import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -46,6 +47,7 @@ export class RecipeDetail {
     private recipeService: RecipeService,
     private location: Location,
     private router: Router,
+    private recipeCreateState: RecipeCreateStateService,
   ) {}
 
   goBack() {
@@ -67,6 +69,19 @@ export class RecipeDetail {
         console.error('Delete failed', err);
 
         this.isDeleting = false;
+      },
+    });
+  }
+
+  onEdit(id: string) {
+    this.recipeService.getRecipeById(id).subscribe({
+      next: (recipe) => {
+        this.recipeCreateState.updateRecipe(recipe);
+
+        this.router.navigate(['/create-recipe', id]);
+      },
+      error: (err) => {
+        console.error(err);
       },
     });
   }

@@ -1,5 +1,5 @@
 .main {
-  height: 98vh;
+  height: 100vh;
   background: #f5f5f5;
   display: flex;
   justify-content: center;
@@ -9,20 +9,62 @@
 .login-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+}
+
+.image-container img {
+  height: 100%;
+  width: 100%;
+
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .login-card {
-  height: 100%;
-  padding: 30px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+
+  padding: 80px;
   background: white;
-  border-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   h2 {
     text-align: center;
     margin-bottom: 20px;
   }
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container img {
+  width: 50px;
+  height: 50px;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.welcome-container .text {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.welcome-container .sub-text {
+  color: gray;
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -39,6 +81,36 @@
     border: 1px solid #ccc;
     border-radius: 8px;
   }
+}
+
+.option-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.option-container .forgot {
+  margin-top: 0;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.divider .line {
+  flex: 1;
+  height: 1px;
+  background: #d9d9d9;
+}
+
+.divider .text {
+  color: #666;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .invalid-text {

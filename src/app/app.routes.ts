@@ -10,6 +10,12 @@ import { RecipeDetail } from './features/dashboard/pages/recipe-detail/recipe-de
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+
+  {
     path: 'login',
     component: AuthLogin,
   },
@@ -19,11 +25,11 @@ export const routes: Routes = [
     component: DashboardLayout,
 
     children: [
-      {
-        path: '',
-        redirectTo: 'cooking-activity',
-        pathMatch: 'full',
-      },
+      // {
+      //   path: '',
+      //   redirectTo: 'cooking-activity',
+      //   pathMatch: 'full',
+      // },
 
       {
         path: 'my-recipes',
@@ -53,6 +59,11 @@ export const routes: Routes = [
       {
         path: 'my-recipes/:id',
         component: RecipeDetail,
+      },
+
+      {
+        path: 'create-recipe/:id',
+        component: CreateRecipe,
       },
     ],
   },

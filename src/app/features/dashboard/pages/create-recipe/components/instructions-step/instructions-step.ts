@@ -38,10 +38,10 @@ export class InstructionsStep {
   ngOnInit() {
     this.form.valueChanges.subscribe((value) => {
       this.recipeState.updateRecipe({
-        ingredients: value.instructions,
+        instructions: value.instructions,
       });
 
-      console.log('Ingredients:', value.instructions);
+      console.log('Instructions:', value.instructions);
       console.log('Recipe State:', this.recipeState.recipe);
     });
   }

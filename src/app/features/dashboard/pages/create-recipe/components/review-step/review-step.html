@@ -4,14 +4,13 @@
   <p>Description: {{ recipe.description }}</p>
 
   @for (ingredient of recipe.ingredients; track $index) {
-    <p>ingredientName: {{ ingredient.ingredientName }}</p>
-
-    <p>quantity: {{ ingredient.quantity }}</p>
-
-    <p>unit: {{ ingredient.unit }}</p>
+    <p>
+      ingredientName: {{ ingredient.ingredientName }} - {{ ingredient.quantity }}
+      {{ ingredient.unit }}
+    </p>
   }
 
   @for (instruction of recipe.instructions; track $index) {
-    <p>ingredientName: {{ instruction.content }}</p>
+    <p>Instructions Step {{ $index + 1 }}: {{ instruction.content }}</p>
   }
 </div>

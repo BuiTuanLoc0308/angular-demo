@@ -1,7 +1,21 @@
 <div class="main">
   <div class="login-container">
+    <div class="image-container">
+      <img src="images/login.png" alt="Login" />
+    </div>
+
     <div class="login-card">
-      <h2>Login</h2>
+      <div class="logo-container">
+        <img src="images/logo.png" alt="Logo" />
+      </div>
+
+      <h2><i>CulinaryFriend</i></h2>
+
+      <div class="welcome-container">
+        <p class="text">Đăng nhập</p>
+
+        <p class="sub-text">Rất vui được gặp lại bạn</p>
+      </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <div class="form-group">
@@ -20,18 +34,31 @@
           <input type="password" formControlName="password" placeholder="Enter password" />
 
           @if (passwordInvalid) {
-            <small class="invalid-text">Password bắt buộc</small>
+            <small class="invalid-text"> Password bắt buộc </small>
           }
+        </div>
+
+        <div class="option-container">
+          <label class="remember">
+            <input type="checkbox" id="remember" />
+            Ghi nhớ đăng nhập
+          </label>
+
+          <p class="forgot">Quên mật khẩu</p>
         </div>
 
         <button type="submit" [disabled]="loginForm.invalid || isLoading">
           {{ isLoading ? 'Đang đăng nhập...' : 'Login' }}
         </button>
+
+        <div class="divider">
+          <span class="line"></span>
+          <span class="text">Hoặc đăng nhập bằng</span>
+          <span class="line"></span>
+        </div>
       </form>
 
-      <p class="message">
-        {{ message }}
-      </p>
+      <p class="message">{{ message }}</p>
     </div>
   </div>
 </div>

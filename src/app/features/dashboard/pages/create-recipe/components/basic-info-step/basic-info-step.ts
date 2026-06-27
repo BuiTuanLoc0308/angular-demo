@@ -21,11 +21,15 @@ export class BasicInfoStep {
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      recipeName: ['', Validators.required],
+    const recipe = this.recipeState.getRecipe();
 
-      description: ['', Validators.required],
+    this.form = this.fb.group({
+      recipeName: [recipe.recipeName, Validators.required],
+
+      description: [recipe.description, Validators.required],
     });
+
+    console.log('Recipe hien tai:', this.recipeState.recipe);
   }
 
   get recipeName() {
