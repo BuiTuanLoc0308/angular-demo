@@ -76,7 +76,7 @@ export class RecipeDetail {
   onEdit(id: string) {
     this.recipeService.getRecipeById(id).subscribe({
       next: (recipe) => {
-        this.recipeCreateState.updateRecipe(recipe);
+        this.recipeCreateState.setRecipe(recipe);
 
         this.router.navigate(['/create-recipe', id]);
       },

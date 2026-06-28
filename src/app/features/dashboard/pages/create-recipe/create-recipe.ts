@@ -8,7 +8,7 @@ import { InstructionsStep } from './components/instructions-step/instructions-st
 import { ReviewStep } from './components/review-step/review-step';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-recipe',
@@ -24,31 +24,66 @@ import { Router } from '@angular/router';
   styleUrl: './create-recipe.scss',
 })
 export class CreateRecipe {
+  isEdit = false;
+  isProcess = false;
+
   constructor(
     private location: Location,
     private recipeService: RecipeService,
     private recipeState: RecipeCreateStateService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {}
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id !== null) {
+      this.isEdit = true;
+    } else {
+      this.isEdit = false;
+    }
+  }
 
   goBack() {
     this.location.back();
   }
 
   submitRecipe() {
+    this.isProcess = true;
+
     const recipe = this.recipeState.getRecipe();
 
-    console.log(recipe);
+    if (this.isEdit) {
+      this.recipeService.updateRecipe(recipe.id, recipe).subscribe({
+        next: (res) => {
+          console.log('Cập nhật thành công', res);
 
-    this.recipeService.createRecipe(recipe).subscribe({
-      next: (res) => {
-        console.log('Lưu thành công', res);
+          this.isProcess = false;
 
-        this.router.navigate(['/my-recipes']);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+          this.router.navigate(['/my-recipes']);
+        },
+        error: (err) => {
+          console.log(err);
+
+          this.isProcess = false;
+        },
+      });
+    } else {
+      this.recipeService.createRecipe(recipe).subscribe({
+        next: (res) => {
+          console.log('Tạo thành công', res);
+
+          this.isProcess = false;
+
+          this.router.navigate(['/my-recipes']);
+        },
+        error: (err) => {
+          console.log(err);
+
+          this.isProcess = false;
+        },
+      });
+    }
   }
 }

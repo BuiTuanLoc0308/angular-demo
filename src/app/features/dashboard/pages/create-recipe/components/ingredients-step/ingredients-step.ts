@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
+import { IngredientModel } from '../../../../../../core/models/ingredient.model';
 
 @Component({
   selector: 'app-ingredients-step',
@@ -14,19 +15,34 @@ export class IngredientsStep {
   private recipeState = inject(RecipeCreateStateService);
 
   form = this.fb.group({
-    ingredients: this.fb.array([this.createIngredient()]),
+    ingredients: this.fb.array([]),
   });
 
   get ingredients(): FormArray {
     return this.form.get('ingredients') as FormArray;
   }
 
-  createIngredient(): FormGroup {
+  createIngredient(ingredient?: IngredientModel): FormGroup {
     return this.fb.group({
-      ingredientName: ['', Validators.required],
-      quantity: ['', Validators.required],
-      unit: ['gram', Validators.required],
+      ingredientName: [ingredient?.ingredientName ?? '', Validators.required],
+      quantity: [ingredient?.quantity ?? '', Validators.required],
+      unit: [ingredient?.unit ?? 'gram', Validators.required],
     });
+  }
+
+  private initIngredients() {
+    const recipe = this.recipeState.getRecipe();
+
+    // Neu an edit
+    if (recipe.ingredients.length > 0) {
+      recipe.ingredients.forEach((ingredient) => {
+        this.ingredients.push(this.createIngredient(ingredient));
+      });
+    }
+    // Neu an create
+    else {
+      this.ingredients.push(this.createIngredient());
+    }
   }
 
   addIngredient() {
@@ -35,12 +51,18 @@ export class IngredientsStep {
 
   removeIngredient(index: number) {
     this.ingredients.removeAt(index);
+
+    if (this.ingredients.length === 0) {
+      this.addIngredient();
+    }
   }
 
   ngOnInit() {
+    this.initIngredients();
+
     this.form.valueChanges.subscribe((value) => {
       this.recipeState.updateRecipe({
-        ingredients: value.ingredients,
+        ingredients: (value.ingredients ?? []) as IngredientModel[],
       });
 
       console.log('Ingredients:', value.ingredients);

@@ -1,16 +1,28 @@
 <div class="main">
-  <h2>Name: {{ recipe.recipeName }}</h2>
+  <h2>Tên món ăn: {{ recipe.recipeName }}</h2>
 
-  <p>Description: {{ recipe.description }}</p>
+  <div class="divider">
+    <span class="line"></span>
+  </div>
+
+  <p>Mô tả món ăn: {{ recipe.description }}</p>
+
+  <div class="divider">
+    <span class="line"></span>
+  </div>
 
   @for (ingredient of recipe.ingredients; track $index) {
     <p>
-      ingredientName: {{ ingredient.ingredientName }} - {{ ingredient.quantity }}
+      Nguyên liệu số {{ $index + 1 }}: {{ ingredient.ingredientName }} - {{ ingredient.quantity }}
       {{ ingredient.unit }}
     </p>
   }
 
+  <div class="divider">
+    <span class="line"></span>
+  </div>
+
   @for (instruction of recipe.instructions; track $index) {
-    <p>Instructions Step {{ $index + 1 }}: {{ instruction.content }}</p>
+    <p>Bước nấu ăn số {{ $index + 1 }}: {{ instruction.content }}</p>
   }
 </div>

@@ -5,17 +5,21 @@ import { RecipeModel } from '../models/recipe.model';
   providedIn: 'root',
 })
 export class RecipeCreateStateService {
-  recipe: RecipeModel = {
-    id: '',
+  private createEmptyRecipe(): RecipeModel {
+    return {
+      id: '',
 
-    recipeName: '',
-    image: '',
-    description: '',
-    category: '',
+      recipeName: '',
+      image: '',
+      description: '',
+      category: '',
 
-    ingredients: [],
-    instructions: [],
-  };
+      ingredients: [],
+      instructions: [],
+    };
+  }
+
+  recipe: RecipeModel = this.createEmptyRecipe();
 
   getRecipe(): RecipeModel {
     return this.recipe;
@@ -26,5 +30,13 @@ export class RecipeCreateStateService {
       ...this.recipe,
       ...data,
     };
+  }
+
+  setRecipe(recipe: RecipeModel) {
+    this.recipe = { ...recipe };
+  }
+
+  resetRecipe() {
+    this.recipe = this.createEmptyRecipe();
   }
 }

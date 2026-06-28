@@ -5,7 +5,9 @@
       <span>Quay lại</span>
     </a>
 
-    <p>Tạo công thức mới</p>
+    <p>
+      {{ isEdit ? 'Chỉnh sửa công thức' : 'Tạo công thức mới' }}
+    </p>
   </div>
 
   <mat-stepper linear #stepper>
@@ -56,8 +58,14 @@
       <app-review-step></app-review-step>
 
       <div class="place-btn">
-        <button class="btn-next" mat-button matStepperNext (click)="submitRecipe()">
-          <p class="btn-submit">Hoàn tất</p>
+        <button
+          class="btn-next"
+          mat-button
+          matStepperNext
+          (click)="submitRecipe()"
+          [disabled]="isProcess"
+        >
+          <p class="btn-submit">{{ isProcess ? 'Đang xử lý...' : 'Hoàn tất' }}</p>
         </button>
       </div>
     </mat-step>

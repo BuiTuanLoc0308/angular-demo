@@ -5,3 +5,17 @@
   min-height: 65vh;
   overflow-y: auto;
 }
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.divider .line {
+  flex: 1;
+  height: 1px;
+  background: #d9d9d9;
+}
