@@ -5,6 +5,7 @@ import { LoginResponse } from '../models/login-response.model';
 import { api_endpoint } from '../constants/api-endpoint';
 import { LoginRequest } from '../models/login-request.model';
 import { TokenService } from './token.service';
+import { RegisterRequest } from '../models/register-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,4 +25,8 @@ export class AuthService {
   // login(data: LoginRequest): Observable<LoginResponse> {
   //   return this.http.post<LoginResponse>(api_endpoint.auth.login, data);
   // }
+
+  register(data: RegisterRequest) {
+    return this.http.post(api_endpoint.auth.login, data);
+  }
 }

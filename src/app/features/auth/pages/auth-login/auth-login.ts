@@ -78,4 +78,8 @@ export class AuthLogin {
       },
     });
   }
+
+  onRegister() {
+    this.router.navigate(['/register']);
+  }
 }

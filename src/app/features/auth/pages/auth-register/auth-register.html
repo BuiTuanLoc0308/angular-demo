@@ -1,23 +1,69 @@
 <div class="main">
-  <div>
-    <div>
-      <h2>Register</h2>
+  <div class="login-container">
+    <div class="image-container">
+      <img src="images/login.png" alt="Login" />
+    </div>
 
-      <form>
-        <div>
+    <div class="login-card">
+      <div class="welcome-container">
+        <h1 class="header">Tạo tài khoản mới</h1>
+
+        <p class="text">Bắt đầu hành trình khám phá ẩm thực của bạn ngày hôm nay</p>
+      </div>
+
+      <div class="btn-group">
+        <button>Google</button>
+
+        <button>Facebook</button>
+      </div>
+
+      <div class="divider">
+        <span class="line"></span>
+        <span class="text">Hoặc đăng nhập bằng email</span>
+        <span class="line"></span>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div class="form-group">
           <label>Username</label>
 
-          <input type="email" placeholder="Enter username" />
+          <input type="email" formControlName="userName" placeholder="Enter username" />
+
+          @if (userNameInvalid) {
+            <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+          }
         </div>
 
-        <div>
+        <div class="form-group">
           <label>Password</label>
 
-          <input type="password" placeholder="Enter password" />
+          <input type="password" formControlName="password" placeholder="Enter password" />
+
+          @if (passwordInvalid) {
+            <small class="invalid-text"> Password bắt buộc </small>
+          }
         </div>
 
-        <button type="submit">Đăng ký</button>
+        <div class="option-container">
+          <label class="remember">
+            <input type="checkbox" id="remember" />
+            Tôi đồng ý với <strong>Điều khoản dịch vụ</strong> và
+            <strong>Chính sách bảo mật</strong> của CulinaryFriend
+          </label>
+        </div>
+
+        <button class="btn-submit" type="submit" [disabled]="registerForm.invalid || isLoading">
+          {{ isLoading ? 'Đang đăng ký...' : 'Register' }}
+        </button>
+
+        <div class="login">
+          <p>Đã có tài khoản?</p>
+
+          <a class="btn-login" (click)="onLogin()">Đăng nhập ngay</a>
+        </div>
       </form>
+
+      <p class="message">{{ message }}</p>
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <div class="header">
     <a (click)="goBack()" class="btn-back">
       <mat-icon>arrow_back</mat-icon>
-      <span>Quay lại</span>
+      <span><p>Chi tiết công thức</p></span>
     </a>
   </div>
 
@@ -12,47 +12,73 @@
     } @else if (vm.error) {
       <p>Không thể tải công thức.</p>
     } @else if (vm.recipe; as recipe) {
-      <div class="recipe-detail">
-        <img class="image" [src]="recipe.image" alt="image" />
+      <div class="recipe">
+        <!-- <img class="image" [src]="recipe.image" alt="image" /> -->
 
-        <p>Tên: {{ recipe.recipeName }}</p>
+        <div class="recipe-name">
+          <p>Tên: {{ recipe.recipeName }}</p>
+        </div>
 
         <p>Mô tả: {{ recipe.description }}</p>
 
-        <h3>Nguyên liệu</h3>
+        <div class="body">
+          <div class="recipe-ingredient">
+            <p class="label">Nguyên liệu</p>
 
-        @if (recipe.ingredients.length > 0) {
-          <ul>
-            @for (ingredient of recipe.ingredients; track $index) {
-              <li>
-                {{ ingredient.ingredientName }}
-                - {{ ingredient.quantity }}
-                {{ ingredient.unit }}
-              </li>
+            @for (ingredient of recipe.ingredients; track $index; let last = $last) {
+              <div class="ingredient">
+                <p class="name">{{ ingredient.ingredientName }}</p>
+
+                <p class="quantity">{{ ingredient.quantity }} {{ ingredient.unit }}</p>
+              </div>
+
+              @if (!last) {
+                <div class="divider">
+                  <span class="line"></span>
+                </div>
+              }
             }
-          </ul>
-        } @else {
-          <p>Chưa thêm nguyên liệu</p>
-        }
+          </div>
 
-        <h3>Các bước nấu</h3>
+          <div class="recipe-instruction">
+            <p class="label">Các bước nấu</p>
 
-        @if (recipe.instructions.length > 0) {
-          <ol>
-            @for (step of recipe.instructions; track $index) {
-              <li>{{ step.content }}</li>
-            }
-          </ol>
-        } @else {
-          <p>Chưa có bước nấu</p>
-        }
+            <div class="recipe-steps">
+              @for (step of recipe.instructions; track $index; let last = $last) {
+                <div class="step">
+                  <div class="step-left">
+                    <div class="step-number">
+                      {{ $index + 1 }}
+                    </div>
+
+                    @if (!last) {
+                      <div class="step-line"></div>
+                    }
+                  </div>
+
+                  <div class="step-content">
+                    {{ step.content }}
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
       </div>
 
-      <button (click)="onDelete(recipe.id)" [disabled]="isDeleting">
-        {{ isDeleting ? 'Đang xóa...' : 'Xóa' }}
-      </button>
+      <div class="btn-group">
+        <button class="btn btn-delete" (click)="onDelete(recipe.id)" [disabled]="isDeleting">
+          <mat-icon>delete_outline</mat-icon>
 
-      <button (click)="onEdit(recipe.id)">Sửa</button>
+          {{ isDeleting ? 'Đang xóa...' : 'Xóa' }}
+        </button>
+
+        <button class="btn btn-edit" (click)="onEdit(recipe.id)">
+          <mat-icon>edit</mat-icon>
+
+          Sửa
+        </button>
+      </div>
     }
   }
 </div>

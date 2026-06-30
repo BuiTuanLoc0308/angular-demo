@@ -47,7 +47,7 @@
           <p class="forgot">Quên mật khẩu</p>
         </div>
 
-        <button type="submit" [disabled]="loginForm.invalid || isLoading">
+        <button class="btn-submit" type="submit" [disabled]="loginForm.invalid || isLoading">
           {{ isLoading ? 'Đang đăng nhập...' : 'Login' }}
         </button>
 
@@ -55,6 +55,18 @@
           <span class="line"></span>
           <span class="text">Hoặc đăng nhập bằng</span>
           <span class="line"></span>
+        </div>
+
+        <div class="btn-group">
+          <button>Google</button>
+
+          <button>Facebook</button>
+        </div>
+
+        <div class="register">
+          <p>Chưa có tài khoản?</p>
+
+          <a class="btn-register" (click)="onRegister()">Đăng ký ngay</a>
         </div>
       </form>
 

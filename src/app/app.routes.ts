@@ -7,6 +7,7 @@ import { AccountSettings } from './features/dashboard/pages/account-settings/acc
 import { AuthLogin } from './features/auth/pages/auth-login/auth-login';
 import { CreateRecipe } from './features/dashboard/pages/create-recipe/create-recipe';
 import { RecipeDetail } from './features/dashboard/pages/recipe-detail/recipe-detail';
+import { AuthRegister } from './features/auth/pages/auth-register/auth-register';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,11 @@ export const routes: Routes = [
   {
     path: 'login',
     component: AuthLogin,
+  },
+
+  {
+    path: 'register',
+    component: AuthRegister,
   },
 
   {

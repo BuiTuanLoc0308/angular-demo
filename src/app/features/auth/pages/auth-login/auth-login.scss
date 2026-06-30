@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0px 50px;
 }
 
 .login-container {
@@ -140,4 +141,29 @@ button:disabled {
 .message {
   text-align: center;
   margin-top: 15px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 24px;
+}
+
+.btn-group button {
+  background-color: white;
+  color: black;
+  border: 1px solid grey;
+}
+
+.register {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.btn-register {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
 }

@@ -1,28 +1,60 @@
 <div class="main">
-  <h2>Tên món ăn: {{ recipe.recipeName }}</h2>
+  <div class="header">
+    <h2 class="text">Hãy cùng nhìn lại nhé!</h2>
 
-  <div class="divider">
-    <span class="line"></span>
-  </div>
-
-  <p>Mô tả món ăn: {{ recipe.description }}</p>
-
-  <div class="divider">
-    <span class="line"></span>
-  </div>
-
-  @for (ingredient of recipe.ingredients; track $index) {
-    <p>
-      Nguyên liệu số {{ $index + 1 }}: {{ ingredient.ingredientName }} - {{ ingredient.quantity }}
-      {{ ingredient.unit }}
+    <p class="sub-text">
+      Công thức của bạn đã sẳn sàng được lưu vào thư viện cá nhân để nấu ăn hoặc chia sẻ với cộng
+      đồng
     </p>
-  }
-
-  <div class="divider">
-    <span class="line"></span>
   </div>
 
-  @for (instruction of recipe.instructions; track $index) {
-    <p>Bước nấu ăn số {{ $index + 1 }}: {{ instruction.content }}</p>
-  }
+  <div class="recipe">
+    <div class="recipe-name">
+      <p class="label">TÊN MÓN ĂN</p>
+
+      <p class="name">{{ recipe.recipeName }}</p>
+    </div>
+
+    <div class="divider">
+      <span class="line"></span>
+    </div>
+
+    <div class="recipe-description">
+      <p class="label">MÔ TẢ</p>
+
+      <p class="description">{{ recipe.description }}</p>
+    </div>
+
+    <div class="divider">
+      <span class="line"></span>
+    </div>
+
+    <div class="recipe-ingredient">
+      <p class="label">DANH SÁCH NGUYÊN LIỆU</p>
+
+      @for (ingredient of recipe.ingredients; track $index) {
+        <div class="ingredient">
+          <p>{{ ingredient.ingredientName }}</p>
+
+          <p class="quantity">{{ ingredient.quantity }} {{ ingredient.unit }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="divider">
+      <span class="line"></span>
+    </div>
+
+    <div class="recipe-instruction">
+      <p class="label">CÁC BƯỚC THỰC HIỆN</p>
+
+      @for (instruction of recipe.instructions; track $index) {
+        <div class="instruction">
+          <p class="step">{{ $index + 1 }}.</p>
+
+          <p>{{ instruction.content }}</p>
+        </div>
+      }
+    </div>
+  </div>
 </div>

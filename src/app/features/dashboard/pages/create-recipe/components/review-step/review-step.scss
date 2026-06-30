@@ -4,6 +4,28 @@
   gap: 12px;
   min-height: 65vh;
   overflow-y: auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header .sub-text {
+  margin-top: 0px;
+}
+
+.label {
+  margin-bottom: 0px;
+  color: rgb(77, 75, 75);
+}
+
+.recipe-name .name {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .divider {
@@ -12,10 +34,43 @@
   justify-content: center;
   gap: 16px;
   width: 100%;
+  margin: 20px 0px;
 }
 
 .divider .line {
   flex: 1;
   height: 1px;
   background: #d9d9d9;
+}
+
+.recipe-description .description {
+  margin-top: 5px;
+}
+
+.recipe-ingredient p {
+  margin-bottom: 0px;
+}
+
+.recipe-ingredient .ingredient {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ingredient .quantity {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.recipe-instruction p {
+  margin-bottom: 0px;
+}
+
+.recipe-instruction .step {
+  font-weight: 500;
+}
+
+.recipe-instruction .instruction {
+  display: flex;
+  gap: 4px;
 }
