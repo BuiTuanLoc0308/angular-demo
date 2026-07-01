@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterRequest } from '../../../../core/models/register-request.model';
@@ -24,11 +31,30 @@ export class AuthRegister {
     private fb: FormBuilder,
     private router: Router,
   ) {
-    this.registerForm = this.fb.group({
-      userName: ['', Validators.required],
+    this.registerForm = this.fb.group(
+      {
+        userName: ['', Validators.required],
 
-      password: ['', Validators.required],
-    });
+        password: ['', Validators.required],
+
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validators: this.passwordMatchValidator,
+      },
+    );
+  }
+
+  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    if (password !== confirmPassword) {
+      return { passwordMismatch: true };
+    }
+
+    return null;
   }
 
   get userName() {
@@ -39,12 +65,24 @@ export class AuthRegister {
     return this.registerForm.get('password');
   }
 
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
+
   get userNameInvalid(): boolean {
     return !!(this.userName?.invalid && this.userName?.touched);
   }
 
   get passwordInvalid(): boolean {
     return !!(this.password?.invalid && this.password?.touched);
+  }
+
+  get confirmPasswordInvalid() {
+    return !!(this.confirmPassword?.invalid && this.confirmPassword?.touched);
+  }
+
+  get passwordMismatch() {
+    return !!(this.registerForm.hasError('passwordMismatch') && this.confirmPassword?.touched);
   }
 
   onRegister() {

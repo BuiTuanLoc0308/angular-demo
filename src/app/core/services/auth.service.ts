@@ -29,4 +29,8 @@ export class AuthService {
   register(data: RegisterRequest) {
     return this.http.post(api_endpoint.auth.login, data);
   }
+
+  isLoggedIn(): boolean {
+    return !!this.tokenService.getToken();
+  }
 }
