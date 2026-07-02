@@ -1,46 +1,94 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { catchError, map, of, startWith, Subject, switchMap } from 'rxjs';
+import { catchError, combineLatest, map, of, startWith, Subject, switchMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
-import { CategoryFilter } from '../../../../shared/components/category-filter/category-filter';
-import { Router } from '@angular/router';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
+import { CategoryFilter } from '../../../../shared/components/category-filter/category-filter';
 
 @Component({
   selector: 'app-my-recipes',
-  imports: [CommonModule, CategoryFilter],
   standalone: true,
+  imports: [CommonModule, CategoryFilter],
   templateUrl: './my-recipes.html',
   styleUrl: './my-recipes.scss',
 })
 export class MyRecipes {
   private recipeService = inject(RecipeService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private recipeState = inject(RecipeCreateStateService);
+
   private refresh$ = new Subject<void>();
 
-  constructor(
-    private router: Router,
-    private recipeState: RecipeCreateStateService,
-  ) {}
+  categories = ['Tất cả', 'Bữa sáng', 'Bữa trưa', 'Bữa tối', 'Tráng miệng', 'Đồ uống'];
 
-  vm$ = this.refresh$.pipe(
-    startWith(void 0),
-    switchMap(() =>
-      this.recipeService.getMyRecipe().pipe(
-        map((recipes) => ({ recipes, isLoading: false })),
-        startWith({ recipes: [], isLoading: true }),
-        catchError(() => of({ recipes: [], isLoading: false })),
+  search = '';
+
+  category = 'Tất cả';
+
+  readonly query$ = this.route.queryParamMap.pipe(
+    map((params) => {
+      const query = {
+        search: params.get('search') ?? '',
+        category: params.get('category') ?? 'Tất cả',
+      };
+
+      this.search = query.search;
+      this.category = query.category;
+
+      return query;
+    }),
+  );
+
+  readonly vm$ = combineLatest({
+    refresh: this.refresh$.pipe(startWith(void 0)),
+    query: this.query$,
+  }).pipe(
+    switchMap(({ query }) =>
+      this.recipeService.getMyRecipe(query).pipe(
+        map((recipes) => ({
+          recipes,
+          isLoading: false,
+        })),
+        startWith({
+          recipes: [],
+          isLoading: true,
+        }),
+        catchError(() =>
+          of({
+            recipes: [],
+            isLoading: false,
+          }),
+        ),
       ),
     ),
   );
 
-  categories = ['Tất cả', 'Bữa sáng', 'Bữa trưa', 'Bữa tối', 'Tráng miệng'];
+  onSearch(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
 
-  selectedCategory = 'Tất cả';
+    this.router.navigate([], {
+      relativeTo: this.route,
+
+      queryParams: {
+        search: value || null,
+      },
+
+      queryParamsHandling: 'merge',
+    });
+  }
 
   onCategoryChange(category: string) {
-    this.selectedCategory = category;
+    this.router.navigate([], {
+      relativeTo: this.route,
 
-    console.log(category);
+      queryParams: {
+        category: category === 'Tất cả' ? null : category,
+      },
+
+      queryParamsHandling: 'merge',
+    });
   }
 
   onClick(id: string) {

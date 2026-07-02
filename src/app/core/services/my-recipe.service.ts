@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeModel } from '../models/recipe.model';
 import { api_endpoint } from '../constants/api-endpoint';
+import { RecipeQuery } from '../models/recipe-query.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,18 @@ import { api_endpoint } from '../constants/api-endpoint';
 export class RecipeService {
   constructor(private http: HttpClient) {}
 
-  getMyRecipe(): Observable<RecipeModel[]> {
-    return this.http.get<RecipeModel[]>(api_endpoint.recipe.myRecipe);
+  getMyRecipe(query: RecipeQuery): Observable<RecipeModel[]> {
+    let params = new HttpParams();
+
+    if (query.search) {
+      params = params.set('search', query.search);
+    }
+
+    if (query.category !== 'Tất cả') {
+      params = params.set('category', query.category);
+    }
+
+    return this.http.get<RecipeModel[]>(api_endpoint.recipe.myRecipe, { params });
   }
 
   getRecipeById(id: string): Observable<RecipeModel> {

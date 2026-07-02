@@ -11,9 +11,17 @@
     <button class="add-btn" (click)="onCreate()">Thêm công thức mới</button>
   </div>
 
+  <input
+    class="search"
+    type="text"
+    placeholder="Tìm công thức..."
+    [value]="search"
+    (input)="onSearch($event)"
+  />
+
   <app-category-filter
     [categories]="categories"
-    [selectedCategory]="selectedCategory"
+    [selectedCategory]="category"
     (categoryChange)="onCategoryChange($event)"
   >
   </app-category-filter>

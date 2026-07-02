@@ -28,6 +28,7 @@
 .header-text .sub-text {
   color: #42493e;
   font-size: 16px;
+  margin-bottom: 24px;
 }
 
 .header .add-btn {
@@ -41,15 +42,16 @@
   cursor: pointer;
 }
 
-.filter {
-  margin-top: 20px;
-  display: flex;
-  gap: 12px;
+.search {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  width: 100%;
+  max-width: 600px;
 }
 
-.filter button {
-  border-radius: 20px;
-  padding: 5px 15px;
+.search:focus {
+  outline: none;
 }
 
 .recipe-container {
