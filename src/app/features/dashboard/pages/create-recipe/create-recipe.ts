@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Location } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -26,6 +26,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CreateRecipe {
   isEdit = false;
   isProcess = false;
+  isMobile = window.innerWidth < 768;
 
   constructor(
     private location: Location,
@@ -85,5 +86,10 @@ export class CreateRecipe {
         },
       });
     }
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth < 1024;
   }
 }

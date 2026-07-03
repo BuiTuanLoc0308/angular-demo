@@ -1,76 +1,208 @@
+* {
+  box-sizing: border-box;
+}
+
 .main {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 65vh;
-  overflow-y: auto;
+
+  gap: 28px;
+
   padding: 20px;
 }
 
+/* ================= HEADER ================= */
+
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 
-.header .sub-text {
-  margin-top: 0px;
+.title {
+  margin: 0;
+
+  font-size: clamp(28px, 3vw, 36px);
+
+  color: #154212;
+
+  font-weight: 700;
 }
+
+.sub-text {
+  margin-top: 12px;
+
+  color: #6b7280;
+
+  line-height: 1.6;
+}
+
+/* ================= RECIPE CARD ================= */
+
+.recipe {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 28px;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= SECTION ================= */
 
 .label {
-  margin-bottom: 0px;
-  color: rgb(77, 75, 75);
+  margin: 0;
+
+  font-size: 13px;
+
+  letter-spacing: 1px;
+
+  color: #6b7280;
+
+  font-weight: 600;
 }
 
-.recipe-name .name {
-  margin-top: 5px;
-  font-size: 20px;
-  font-weight: 500;
+.recipe-name {
+  margin: 10px 0 0;
+
+  font-size: 28px;
+
+  color: #154212;
 }
+
+.description {
+  margin-top: 10px;
+
+  line-height: 1.7;
+}
+
+/* ================= DIVIDER ================= */
 
 .divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
-  margin: 20px 0px;
-}
-
-.divider .line {
-  flex: 1;
   height: 1px;
-  background: #d9d9d9;
+
+  background: #e5e7eb;
+
+  margin: 24px 0;
 }
 
-.recipe-description .description {
-  margin-top: 5px;
-}
+/* ================= INGREDIENT ================= */
 
-.recipe-ingredient p {
-  margin-bottom: 0px;
-}
-
-.recipe-ingredient .ingredient {
+.ingredient {
   display: flex;
+
   justify-content: space-between;
-  gap: 24px;
+
+  gap: 16px;
+
+  padding: 10px 0;
 }
 
-.ingredient .quantity {
-  flex-shrink: 0;
+.quantity {
   white-space: nowrap;
-}
 
-.recipe-instruction p {
-  margin-bottom: 0px;
-}
-
-.recipe-instruction .step {
   font-weight: 500;
 }
 
-.recipe-instruction .instruction {
+/* ================= STEP ================= */
+
+.instruction {
   display: flex;
-  gap: 4px;
+
+  gap: 16px;
+
+  align-items: center;
+
+  margin-top: 18px;
+}
+
+.step-number {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #154212;
+
+  color: white;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 700;
+}
+
+.step-content {
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .recipe {
+    padding: 24px;
+  }
+
+  .recipe-name {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 16px;
+  }
+
+  .recipe {
+    padding: 18px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .recipe-name {
+    font-size: 22px;
+  }
+
+  .ingredient {
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+  .quantity {
+    white-space: normal;
+  }
+
+  .instruction {
+    gap: 12px;
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .sub-text {
+    font-size: 14px;
+  }
+
+  .recipe {
+    padding: 16px;
+  }
+
+  .description,
+  .step-content {
+    font-size: 15px;
+  }
 }

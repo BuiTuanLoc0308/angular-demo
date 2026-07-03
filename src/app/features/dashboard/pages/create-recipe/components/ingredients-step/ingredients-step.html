@@ -1,15 +1,25 @@
 <div class="main">
-  <p class="header">Thông tin nguyên liệu</p>
+  <h2 class="header">Thông tin nguyên liệu</h2>
 
   <form [formGroup]="form" class="ingredient-form">
     <div formArrayName="ingredients" class="ingredients-list">
       @for (item of ingredients.controls; track item; let i = $index) {
-        <div [formGroupName]="i" class="ingredient-row">
-          <input type="text" placeholder="Tên nguyên liệu" formControlName="ingredientName" />
+        <div class="ingredient-row" [formGroupName]="i">
+          <input
+            class="ingredient-name"
+            type="text"
+            placeholder="Tên nguyên liệu"
+            formControlName="ingredientName"
+          />
 
-          <input type="text" placeholder="Số lượng" formControlName="quantity" />
+          <input
+            class="ingredient-quantity"
+            type="text"
+            placeholder="Số lượng"
+            formControlName="quantity"
+          />
 
-          <select formControlName="unit">
+          <select class="ingredient-unit" formControlName="unit">
             <option value="gram">gram</option>
             <option value="quả">quả</option>
           </select>
@@ -27,5 +37,5 @@
     </div>
   </form>
 
-  <button type="button" class="add-btn" (click)="addIngredient()">Thêm nguyên liệu</button>
+  <button type="button" class="add-btn" (click)="addIngredient()">+ Thêm nguyên liệu</button>
 </div>

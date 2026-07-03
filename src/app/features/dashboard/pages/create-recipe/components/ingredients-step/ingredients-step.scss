@@ -1,68 +1,93 @@
+* {
+  box-sizing: border-box;
+}
+
 .main {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 65vh;
-  overflow-y: auto;
+  gap: 20px;
 }
 
 .header {
-  font-size: 24px;
-  font-weight: 500;
+  margin: 0;
+
+  font-size: clamp(24px, 3vw, 32px);
+
+  color: #154212;
+
+  font-weight: 700;
 }
 
-.ingredient-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
+.ingredient-form,
 .ingredients-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+
+  gap: 18px;
 }
+
+/* ================= ROW ================= */
 
 .ingredient-row {
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr auto;
+
+  grid-template-columns:
+    minmax(220px, 4fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    auto;
+
   gap: 12px;
+
+  align-items: start;
 }
+
+/* ================= INPUT ================= */
 
 input,
 select {
-  height: 42px;
-  padding: 0 12px;
+  width: 100%;
+
+  height: 46px;
+
+  padding: 0 14px;
 
   border: 1px solid #d1d5db;
+
   border-radius: 8px;
 
   font-size: 16px;
+
   outline: none;
+
+  transition: 0.2s;
 }
 
 input:focus,
 select:focus {
   border-color: #3b82f6;
+
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
+
+/* ================= BUTTON ================= */
 
 .add-btn {
   align-self: flex-start;
 
-  padding: 10px 18px;
+  padding: 12px 18px;
 
   border: none;
+
   border-radius: 8px;
 
   background: #2563eb;
+
   color: white;
 
-  font-size: 14px;
-  font-weight: 500;
-
   cursor: pointer;
-  transition: all 0.2s ease;
+
+  transition: 0.2s;
 }
 
 .add-btn:hover {
@@ -70,18 +95,19 @@ select:focus {
 }
 
 .delete-btn {
-  padding: 10px 16px;
+  height: 46px;
+
+  padding: 0 18px;
 
   border: none;
+
   border-radius: 8px;
 
   background: #ef4444;
+
   color: white;
 
-  font-size: 14px;
   cursor: pointer;
-
-  transition: all 0.2s ease;
 }
 
 .delete-btn:hover {
@@ -89,6 +115,58 @@ select:focus {
 }
 
 .invalid-text {
-  color: red;
-  grid-column: 1 / 2;
+  grid-column: 1/-1;
+
+  color: #dc2626;
+
+  font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .ingredient-row {
+    grid-template-columns:
+      3fr
+      1fr
+      1fr
+      auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .ingredient-row {
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 16px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+  }
+
+  .delete-btn {
+    width: 100%;
+  }
+
+  .add-btn {
+    width: 100%;
+
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 22px;
+  }
+
+  input,
+  select {
+    font-size: 15px;
+
+    height: 44px;
+  }
 }

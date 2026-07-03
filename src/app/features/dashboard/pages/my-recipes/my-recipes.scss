@@ -1,113 +1,214 @@
+* {
+  box-sizing: border-box;
+}
+
 .main {
   padding: 48px;
   font-size: 16px;
   min-height: 100vh;
-
-  background-color: #efeeeb;
+  background: #efeeeb;
 }
+
+/* ================= HEADER ================= */
 
 .header {
   display: flex;
-  align-items: end;
   justify-content: space-between;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.header-text .main-text {
-  font-size: 48px;
-  color: #154212;
-  margin: 0px;
-  font-weight: bold;
-}
-
-.header-text .sub-text {
-  color: #42493e;
-  font-size: 16px;
+  align-items: flex-end;
+  gap: 24px;
   margin-bottom: 24px;
 }
 
-.header .add-btn {
-  font-size: 16px;
-  padding: 16px 32px;
-  margin-left: 200px;
-  border-radius: 12px;
-  border: 1px solid #154212;
-  background-color: #154212;
-  color: white;
-  cursor: pointer;
+.header-text {
+  flex: 1;
 }
 
-.search {
-  padding: 12px;
+.main-text {
+  margin: 0;
+  font-size: 48px;
+  color: #154212;
+  font-weight: bold;
+
+  line-height: 1.15;
+}
+
+.sub-text {
+  margin-top: 12px;
+  color: #42493e;
+  line-height: 1.5;
+}
+
+.add-btn {
+  padding: 14px 28px;
   border-radius: 12px;
-  border: none;
+  border: 1px solid #154212;
+  background: #154212;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
+  transition: 0.25s;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ================= SEARCH ================= */
+
+.search {
   width: 100%;
   max-width: 600px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 20px;
 }
 
 .search:focus {
   outline: none;
 }
 
+/* ================= CARD GRID ================= */
+
 .recipe-container {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  margin-top: 24px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 28px;
 }
 
 .recipe-card {
   display: flex;
   flex-direction: column;
 
-  background-color: white;
+  background: white;
   border-radius: 20px;
+  overflow: hidden;
 
-  height: 450px;
-  width: 270px;
+  transition: 0.25s;
 }
 
-.recipe-card button {
-  margin-left: 24px;
+.recipe-card:hover {
+  transform: translateY(-4px);
+}
+
+.img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
 }
 
 .recipe-detail {
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 
-.recipe-detail .name {
-  margin: 24px;
-  font-size: 24px;
-  font-weight: 500;
+.name {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
 
   display: -webkit-box;
   -webkit-box-orient: vertical;
 
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-
   overflow: hidden;
 }
 
-.recipe-detail .detail {
-  flex: 1;
-  margin: 24px;
+.detail {
+  margin-top: auto;
   text-align: right;
-  align-content: end;
+  color: #154212;
   cursor: pointer;
+  font-weight: 500;
 }
 
-.recipe-card .img {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+/* ================= LARGE TABLET ================= */
 
-  height: 260px;
-  width: 270px;
+@media (max-width: 1024px) {
+  .main {
+    padding: 28px;
+  }
+
+  .main-text {
+    font-size: 40px;
+  }
+
+  .recipe-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 768px) {
+  .main {
+    padding: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .main-text {
+    font-size: 34px;
+  }
+
+  .sub-text {
+    margin-bottom: 0;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+
+  .search {
+    max-width: 100%;
+  }
+
+  .recipe-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .name {
+    font-size: 20px;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 576px) {
+  .main {
+    padding: 16px;
+  }
+
+  .main-text {
+    font-size: 28px;
+  }
+
+  .sub-text {
+    font-size: 14px;
+  }
+
+  .recipe-container {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-card {
+    width: 100%;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .detail {
+    text-align: left;
+    margin-top: 20px;
+  }
 }

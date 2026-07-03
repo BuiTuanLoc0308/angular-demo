@@ -1,60 +1,64 @@
 <div class="main">
   <div class="header">
-    <h2 class="text">Hãy cùng nhìn lại nhé!</h2>
+    <h2 class="title">Hãy cùng nhìn lại nhé!</h2>
 
     <p class="sub-text">
-      Công thức của bạn đã sẳn sàng được lưu vào thư viện cá nhân để nấu ăn hoặc chia sẻ với cộng
-      đồng
+      Công thức của bạn đã sẵn sàng được lưu vào thư viện cá nhân để nấu ăn hoặc chia sẻ với cộng
+      đồng.
     </p>
   </div>
 
   <div class="recipe">
-    <div class="recipe-name">
+    <section>
       <p class="label">TÊN MÓN ĂN</p>
 
-      <p class="name">{{ recipe.recipeName }}</p>
-    </div>
+      <h3 class="recipe-name">
+        {{ recipe.recipeName }}
+      </h3>
+    </section>
 
-    <div class="divider">
-      <span class="line"></span>
-    </div>
+    <div class="divider"></div>
 
-    <div class="recipe-description">
+    <section>
       <p class="label">MÔ TẢ</p>
 
-      <p class="description">{{ recipe.description }}</p>
-    </div>
+      <p class="description">
+        {{ recipe.description }}
+      </p>
+    </section>
 
-    <div class="divider">
-      <span class="line"></span>
-    </div>
+    <div class="divider"></div>
 
-    <div class="recipe-ingredient">
+    <section>
       <p class="label">DANH SÁCH NGUYÊN LIỆU</p>
 
       @for (ingredient of recipe.ingredients; track $index) {
         <div class="ingredient">
-          <p>{{ ingredient.ingredientName }}</p>
+          <span>
+            {{ ingredient.ingredientName }}
+          </span>
 
-          <p class="quantity">{{ ingredient.quantity }} {{ ingredient.unit }}</p>
+          <span class="quantity"> {{ ingredient.quantity }} {{ ingredient.unit }} </span>
         </div>
       }
-    </div>
+    </section>
 
-    <div class="divider">
-      <span class="line"></span>
-    </div>
+    <div class="divider"></div>
 
-    <div class="recipe-instruction">
+    <section>
       <p class="label">CÁC BƯỚC THỰC HIỆN</p>
 
       @for (instruction of recipe.instructions; track $index) {
         <div class="instruction">
-          <p class="step">{{ $index + 1 }}.</p>
+          <div class="step-number">
+            {{ $index + 1 }}
+          </div>
 
-          <p>{{ instruction.content }}</p>
+          <div class="step-content">
+            {{ instruction.content }}
+          </div>
         </div>
       }
-    </div>
+    </section>
   </div>
 </div>

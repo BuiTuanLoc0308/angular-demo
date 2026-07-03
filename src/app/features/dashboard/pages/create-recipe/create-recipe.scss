@@ -1,32 +1,81 @@
-.main {
-  font-size: 16px;
-  padding: 25px 250px;
-  background-color: #efeeeb;
+* {
+  box-sizing: border-box;
 }
 
-.header .btn-back {
+.main {
+  min-height: 100vh;
+  background: #efeeeb;
+
+  padding: 32px 10%;
+
+  font-size: 16px;
+}
+
+/* ================= HEADER ================= */
+
+.btn-back {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+
   cursor: pointer;
+
+  color: inherit;
+  text-decoration: none;
 }
+
+.header h1 {
+  margin: 18px 0 0;
+
+  font-size: clamp(28px, 4vw, 40px);
+
+  color: #154212;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+/* ================= STEPPER ================= */
+
+mat-stepper {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* ================= BUTTON ================= */
 
 .place-btn {
   display: flex;
   justify-content: flex-end;
-  padding-top: 20px;
+
+  margin-top: 32px;
 }
 
 .btn-next {
-  border-radius: 8px;
-  border: 1px solid #154212;
   display: flex;
   align-items: center;
-  padding: 8px 40px;
-  gap: 4px;
-  background-color: #154212;
+  justify-content: center;
+
+  gap: 6px;
+
+  min-width: 180px;
+  height: 48px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #154212;
   color: white;
+
   cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.btn-next:hover:not(:disabled) {
+  transform: translateY(-2px);
 }
 
 .btn-next:disabled {
@@ -34,10 +83,49 @@
   cursor: not-allowed;
 }
 
-.btn-submit {
-  margin: 5px;
+@media (max-width: 1024px) {
+  .main {
+    padding: 28px 32px;
+  }
+
+  mat-stepper {
+    padding: 20px;
+  }
 }
 
-.header p {
-  font-size: 32px;
+@media (max-width: 768px) {
+  .main {
+    padding: 20px 16px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+  }
+
+  mat-stepper {
+    padding: 16px;
+  }
+
+  .place-btn {
+    justify-content: stretch;
+  }
+
+  .btn-next {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .btn-back {
+    font-size: 15px;
+  }
 }

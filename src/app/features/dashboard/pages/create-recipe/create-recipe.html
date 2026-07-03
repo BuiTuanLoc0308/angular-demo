@@ -1,22 +1,23 @@
 <div class="main">
   <div class="header">
-    <a (click)="goBack()" class="btn-back">
+    <a class="btn-back" (click)="goBack()">
       <mat-icon>arrow_back</mat-icon>
       <span>Quay lại</span>
     </a>
 
-    <p>
+    <h1>
       {{ isEdit ? 'Chỉnh sửa công thức' : 'Tạo công thức mới' }}
-    </p>
+    </h1>
   </div>
 
-  <mat-stepper linear #stepper>
+  <mat-stepper linear #stepper [orientation]="isMobile ? 'vertical' : 'horizontal'">
     <mat-step label="Thông tin cơ bản" [stepControl]="basicStep.form">
       <app-basic-info-step #basicStep></app-basic-info-step>
 
       <div class="place-btn">
         <button class="btn-next" mat-button matStepperNext [disabled]="basicStep.form.invalid">
           <span>Tiếp tục</span>
+
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
@@ -33,13 +34,14 @@
           [disabled]="ingredientsStep.form.invalid"
         >
           <span>Tiếp tục</span>
+
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </mat-step>
 
     <mat-step label="Các bước nấu" [stepControl]="instructionsStep.form">
-      <app-instructions-step #instructionsStep></app-instructions-step>
+      <app-instructions-step #instructionsStep> </app-instructions-step>
 
       <div class="place-btn">
         <button
@@ -49,6 +51,7 @@
           [disabled]="instructionsStep.form.invalid"
         >
           <span>Tiếp tục</span>
+
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
@@ -58,14 +61,8 @@
       <app-review-step></app-review-step>
 
       <div class="place-btn">
-        <button
-          class="btn-next"
-          mat-button
-          matStepperNext
-          (click)="submitRecipe()"
-          [disabled]="isProcess"
-        >
-          <p class="btn-submit">{{ isProcess ? 'Đang xử lý...' : 'Hoàn tất' }}</p>
+        <button class="btn-next" mat-button (click)="submitRecipe()" [disabled]="isProcess">
+          {{ isProcess ? 'Đang xử lý...' : 'Hoàn tất' }}
         </button>
       </div>
     </mat-step>

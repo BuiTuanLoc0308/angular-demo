@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="main">
-  <p class="header">Thông tin cơ bản</p>
+  <h2 class="header">Thông tin cơ bản</h2>
 
-  <p class="name">Tên món ăn</p>
+  <label class="label"> Tên món ăn </label>
 
   <input type="text" placeholder="Ví dụ: Phở bò" formControlName="recipeName" />
 
@@ -9,18 +9,14 @@
     <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
   }
 
-  <p class="description">Mô tả</p>
+  <label class="label"> Mô tả </label>
 
   <textarea
     class="description-input"
     placeholder="Chia sẻ câu chuyện đằng sau món ăn..."
     formControlName="description"
-  ></textarea>
-
-  <!-- <input
-    type="file"
-    accept="image/*"
-  /> -->
+  >
+  </textarea>
 
   @if (descriptionInvalid) {
     <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>

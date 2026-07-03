@@ -1,50 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+
 .main {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  height: 65vh;
+
+  gap: 16px;
+
+  width: 100%;
+
+  min-height: 500px;
 }
+
+/* ===== HEADER ===== */
 
 .header {
-  font-size: 24px;
+  margin: 0 0 8px;
+
+  font-size: clamp(24px, 3vw, 32px);
+
+  font-weight: 700;
+
+  color: #154212;
+}
+
+/* ===== LABEL ===== */
+
+.label {
   font-weight: 500;
+  margin: 0;
 }
 
-.name {
-  margin: 0px;
-}
+/* ===== INPUT ===== */
 
-.description {
-  margin-bottom: 0px;
-}
+input,
+textarea {
+  width: 100%;
 
-.description-input {
-  height: 130px;
-  font: inherit;
-  border-radius: 8px;
   border: 1px solid #d1d5db;
-  padding: 12px;
+
+  border-radius: 8px;
+
+  padding: 12px 14px;
+
+  font-size: 16px;
+
+  font-family: inherit;
+
   outline: none;
-  resize: none;
+
+  transition: 0.2s;
 }
 
 input {
-  height: 42px;
-  padding: 0 12px;
+  height: 46px;
+}
 
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+textarea {
+  min-height: 150px;
 
-  font-size: 16px;
-  outline: none;
+  resize: vertical;
 }
 
 input:focus,
 textarea:focus {
   border-color: #3b82f6;
+
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
+/* ===== ERROR ===== */
+
 .invalid-text {
-  color: red;
+  color: #dc2626;
+
+  margin-top: -8px;
+
+  font-size: 14px;
 }
