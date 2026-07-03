@@ -1,25 +1,27 @@
-<div class="main">
-  <div class="login-container">
-    <div class="image-container">
-      <img src="images/login.png" alt="Login" />
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-image">
+      <img src="images/login.png" alt="Register" />
     </div>
 
-    <div class="login-card">
-      <div class="welcome-container">
-        <h1 class="header">Tạo tài khoản mới</h1>
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1 class="auth-title">Tạo tài khoản mới</h1>
 
-        <p class="text">Bắt đầu hành trình khám phá ẩm thực của bạn ngày hôm nay</p>
+        <p class="auth-subtitle">Bắt đầu hành trình khám phá ẩm thực của bạn ngày hôm nay</p>
       </div>
 
       <div class="btn-group">
-        <button>Google</button>
+        <button type="button">Google</button>
 
-        <button>Facebook</button>
+        <button type="button">Facebook</button>
       </div>
 
       <div class="divider">
         <span class="line"></span>
-        <span class="text">Hoặc đăng nhập bằng email</span>
+
+        <span class="divider-text"> Hoặc đăng ký bằng User </span>
+
         <span class="line"></span>
       </div>
 
@@ -49,31 +51,39 @@
 
           <input type="password" formControlName="confirmPassword" placeholder="Confirm password" />
 
-          @if (confirmPasswordInvalid) {
-            <small class="invalid-text"> Vui lòng nhập lại mật khẩu </small>
-          }
-
-          @if (passwordMismatch) {
-            <small class="invalid-text"> Mật khẩu nhập lại không khớp </small>
-          }
+          <small class="invalid-text" [class.show]="confirmPasswordInvalid || passwordMismatch">
+            @if (confirmPasswordInvalid) {
+              Vui lòng nhập lại mật khẩu
+            } @else if (passwordMismatch) {
+              Mật khẩu nhập lại không khớp
+            }
+          </small>
         </div>
 
         <div class="option-container">
-          <label class="remember">
-            <input type="checkbox" id="remember" />
-            Tôi đồng ý với <strong>Điều khoản dịch vụ</strong> và
-            <strong>Chính sách bảo mật</strong> của CulinaryFriend
-          </label>
+          <div class="terms">
+            <input id="terms" type="checkbox" />
+
+            <div class="terms-text">
+              Tôi đồng ý với
+
+              <a href="#"> Điều khoản dịch vụ </a>
+
+              và
+
+              <a href="#"> Chính sách bảo mật </a>
+            </div>
+          </div>
         </div>
 
         <button class="btn-submit" type="submit" [disabled]="registerForm.invalid || isLoading">
           {{ isLoading ? 'Đang đăng ký...' : 'Register' }}
         </button>
 
-        <div class="login">
+        <div class="auth-footer">
           <p>Đã có tài khoản?</p>
 
-          <a class="btn-login" (click)="onLogin()">Đăng nhập ngay</a>
+          <a class="auth-link" (click)="onLogin()"> Đăng nhập ngay </a>
         </div>
       </form>
 
