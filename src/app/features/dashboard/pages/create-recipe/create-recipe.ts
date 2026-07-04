@@ -9,6 +9,7 @@ import { ReviewStep } from './components/review-step/review-step';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SnackbarService } from '../../../../core/services/snack-bar.service';
 
 @Component({
   selector: 'app-create-recipe',
@@ -34,6 +35,7 @@ export class CreateRecipe {
     private recipeState: RecipeCreateStateService,
     private router: Router,
     private route: ActivatedRoute,
+    private snackbar: SnackbarService,
   ) {}
 
   ngOnInit() {
@@ -58,7 +60,7 @@ export class CreateRecipe {
     if (this.isEdit) {
       this.recipeService.updateRecipe(recipe.id, recipe).subscribe({
         next: (res) => {
-          console.log('Cập nhật thành công', res);
+          this.snackbar.success('Cập nhật công thức thành công');
 
           this.isProcess = false;
 
@@ -66,6 +68,7 @@ export class CreateRecipe {
         },
         error: (err) => {
           console.log(err);
+          this.snackbar.error('Có lỗi xãy ra');
 
           this.isProcess = false;
         },
@@ -73,7 +76,7 @@ export class CreateRecipe {
     } else {
       this.recipeService.createRecipe(recipe).subscribe({
         next: (res) => {
-          console.log('Tạo thành công', res);
+          this.snackbar.success('Tạo thành công công thức mới');
 
           this.isProcess = false;
 
@@ -81,6 +84,7 @@ export class CreateRecipe {
         },
         error: (err) => {
           console.log(err);
+          this.snackbar.error('Có lỗi xãy ra');
 
           this.isProcess = false;
         },

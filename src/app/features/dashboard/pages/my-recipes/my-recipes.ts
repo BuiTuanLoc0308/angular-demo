@@ -91,7 +91,7 @@ export class MyRecipes {
     });
   }
 
-  onClick(id: string) {
+  onDetail(id: string) {
     this.router.navigate(['/my-recipes', id]);
   }
 

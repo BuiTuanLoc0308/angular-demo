@@ -11,6 +11,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterRequest } from '../../../../core/models/register-request.model';
 import { CommonModule } from '@angular/common';
+import { SnackbarService } from '../../../../core/services/snack-bar.service';
 
 @Component({
   selector: 'app-auth-register',
@@ -30,6 +31,7 @@ export class AuthRegister {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
+    private snackbar: SnackbarService,
   ) {
     this.registerForm = this.fb.group(
       {
@@ -92,6 +94,8 @@ export class AuthRegister {
 
     this.authService.register(registerData).subscribe({
       next: () => {
+        this.snackbar.success('Đăng ký thành công tài khoản mới');
+
         this.router.navigate(['/login']);
       },
 
@@ -99,9 +103,9 @@ export class AuthRegister {
         this.isLoading = false;
 
         if (error.status === 409) {
-          this.message = 'Email đã tồn tại';
+          this.snackbar.error('Tài khoản đã tồn tại');
         } else {
-          this.message = 'Có lỗi xảy ra';
+          this.snackbar.error('Có lỗi xảy ra');
         }
       },
 

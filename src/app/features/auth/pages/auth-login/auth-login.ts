@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LoginRequest } from '../../../../core/models/login-request.model';
+import { SnackbarService } from '../../../../core/services/snack-bar.service';
 
 @Component({
   selector: 'app-auth-login',
@@ -23,6 +24,7 @@ export class AuthLogin {
     private authService: AuthService,
     private fb: FormBuilder,
     private router: Router,
+    private snackbar: SnackbarService,
   ) {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
@@ -59,6 +61,8 @@ export class AuthLogin {
       next: (response) => {
         console.log(response);
 
+        this.snackbar.success('Đăng nhập thành công');
+
         this.router.navigate(['/my-recipes']);
       },
 
@@ -67,9 +71,9 @@ export class AuthLogin {
         console.log(error);
 
         if (error.status === 401) {
-          this.message = 'Sai tài khoản hoặc mật khẩu';
+          this.snackbar.error('Sai tài khoản hoặc mật khẩu');
         } else {
-          this.message = 'Có lỗi xảy ra';
+          this.snackbar.error('Đã có lỗi xãy ra');
         }
       },
 

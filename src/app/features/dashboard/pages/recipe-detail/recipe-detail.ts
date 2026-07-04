@@ -6,6 +6,7 @@ import { catchError, map, of, startWith, switchMap } from 'rxjs';
 import { RecipeModel } from '../../../../core/models/recipe.model';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
+import { SnackbarService } from '../../../../core/services/snack-bar.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -48,6 +49,7 @@ export class RecipeDetail {
     private location: Location,
     private router: Router,
     private recipeCreateState: RecipeCreateStateService,
+    private snackbar: SnackbarService,
   ) {}
 
   goBack() {
@@ -59,7 +61,7 @@ export class RecipeDetail {
 
     this.recipeService.deleteRecipe(id).subscribe({
       next: () => {
-        console.log('Delete success');
+        this.snackbar.success('Xóa thành công công thức');
 
         this.isDeleting = false;
 
@@ -67,6 +69,7 @@ export class RecipeDetail {
       },
       error: (err) => {
         console.error('Delete failed', err);
+        this.snackbar.error('Có lỗi xãy ra');
 
         this.isDeleting = false;
       },
@@ -82,6 +85,7 @@ export class RecipeDetail {
       },
       error: (err) => {
         console.error(err);
+        this.snackbar.error('Có lỗi xãy ra');
       },
     });
   }
