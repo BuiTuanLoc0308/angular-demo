@@ -22,8 +22,6 @@
 
   font-weight: 700;
 
-  color: #154212;
-
   line-height: 1.25;
 }
 
@@ -60,20 +58,12 @@ input {
 }
 
 textarea {
-  min-height: 150px;
+  min-height: 200px;
 
-  resize: vertical;
-}
-
-input:focus,
-textarea:focus {
-  border-color: #3b82f6;
-
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  resize: none;
 }
 
 /* ===== ERROR ===== */
-
 .invalid-text {
   color: #dc2626;
 

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { ThemeService } from '../../../../core/services/theme.service';
 
 @Component({
   selector: 'app-account-settings',
-  imports: [],
   templateUrl: './account-settings.html',
   styleUrl: './account-settings.scss',
 })
-export class AccountSettings {}
+export class AccountSettings {
+  constructor(public theme: ThemeService) {}
+}

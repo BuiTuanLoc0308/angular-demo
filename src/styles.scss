@@ -5,6 +5,10 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+/* ==========================
+   Angular Material Theme
+========================== */
+
 html {
   height: 100%;
   @include mat.theme(
@@ -18,6 +22,70 @@ html {
     )
   );
 }
+
+/* ==========================
+   Global Theme Variables
+========================== */
+
+:root {
+  --bg-color: #efeeeb;
+  --container-color: #ffffff;
+  --text-color: #222222;
+  --subtext-color: #555555;
+  --danger-color: #d32f2f;
+  --danger-bg: #ffffff;
+  --danger-border: #d32f2f;
+
+  //SIDEBAR
+  --sidebar-bg-color: #f4f3f1;
+  --sidebar-button-bg-color: #2d5a274d;
+
+  //MY-RECIPES
+  --category-button-bg-color: #ffffff;
+  --category-button-active-bg-color: #154212;
+
+  //AUTH
+  --auth-button-color: white;
+  --auth-button-border-color: #ccc;
+  --auth-button-hover-color: #f5f5f5;
+
+  //SNACKBAR
+  --snackbar-bg: #323232;
+  --snackbar-text: #ffffff;
+}
+
+body.dark-theme {
+  color-scheme: dark;
+
+  --bg-color: #121212;
+  --container-color: #1e1e1e;
+  --text-color: #ffffff;
+  --subtext-color: #aaaaaa;
+  --danger-color: #ef5350;
+  --danger-bg: #2b2b2b;
+  --danger-border: #ef5350;
+
+  //SIDEBAR
+  --sidebar-bg-color: #1e1e1e;
+  --sidebar-button-bg-color: #2d5a274d;
+
+  //MY-RECIPES
+  --category-button-bg-color: grey;
+  --category-button-active-bg-color: #2d5a274d;
+
+  //AUTH
+  --auth-button-color: grey;
+  --auth-button-border-color: #555555;
+  --auth-button-hover-color: #2d2d2d;
+
+  //SNACKBAR
+  --snackbar-bg: #2b2b2b;
+  --snackbar-text: #f5f5f5;
+}
+
+/* ==========================
+   Global Body
+========================== */
 
 body {
   // Default the application to a light color theme. This can be changed to
@@ -41,19 +109,28 @@ body {
   margin: 0;
 }
 
+/* ==========================
+   Global Styles
+========================== */
+
 .mat-horizontal-stepper-header-container {
-  background-color: #efeeeb;
+  background-color: var(--bg-color);
   padding-bottom: 32px;
 }
 
 .mat-horizontal-content-container {
   border-radius: 12px;
-  background-color: white;
+  background-color: var(--container-color);
 
   padding: 24px !important;
 }
 
 .mat-stepper-vertical,
 .mat-stepper-horizontal {
-  background-color: #efeeeb !important;
+  background-color: var(--bg-color) !important;
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: var(--snackbar-bg);
+  --mdc-snackbar-supporting-text-color: var(--snackbar-text);
 }

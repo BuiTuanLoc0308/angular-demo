@@ -4,9 +4,11 @@
 
 .main {
   padding: 48px;
-  font-size: 16px;
   min-height: 100vh;
-  background: #efeeeb;
+
+  font-size: 16px;
+
+  background: var(--bg-color);
 }
 
 /* ================= HEADER ================= */
@@ -15,6 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
   gap: 24px;
   margin-bottom: 24px;
 }
@@ -25,8 +28,9 @@
 
 .main-text {
   margin: 0;
+
   font-size: 48px;
-  color: #154212;
+  color: var(--text-color);
   font-weight: bold;
 
   line-height: 1.15;
@@ -34,17 +38,23 @@
 
 .sub-text {
   margin-top: 12px;
-  color: #42493e;
+
+  color: var(--subtext-color);
+
   line-height: 1.5;
 }
 
 .add-btn {
   padding: 14px 28px;
+
   border-radius: 12px;
-  border: 1px solid #154212;
-  background: #154212;
+  border: 1px solid var(--category-button-active-bg-color);
+
+  background: var(--category-button-active-bg-color);
   color: white;
+
   cursor: pointer;
+
   font-size: 16px;
   white-space: nowrap;
   transition: 0.25s;
@@ -59,14 +69,20 @@
 .search {
   width: 100%;
   max-width: 600px;
+
   padding: 14px 18px;
+  margin-bottom: 20px;
+
   border-radius: 12px;
   border: none;
-  margin-bottom: 20px;
 }
 
 .search:focus {
   outline: none;
+}
+
+.search::placeholder {
+  color: var(--subtext-color);
 }
 
 /* ================= CARD GRID ================= */
@@ -76,6 +92,7 @@
 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+
   gap: 28px;
 }
 
@@ -83,8 +100,10 @@
   display: flex;
   flex-direction: column;
 
-  background: white;
+  background: var(--container-color);
+
   border-radius: 20px;
+
   overflow: hidden;
 
   transition: 0.25s;
@@ -104,14 +123,18 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+
   gap: 20px;
+
   padding: 20px;
   padding-bottom: 0;
 }
 
 .name {
   margin: 0;
+
   font-size: 22px;
+  height: 40px;
   font-weight: 500;
 
   display: -webkit-box;
@@ -124,9 +147,11 @@
 
 .detail {
   margin-top: auto;
+
   text-align: right;
-  color: #154212;
+
   cursor: pointer;
+
   font-weight: 500;
 }
 

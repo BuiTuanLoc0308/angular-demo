@@ -13,8 +13,6 @@
 
   font-size: clamp(24px, 3vw, 32px);
 
-  color: #154212;
-
   font-weight: 700;
 
   line-height: 1.25;
@@ -63,13 +61,6 @@ select {
   outline: none;
 
   transition: 0.2s;
-}
-
-input:focus,
-select:focus {
-  border-color: #3b82f6;
-
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 /* ================= BUTTON ================= */

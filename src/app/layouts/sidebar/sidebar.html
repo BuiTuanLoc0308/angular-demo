@@ -32,8 +32,14 @@
   </div>
 
   <div class="footer">
-    <p>Help & Support</p>
+    <a class="nav-button">
+      <mat-icon>help_outline</mat-icon>
+      <span>Help & Support</span>
+    </a>
 
-    <a (click)="logout()" routerLink="/login">Logout</a>
+    <a class="nav-button" (click)="logout()" routerLink="/login">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </a>
   </div>
 </div>
