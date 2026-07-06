@@ -12,7 +12,7 @@ export class RecipeService {
   constructor(private http: HttpClient) {}
 
   getMyRecipe(query: RecipeQuery): Observable<RecipeModel[]> {
-    let params = new HttpParams();
+    let params = new HttpParams().set('page', query.page).set('limit', query.limit);
 
     if (query.search) {
       params = params.set('search', query.search);
@@ -22,7 +22,9 @@ export class RecipeService {
       params = params.set('category', query.category);
     }
 
-    return this.http.get<RecipeModel[]>(api_endpoint.recipe.myRecipe, { params });
+    return this.http.get<RecipeModel[]>(api_endpoint.recipe.myRecipe, {
+      params,
+    });
   }
 
   getRecipeById(id: string): Observable<RecipeModel> {

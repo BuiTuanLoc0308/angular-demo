@@ -24,18 +24,24 @@ export class MyRecipes {
   categories = ['Tất cả', 'Bữa sáng', 'Bữa trưa', 'Bữa tối', 'Tráng miệng', 'Đồ uống'];
 
   search = '';
-
   category = 'Tất cả';
+
+  currentPage = 1;
+  limit = 10;
 
   readonly query$ = this.route.queryParamMap.pipe(
     map((params) => {
       const query = {
         search: params.get('search') ?? '',
         category: params.get('category') ?? 'Tất cả',
+        page: Number(params.get('page') ?? 1),
+        limit: Number(params.get('limit') ?? this.limit),
       };
 
       this.search = query.search;
       this.category = query.category;
+      this.currentPage = query.page;
+      this.limit = query.limit;
 
       return query;
     }),
@@ -73,6 +79,7 @@ export class MyRecipes {
 
       queryParams: {
         search: value || null,
+        page: 1,
       },
 
       queryParamsHandling: 'merge',
@@ -85,6 +92,33 @@ export class MyRecipes {
 
       queryParams: {
         category: category === 'Tất cả' ? null : category,
+        page: 1,
+      },
+
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  previousPage() {
+    if (this.currentPage <= 1) return;
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+
+      queryParams: {
+        page: this.currentPage - 1,
+      },
+
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  nextPage() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+
+      queryParams: {
+        page: this.currentPage + 1,
       },
 
       queryParamsHandling: 'merge',

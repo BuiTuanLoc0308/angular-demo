@@ -4,7 +4,7 @@
       <p class="main-text">Công thức của tôi</p>
 
       <p class="sub-text">
-        Quản lý và tổ chức kho tàng ẩm thực cá nhân của bạn. Mổi món ăn là một câu chuyện.
+        Quản lý và tổ chức kho tàng ẩm thực cá nhân của bạn. Mỗi món ăn là một câu chuyện.
       </p>
     </div>
 
@@ -33,7 +33,7 @@
       } @else {
         @for (recipe of vm.recipes; track recipe.id) {
           <div class="recipe-card">
-            <img src="{{ recipe.image }}" alt="image" class="img" />
+            <img [src]="recipe.image" [alt]="recipe.recipeName" class="img" />
 
             <div class="recipe-detail">
               <p class="name">{{ recipe.recipeName }}</p>
@@ -46,5 +46,14 @@
         }
       }
     }
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">← Trước</button>
+
+    <span>Trang {{ currentPage }}</span>
+
+    <button (click)="nextPage()">Tiếp →</button>
   </div>
 </div>
