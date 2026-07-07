@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
 import { IngredientModel } from '../../../../../../core/models/ingredient.model';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-ingredients-step',
@@ -13,6 +14,7 @@ import { IngredientModel } from '../../../../../../core/models/ingredient.model'
 export class IngredientsStep {
   private fb = inject(FormBuilder);
   private recipeState = inject(RecipeCreateStateService);
+  private destroyRef = inject(DestroyRef);
 
   form = this.fb.group({
     ingredients: this.fb.array([]),
@@ -60,13 +62,10 @@ export class IngredientsStep {
   ngOnInit() {
     this.initIngredients();
 
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
       this.recipeState.updateRecipe({
         ingredients: (value.ingredients ?? []) as IngredientModel[],
       });
-
-      console.log('Ingredients:', value.ingredients);
-      console.log('Recipe State:', this.recipeState.recipe);
     });
   }
 }

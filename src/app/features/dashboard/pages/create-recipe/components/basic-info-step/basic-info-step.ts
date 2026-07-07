@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
 import { MatIconModule } from '@angular/material/icon';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-basic-info-step',
@@ -17,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class BasicInfoStep {
   private recipeState = inject(RecipeCreateStateService);
+  private destroyRef = inject(DestroyRef);
 
   form: FormGroup;
 
@@ -28,8 +30,6 @@ export class BasicInfoStep {
 
       description: [recipe.description, Validators.required],
     });
-
-    console.log('Recipe hien tai:', this.recipeState.recipe);
   }
 
   get recipeName() {
@@ -49,11 +49,8 @@ export class BasicInfoStep {
   }
 
   ngOnInit() {
-    this.form.valueChanges.subscribe((value) => {
+    this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
       this.recipeState.updateRecipe(value);
-
-      console.log('Form Value:', value);
-      console.log('Recipe State:', this.recipeState.recipe);
     });
   }
 }

@@ -10,7 +10,7 @@
     </h1>
   </div>
 
-  <mat-stepper linear #stepper [orientation]="isMobile ? 'vertical' : 'horizontal'">
+  <mat-stepper linear #stepper [orientation]="(isMobile$ | async) ? 'vertical' : 'horizontal'">
     <mat-step label="Thông tin cơ bản" [stepControl]="basicStep.form">
       <app-basic-info-step #basicStep></app-basic-info-step>
 

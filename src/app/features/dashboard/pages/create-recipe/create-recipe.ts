@@ -1,6 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Location } from '@angular/common';
+import { Location, AsyncPipe } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BasicInfoStep } from './components/basic-info-step/basic-info-step';
 import { IngredientsStep } from './components/ingredients-step/ingredients-step';
@@ -10,6 +10,8 @@ import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { map, shareReplay } from 'rxjs';
 
 @Component({
   selector: 'app-create-recipe',
@@ -20,14 +22,21 @@ import { SnackbarService } from '../../../../core/services/snack-bar.service';
     IngredientsStep,
     InstructionsStep,
     ReviewStep,
+    AsyncPipe,
   ],
   templateUrl: './create-recipe.html',
   styleUrl: './create-recipe.scss',
 })
 export class CreateRecipe {
+  private breakpointObserver = inject(BreakpointObserver);
+
+  isMobile$ = this.breakpointObserver.observe('(max-width: 768px)').pipe(
+    map((result) => result.matches),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+
   isEdit = false;
   isProcess = false;
-  isMobile = window.innerWidth < 768;
 
   constructor(
     private location: Location,
@@ -67,7 +76,6 @@ export class CreateRecipe {
           this.router.navigate(['/my-recipes']);
         },
         error: (err) => {
-          console.log(err);
           this.snackbar.error('Có lỗi xãy ra');
 
           this.isProcess = false;
@@ -83,17 +91,11 @@ export class CreateRecipe {
           this.router.navigate(['/my-recipes']);
         },
         error: (err) => {
-          console.log(err);
           this.snackbar.error('Có lỗi xãy ra');
 
           this.isProcess = false;
         },
       });
     }
-  }
-
-  @HostListener('window:resize')
-  onResize() {
-    this.isMobile = window.innerWidth < 1024;
   }
 }

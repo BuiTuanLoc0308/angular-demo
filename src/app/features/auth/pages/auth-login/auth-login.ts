@@ -59,8 +59,6 @@ export class AuthLogin {
     this.authService.login(loginData).subscribe({
       // thanh cong
       next: (response) => {
-        console.log(response);
-
         this.snackbar.success('Đăng nhập thành công');
 
         this.router.navigate(['/my-recipes']);
@@ -68,8 +66,6 @@ export class AuthLogin {
 
       // loi
       error: (error) => {
-        console.log(error);
-
         if (error.status === 401) {
           this.snackbar.error('Sai tài khoản hoặc mật khẩu');
         } else {

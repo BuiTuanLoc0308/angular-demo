@@ -68,7 +68,6 @@ export class RecipeDetail {
         this.router.navigate(['/my-recipes']);
       },
       error: (err) => {
-        console.error('Delete failed', err);
         this.snackbar.error('Có lỗi xãy ra');
 
         this.isDeleting = false;
@@ -84,7 +83,6 @@ export class RecipeDetail {
         this.router.navigate(['/create-recipe', id]);
       },
       error: (err) => {
-        console.error(err);
         this.snackbar.error('Có lỗi xãy ra');
       },
     });
