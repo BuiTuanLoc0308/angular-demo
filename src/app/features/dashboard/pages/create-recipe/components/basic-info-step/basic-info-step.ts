@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,13 +16,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './basic-info-step.html',
   styleUrl: './basic-info-step.scss',
 })
-export class BasicInfoStep {
+export class BasicInfoStep implements OnInit {
   private recipeState = inject(RecipeCreateStateService);
   private destroyRef = inject(DestroyRef);
+  private fb = inject(FormBuilder);
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     const recipe = this.recipeState.getRecipe();
 
     this.form = this.fb.group({

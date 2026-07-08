@@ -19,9 +19,14 @@
 
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <div class="form-group">
-          <label>Username</label>
+          <label for="username">Username</label>
 
-          <input type="email" formControlName="userName" placeholder="Enter username" />
+          <input
+            type="email"
+            formControlName="userName"
+            placeholder="Enter username"
+            id="username"
+          />
 
           @if (userNameInvalid) {
             <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
@@ -29,9 +34,14 @@
         </div>
 
         <div class="form-group">
-          <label>Password</label>
+          <label for="password">Password</label>
 
-          <input type="password" formControlName="password" placeholder="Enter password" />
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Enter password"
+            id="password"
+          />
 
           @if (passwordInvalid) {
             <small class="invalid-text"> Password bắt buộc </small>
@@ -68,7 +78,7 @@
         <div class="auth-footer">
           <p>Chưa có tài khoản?</p>
 
-          <a class="auth-link" (click)="onRegister()"> Đăng ký ngay </a>
+          <a class="auth-link" routerLink="/register"> Đăng ký ngay </a>
         </div>
       </form>
 

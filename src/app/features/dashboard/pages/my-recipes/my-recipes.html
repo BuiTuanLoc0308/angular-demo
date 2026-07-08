@@ -38,7 +38,7 @@
             <div class="recipe-detail">
               <p class="name">{{ recipe.recipeName }}</p>
 
-              <p class="detail" (click)="onDetail(recipe.id)">Chi tiết</p>
+              <a class="detail" [routerLink]="['/my-recipes', recipe.id]"> Chi tiết </a>
             </div>
           </div>
         } @empty {

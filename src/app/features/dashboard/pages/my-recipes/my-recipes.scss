@@ -147,12 +147,17 @@
 
 .detail {
   margin-top: auto;
+  margin-bottom: 20px;
 
   text-align: right;
 
   cursor: pointer;
 
   font-weight: 500;
+
+  text-decoration: none;
+
+  color: var(--auth-link-color);
 }
 
 /* ================= PAGINATION ================= */

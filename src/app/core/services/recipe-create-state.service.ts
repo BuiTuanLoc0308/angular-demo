@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { RecipeModel } from '../models/recipe.model';
 
 @Injectable({
@@ -19,24 +19,24 @@ export class RecipeCreateStateService {
     };
   }
 
-  recipe: RecipeModel = this.createEmptyRecipe();
+  readonly recipe = signal<RecipeModel>(this.createEmptyRecipe());
 
   getRecipe(): RecipeModel {
-    return this.recipe;
+    return this.recipe();
   }
 
-  updateRecipe(data: Partial<RecipeModel>) {
-    this.recipe = {
-      ...this.recipe,
+  updateRecipe(data: Partial<RecipeModel>): void {
+    this.recipe.update((recipe) => ({
+      ...recipe,
       ...data,
-    };
+    }));
   }
 
-  setRecipe(recipe: RecipeModel) {
-    this.recipe = { ...recipe };
+  setRecipe(recipe: RecipeModel): void {
+    this.recipe.set({ ...recipe });
   }
 
-  resetRecipe() {
-    this.recipe = this.createEmptyRecipe();
+  resetRecipe(): void {
+    this.recipe.set(this.createEmptyRecipe());
   }
 }

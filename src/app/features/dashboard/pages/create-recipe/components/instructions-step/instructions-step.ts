@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
 import { InstructionModel } from '../../../../../../core/models/instruction.model';
@@ -11,7 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './instructions-step.html',
   styleUrl: './instructions-step.scss',
 })
-export class InstructionsStep {
+export class InstructionsStep implements OnInit {
   private fb = inject(FormBuilder);
   private recipeState = inject(RecipeCreateStateService);
   private destroyRef = inject(DestroyRef);

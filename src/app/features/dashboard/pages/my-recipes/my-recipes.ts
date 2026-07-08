@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { catchError, combineLatest, map, of, startWith, Subject, switchMap } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
 import { CategoryFilter } from '../../../../shared/components/category-filter/category-filter';
@@ -9,9 +9,10 @@ import { CategoryFilter } from '../../../../shared/components/category-filter/ca
 @Component({
   selector: 'app-my-recipes',
   standalone: true,
-  imports: [CommonModule, CategoryFilter],
+  imports: [CommonModule, CategoryFilter, RouterLink],
   templateUrl: './my-recipes.html',
   styleUrl: './my-recipes.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MyRecipes {
   private recipeService = inject(RecipeService);
@@ -123,10 +124,6 @@ export class MyRecipes {
 
       queryParamsHandling: 'merge',
     });
-  }
-
-  onDetail(id: string) {
-    this.router.navigate(['/my-recipes', id]);
   }
 
   onCreate() {

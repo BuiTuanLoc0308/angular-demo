@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Location, AsyncPipe } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -26,9 +26,16 @@ import { map, shareReplay } from 'rxjs';
   ],
   templateUrl: './create-recipe.html',
   styleUrl: './create-recipe.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateRecipe {
+export class CreateRecipe implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
+  private location = inject(Location);
+  private recipeService = inject(RecipeService);
+  private recipeState = inject(RecipeCreateStateService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private snackbar = inject(SnackbarService);
 
   isMobile$ = this.breakpointObserver.observe('(max-width: 768px)').pipe(
     map((result) => result.matches),
@@ -37,15 +44,6 @@ export class CreateRecipe {
 
   isEdit = false;
   isProcess = false;
-
-  constructor(
-    private location: Location,
-    private recipeService: RecipeService,
-    private recipeState: RecipeCreateStateService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private snackbar: SnackbarService,
-  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -68,14 +66,14 @@ export class CreateRecipe {
 
     if (this.isEdit) {
       this.recipeService.updateRecipe(recipe.id, recipe).subscribe({
-        next: (res) => {
+        next: () => {
           this.snackbar.success('Cập nhật công thức thành công');
 
           this.isProcess = false;
 
           this.router.navigate(['/my-recipes']);
         },
-        error: (err) => {
+        error: () => {
           this.snackbar.error('Có lỗi xãy ra');
 
           this.isProcess = false;
@@ -83,14 +81,14 @@ export class CreateRecipe {
       });
     } else {
       this.recipeService.createRecipe(recipe).subscribe({
-        next: (res) => {
+        next: () => {
           this.snackbar.success('Tạo thành công công thức mới');
 
           this.isProcess = false;
 
           this.router.navigate(['/my-recipes']);
         },
-        error: (err) => {
+        error: () => {
           this.snackbar.error('Có lỗi xãy ra');
 
           this.isProcess = false;

@@ -9,6 +9,7 @@ import { CreateRecipe } from './features/dashboard/pages/create-recipe/create-re
 import { RecipeDetail } from './features/dashboard/pages/recipe-detail/recipe-detail';
 import { AuthRegister } from './features/auth/pages/auth-register/auth-register';
 import { authGuard } from './core/guards/auth.guard';
+import { recipeDetailResolver } from './core/resolver/recipe-detail.resolver';
 
 export const routes: Routes = [
   {
@@ -61,6 +62,9 @@ export const routes: Routes = [
       {
         path: 'my-recipes/:id',
         component: RecipeDetail,
+        resolve: {
+          recipe: recipeDetailResolver,
+        },
       },
 
       {

@@ -1,20 +1,21 @@
 <form [formGroup]="form" class="main">
   <h2 class="header">Thông tin cơ bản</h2>
 
-  <label class="label"> Tên món ăn </label>
+  <label class="label" for="recipeName"> Tên món ăn </label>
 
-  <input type="text" placeholder="Ví dụ: Phở bò" formControlName="recipeName" />
+  <input type="text" placeholder="Ví dụ: Phở bò" formControlName="recipeName" id="recipeName" />
 
   @if (recipeNameInvalid) {
     <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
   }
 
-  <label class="label"> Mô tả </label>
+  <label class="label" for="description"> Mô tả </label>
 
   <textarea
     class="description-input"
     placeholder="Chia sẻ câu chuyện đằng sau món ăn..."
     formControlName="description"
+    id="description"
   >
   </textarea>
 

@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../core/services/auth.service';
 import { TokenService } from '../../core/services/token.service';
 
 @Component({
@@ -11,14 +10,9 @@ import { TokenService } from '../../core/services/token.service';
   styleUrl: './sidebar.scss',
 })
 export class Sidebar {
-  constructor(
-    private tokenService: TokenService,
-    // private router: Router,
-  ) {}
+  private tokenService = inject(TokenService);
 
   logout(): void {
     this.tokenService.clear();
-
-    // this.router.navigate(['/login']);
   }
 }

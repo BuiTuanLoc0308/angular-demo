@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -8,31 +8,31 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RegisterRequest } from '../../../../core/models/register-request.model';
 import { CommonModule } from '@angular/common';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
 
 @Component({
   selector: 'app-auth-register',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   standalone: true,
   templateUrl: './auth-register.html',
   styleUrl: './auth-register.scss',
 })
 export class AuthRegister {
+  private authService = inject(AuthService);
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private snackbar = inject(SnackbarService);
+
   message = '';
 
   isLoading = false;
 
   registerForm: FormGroup;
 
-  constructor(
-    private authService: AuthService,
-    private fb: FormBuilder,
-    private router: Router,
-    private snackbar: SnackbarService,
-  ) {
+  constructor() {
     this.registerForm = this.fb.group(
       {
         userName: ['', Validators.required],
@@ -113,9 +113,5 @@ export class AuthRegister {
         this.isLoading = false;
       },
     });
-  }
-
-  onLogin() {
-    this.router.navigate(['/login']);
   }
 }

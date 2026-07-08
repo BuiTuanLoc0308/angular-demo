@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './review-step.scss',
 })
 export class ReviewStep {
-  constructor(public recipeState: RecipeCreateStateService) {}
+  public recipeState = inject(RecipeCreateStateService);
 
   get recipe() {
     return this.recipeState.recipe;

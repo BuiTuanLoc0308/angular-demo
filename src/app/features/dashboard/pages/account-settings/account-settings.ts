@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ThemeService } from '../../../../core/services/theme.service';
 
 @Component({
@@ -7,5 +7,5 @@ import { ThemeService } from '../../../../core/services/theme.service';
   styleUrl: './account-settings.scss',
 })
 export class AccountSettings {
-  constructor(public theme: ThemeService) {}
+  public theme = inject(ThemeService);
 }

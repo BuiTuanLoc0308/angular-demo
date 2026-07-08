@@ -3,6 +3,7 @@
     <div class="settings-header">
       <div>
         <h2>Account settings</h2>
+
         <p>Customize your experience</p>
       </div>
 
@@ -12,8 +13,8 @@
         (click)="theme.toggleTheme()"
         aria-label="Toggle dark mode"
       >
-        <span>{{ theme.isDarkMode ? '🌙' : '☀️' }}</span>
-        <span>{{ theme.isDarkMode ? 'Dark Mode' : 'Light Mode' }}</span>
+        <span>{{ theme.isDarkMode() ? '🌙' : '☀️' }}</span>
+        <span>{{ theme.isDarkMode() ? 'Dark Mode' : 'Light Mode' }}</span>
       </button>
     </div>
 
@@ -21,9 +22,10 @@
       <div class="setting-item">
         <div>
           <h3>Appearance</h3>
+
           <p>Switch between light and dark themes.</p>
         </div>
-        <span class="status-pill">{{ theme.isDarkMode ? 'Dark' : 'Light' }}</span>
+        <span class="status-pill">{{ theme.isDarkMode() ? 'Dark' : 'Light' }}</span>
       </div>
     </div>
   </div>

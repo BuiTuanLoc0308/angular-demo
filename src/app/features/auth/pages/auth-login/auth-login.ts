@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LoginRequest } from '../../../../core/models/login-request.model';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
@@ -9,23 +9,23 @@ import { SnackbarService } from '../../../../core/services/snack-bar.service';
 @Component({
   selector: 'app-auth-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './auth-login.html',
   styleUrl: './auth-login.scss',
 })
 export class AuthLogin {
+  private authService = inject(AuthService);
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private snackbar = inject(SnackbarService);
+
   message = '';
 
   isLoading = false;
 
   loginForm: FormGroup;
 
-  constructor(
-    private authService: AuthService,
-    private fb: FormBuilder,
-    private router: Router,
-    private snackbar: SnackbarService,
-  ) {
+  constructor() {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
 
@@ -58,7 +58,7 @@ export class AuthLogin {
     // goi api
     this.authService.login(loginData).subscribe({
       // thanh cong
-      next: (response) => {
+      next: () => {
         this.snackbar.success('Đăng nhập thành công');
 
         this.router.navigate(['/my-recipes']);
@@ -77,9 +77,5 @@ export class AuthLogin {
         this.isLoading = false;
       },
     });
-  }
-
-  onRegister() {
-    this.router.navigate(['/register']);
   }
 }

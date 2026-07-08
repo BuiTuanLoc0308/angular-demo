@@ -1,56 +1,31 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { catchError, map, of, startWith, switchMap } from 'rxjs';
-import { RecipeModel } from '../../../../core/models/recipe.model';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
+import { map } from 'rxjs';
+import { RecipeModel } from '../../../../core/models/recipe.model';
 
 @Component({
   selector: 'app-recipe-detail',
   imports: [MatIconModule, AsyncPipe],
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecipeDetail {
   private route = inject(ActivatedRoute);
+  private recipeService = inject(RecipeService);
+  private location = inject(Location);
+  private router = inject(Router);
+  private recipeCreateState = inject(RecipeCreateStateService);
+  private snackbar = inject(SnackbarService);
 
   isDeleting = false;
 
-  vm$ = this.route.paramMap.pipe(
-    map((params) => params.get('id')!),
-    switchMap((id) =>
-      this.recipeService.getRecipeById(id).pipe(
-        map((recipe) => ({
-          recipe,
-          isLoading: false,
-          error: false,
-        })),
-        startWith({
-          recipe: null as RecipeModel | null,
-          isLoading: true,
-          error: false,
-        }),
-        catchError(() =>
-          of({
-            recipe: null,
-            isLoading: false,
-            error: true,
-          }),
-        ),
-      ),
-    ),
-  );
-
-  constructor(
-    private recipeService: RecipeService,
-    private location: Location,
-    private router: Router,
-    private recipeCreateState: RecipeCreateStateService,
-    private snackbar: SnackbarService,
-  ) {}
+  recipe$ = this.route.data.pipe(map((data) => data['recipe'] as RecipeModel));
 
   goBack() {
     this.location.back();
@@ -67,7 +42,7 @@ export class RecipeDetail {
 
         this.router.navigate(['/my-recipes']);
       },
-      error: (err) => {
+      error: () => {
         this.snackbar.error('Có lỗi xãy ra');
 
         this.isDeleting = false;
@@ -75,16 +50,9 @@ export class RecipeDetail {
     });
   }
 
-  onEdit(id: string) {
-    this.recipeService.getRecipeById(id).subscribe({
-      next: (recipe) => {
-        this.recipeCreateState.setRecipe(recipe);
+  onEdit(recipe: RecipeModel) {
+    this.recipeCreateState.setRecipe(recipe);
 
-        this.router.navigate(['/create-recipe', id]);
-      },
-      error: (err) => {
-        this.snackbar.error('Có lỗi xãy ra');
-      },
-    });
+    this.router.navigate(['/create-recipe', recipe.id]);
   }
 }

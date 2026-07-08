@@ -1,84 +1,78 @@
 <div class="main">
   <div class="header">
-    <a (click)="goBack()" class="btn-back">
+    <button (click)="goBack()" class="btn-back">
       <mat-icon>arrow_back</mat-icon>
       <span><p>Chi tiết công thức</p></span>
-    </a>
+    </button>
   </div>
 
-  @if (vm$ | async; as vm) {
-    @if (vm.isLoading) {
-      <p>Đang tải...</p>
-    } @else if (vm.error) {
-      <p>Không thể tải công thức.</p>
-    } @else if (vm.recipe; as recipe) {
-      <div class="recipe">
-        <!-- <img class="image" [src]="recipe.image" alt="image" /> -->
+  @if (recipe$ | async; as recipe) {
+    <div class="recipe">
+      <!-- <img class="image" [src]="recipe.image" alt="image" /> -->
 
-        <div class="recipe-name">
-          <p>{{ recipe.recipeName }}</p>
+      <div class="recipe-name">
+        <p>{{ recipe.recipeName }}</p>
+      </div>
+
+      <p>{{ recipe.description }}</p>
+
+      <div class="body">
+        <div class="recipe-ingredient">
+          <p class="label">Nguyên liệu</p>
+
+          @for (ingredient of recipe.ingredients; track $index; let last = $last) {
+            <div class="ingredient">
+              <p class="name">{{ ingredient.ingredientName }}</p>
+
+              <p class="quantity">{{ ingredient.quantity }} {{ ingredient.unit }}</p>
+            </div>
+
+            @if (!last) {
+              <div class="divider">
+                <span class="line"></span>
+              </div>
+            }
+          }
         </div>
 
-        <p>{{ recipe.description }}</p>
+        <div class="recipe-instruction">
+          <p class="label">Các bước nấu</p>
 
-        <div class="body">
-          <div class="recipe-ingredient">
-            <p class="label">Nguyên liệu</p>
+          <div class="recipe-steps">
+            @for (step of recipe.instructions; track $index; let last = $last) {
+              <div class="step">
+                <div class="step-left">
+                  <div class="step-number">
+                    {{ $index + 1 }}
+                  </div>
 
-            @for (ingredient of recipe.ingredients; track $index; let last = $last) {
-              <div class="ingredient">
-                <p class="name">{{ ingredient.ingredientName }}</p>
-
-                <p class="quantity">{{ ingredient.quantity }} {{ ingredient.unit }}</p>
-              </div>
-
-              @if (!last) {
-                <div class="divider">
-                  <span class="line"></span>
+                  @if (!last) {
+                    <div class="step-line"></div>
+                  }
                 </div>
-              }
+
+                <div class="step-content">
+                  {{ step.content }}
+                </div>
+              </div>
             }
           </div>
-
-          <div class="recipe-instruction">
-            <p class="label">Các bước nấu</p>
-
-            <div class="recipe-steps">
-              @for (step of recipe.instructions; track $index; let last = $last) {
-                <div class="step">
-                  <div class="step-left">
-                    <div class="step-number">
-                      {{ $index + 1 }}
-                    </div>
-
-                    @if (!last) {
-                      <div class="step-line"></div>
-                    }
-                  </div>
-
-                  <div class="step-content">
-                    {{ step.content }}
-                  </div>
-                </div>
-              }
-            </div>
-          </div>
         </div>
       </div>
+    </div>
 
-      <div class="btn-group">
-        <button class="btn btn-delete" (click)="onDelete(recipe.id)" [disabled]="isDeleting">
-          <mat-icon>delete_outline</mat-icon>
+    <div class="btn-group">
+      <button class="btn btn-delete" (click)="onDelete(recipe.id)" [disabled]="isDeleting">
+        <mat-icon>delete_outline</mat-icon>
 
-          {{ isDeleting ? 'Đang xóa...' : 'Xóa' }}
-        </button>
+        {{ isDeleting ? 'Đang xóa...' : 'Xóa' }}
+      </button>
 
-        <button class="btn btn-edit" (click)="onEdit(recipe.id)">
-          <mat-icon>edit</mat-icon>
+      <button class="btn btn-edit" (click)="onEdit(recipe)">
+        <mat-icon>edit</mat-icon>
 
-          Sửa
-        </button>
-      </div>
-    }
+        Sửa
+      </button>
+    </div>
   }
 </div>
