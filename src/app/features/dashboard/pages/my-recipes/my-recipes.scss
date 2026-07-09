@@ -107,6 +107,8 @@
   overflow: hidden;
 
   transition: 0.25s;
+
+  position: relative;
 }
 
 .recipe-card:hover {
@@ -128,6 +130,38 @@
 
   padding: 20px;
   padding-bottom: 0;
+}
+
+.favorite-btn {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  font-size: 20px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.recipe-card:hover .favorite-btn {
+  opacity: 1;
+  visibility: visible;
 }
 
 .name {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { catchError, combineLatest, map, of, startWith, Subject, switchMap } from 'rxjs';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
@@ -14,7 +14,7 @@ import { CategoryFilter } from '../../../../shared/components/category-filter/ca
   styleUrl: './my-recipes.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MyRecipes {
+export class MyRecipes implements OnInit {
   private recipeService = inject(RecipeService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -23,6 +23,8 @@ export class MyRecipes {
   private refresh$ = new Subject<void>();
 
   categories = ['Tất cả', 'Bữa sáng', 'Bữa trưa', 'Bữa tối', 'Tráng miệng', 'Đồ uống'];
+
+  favoriteRecipes: string[] = [];
 
   search = '';
   category = 'Tất cả';
@@ -130,5 +132,25 @@ export class MyRecipes {
     this.recipeState.resetRecipe();
 
     this.router.navigate(['/create-recipe']);
+  }
+
+  ngOnInit() {
+    const data = localStorage.getItem('favoriteRecipes');
+
+    this.favoriteRecipes = data ? JSON.parse(data) : [];
+  }
+
+  isFavorite(id: string): boolean {
+    return this.favoriteRecipes.includes(id);
+  }
+
+  toggleFavorite(id: string) {
+    if (this.isFavorite(id)) {
+      this.favoriteRecipes = this.favoriteRecipes.filter((x) => x !== id);
+    } else {
+      this.favoriteRecipes.push(id);
+    }
+
+    localStorage.setItem('favoriteRecipes', JSON.stringify(this.favoriteRecipes));
   }
 }

@@ -13,7 +13,7 @@
       <p class="label">TÊN MÓN ĂN</p>
 
       <h3 class="recipe-name">
-        {{ recipe.recipeName }}
+        {{ recipe().recipeName }}
       </h3>
     </section>
 
@@ -23,7 +23,7 @@
       <p class="label">MÔ TẢ</p>
 
       <p class="description">
-        {{ recipe.description }}
+        {{ recipe().description }}
       </p>
     </section>
 
@@ -32,7 +32,7 @@
     <section>
       <p class="label">DANH SÁCH NGUYÊN LIỆU</p>
 
-      @for (ingredient of recipe.ingredients; track $index) {
+      @for (ingredient of recipe().ingredients; track $index) {
         <div class="ingredient">
           <span>
             {{ ingredient.ingredientName }}
@@ -48,7 +48,7 @@
     <section>
       <p class="label">CÁC BƯỚC THỰC HIỆN</p>
 
-      @for (instruction of recipe.instructions; track $index) {
+      @for (instruction of recipe().instructions; track $index) {
         <div class="instruction">
           <div class="step-number">
             {{ $index + 1 }}

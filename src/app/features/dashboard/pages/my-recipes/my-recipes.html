@@ -33,6 +33,17 @@
       } @else {
         @for (recipe of vm.recipes; track recipe.id) {
           <div class="recipe-card">
+            <button
+              class="favorite-btn"
+              (click)="toggleFavorite(recipe.id); $event.stopPropagation()"
+            >
+              @if (isFavorite(recipe.id)) {
+                ❤️
+              } @else {
+                🤍
+              }
+            </button>
+
             <img [src]="recipe.image" [alt]="recipe.recipeName" class="img" />
 
             <div class="recipe-detail">
