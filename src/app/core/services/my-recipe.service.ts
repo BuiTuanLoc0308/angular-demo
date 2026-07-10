@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeModel } from '../models/recipe.model';
 import { api_endpoint } from '../constants/api-endpoint';
@@ -9,7 +9,7 @@ import { RecipeQuery } from '../models/recipe-query.model';
   providedIn: 'root',
 })
 export class RecipeService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getMyRecipe(query: RecipeQuery): Observable<RecipeModel[]> {
     let params = new HttpParams().set('page', query.page).set('limit', query.limit);

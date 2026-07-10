@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { tap } from 'rxjs';
 import { LoginResponse } from '../models/login-response.model';
 import { api_endpoint } from '../constants/api-endpoint';
 import { LoginRequest } from '../models/login-request.model';
@@ -11,10 +11,8 @@ import { RegisterRequest } from '../models/register-request.model';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private http: HttpClient,
-    private tokenService: TokenService,
-  ) {}
+  private http = inject(HttpClient);
+  private tokenService = inject(TokenService);
 
   login(data: LoginRequest) {
     return this.http

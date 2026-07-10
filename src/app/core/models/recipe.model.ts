@@ -1,5 +1,6 @@
 import { IngredientModel } from './ingredient.model';
 import { InstructionModel } from './instruction.model';
+import { ReviewModel } from './review.model';
 
 export interface RecipeModel {
   id: string;
@@ -11,4 +12,6 @@ export interface RecipeModel {
 
   ingredients: IngredientModel[];
   instructions: InstructionModel[];
+
+  reviews: ReviewModel[];
 }

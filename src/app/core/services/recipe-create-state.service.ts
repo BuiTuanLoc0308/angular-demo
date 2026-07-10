@@ -16,6 +16,8 @@ export class RecipeCreateStateService {
 
       ingredients: [],
       instructions: [],
+
+      reviews: [],
     };
   }
 
