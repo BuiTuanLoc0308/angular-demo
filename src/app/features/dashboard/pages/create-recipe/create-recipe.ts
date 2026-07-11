@@ -6,12 +6,11 @@ import { BasicInfoStep } from './components/basic-info-step/basic-info-step';
 import { IngredientsStep } from './components/ingredients-step/ingredients-step';
 import { InstructionsStep } from './components/instructions-step/instructions-step';
 import { ReviewStep } from './components/review-step/review-step';
-import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SnackbarService } from '../../../../core/services/snack-bar.service';
+import { ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs';
+import { CreateRecipePageStateService } from './services/create-recipe-page-state.service';
 
 @Component({
   selector: 'app-create-recipe',
@@ -31,28 +30,26 @@ import { map, shareReplay } from 'rxjs';
 export class CreateRecipe implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
   private location = inject(Location);
-  private recipeService = inject(RecipeService);
   private recipeState = inject(RecipeCreateStateService);
-  private router = inject(Router);
   private route = inject(ActivatedRoute);
-  private snackbar = inject(SnackbarService);
+  private pageState = inject(CreateRecipePageStateService);
 
   isMobile$ = this.breakpointObserver.observe('(max-width: 768px)').pipe(
     map((result) => result.matches),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
-  isEdit = false;
-  isProcess = false;
+  get isEdit() {
+    return this.pageState.isEdit();
+  }
+
+  get isProcess() {
+    return this.pageState.isProcess();
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-
-    if (id !== null) {
-      this.isEdit = true;
-    } else {
-      this.isEdit = false;
-    }
+    this.pageState.initializeFromRouteParam(id);
   }
 
   goBack() {
@@ -60,40 +57,7 @@ export class CreateRecipe implements OnInit {
   }
 
   submitRecipe() {
-    this.isProcess = true;
-
     const recipe = this.recipeState.getRecipe();
-
-    if (this.isEdit) {
-      this.recipeService.updateRecipe(recipe.id, recipe).subscribe({
-        next: () => {
-          this.snackbar.success('Cập nhật công thức thành công');
-
-          this.isProcess = false;
-
-          this.router.navigate(['/my-recipes']);
-        },
-        error: () => {
-          this.snackbar.error('Có lỗi xãy ra');
-
-          this.isProcess = false;
-        },
-      });
-    } else {
-      this.recipeService.createRecipe(recipe).subscribe({
-        next: () => {
-          this.snackbar.success('Tạo thành công công thức mới');
-
-          this.isProcess = false;
-
-          this.router.navigate(['/my-recipes']);
-        },
-        error: () => {
-          this.snackbar.error('Có lỗi xãy ra');
-
-          this.isProcess = false;
-        },
-      });
-    }
+    this.pageState.submitRecipe(recipe);
   }
 }

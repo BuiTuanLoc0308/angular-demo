@@ -32,26 +32,11 @@
         <p>Loading...</p>
       } @else {
         @for (recipe of vm.recipes; track recipe.id) {
-          <div class="recipe-card">
-            <button
-              class="favorite-btn"
-              (click)="toggleFavorite(recipe.id); $event.stopPropagation()"
-            >
-              @if (isFavorite(recipe.id)) {
-                ❤️
-              } @else {
-                🤍
-              }
-            </button>
-
-            <img [src]="recipe.image" [alt]="recipe.recipeName" class="img" />
-
-            <div class="recipe-detail">
-              <p class="name">{{ recipe.recipeName }}</p>
-
-              <a class="detail" [routerLink]="['/my-recipes', recipe.id]"> Chi tiết </a>
-            </div>
-          </div>
+          <app-recipe-card
+            [recipe]="recipe"
+            [isFavorite]="isFavorite(recipe.id)"
+            (favoriteToggled)="toggleFavorite($event)"
+          ></app-recipe-card>
         } @empty {
           <p>Không có recipe nào.</p>
         }

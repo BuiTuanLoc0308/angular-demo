@@ -1,0 +1,17 @@
+<div class="recipe-card">
+  <button class="favorite-btn" (click)="onFavoriteClick($event)">
+    @if (isFavorite) {
+      ❤️
+    } @else {
+      🤍
+    }
+  </button>
+
+  <img [src]="recipe.image" [alt]="recipe.recipeName" class="img" />
+
+  <div class="recipe-detail">
+    <p class="name">{{ recipe.recipeName }}</p>
+
+    <a class="detail" [routerLink]="['/my-recipes', recipe.id]">Chi tiết</a>
+  </div>
+</div>

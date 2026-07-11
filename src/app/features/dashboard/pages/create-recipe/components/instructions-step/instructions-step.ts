@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
 import { InstructionModel } from '../../../../../../core/models/instruction.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RecipeFormUtilsService } from '../../services/recipe-form-utils.service';
 
 @Component({
   selector: 'app-instructions-step',
@@ -15,6 +16,7 @@ export class InstructionsStep implements OnInit {
   private fb = inject(FormBuilder);
   private recipeState = inject(RecipeCreateStateService);
   private destroyRef = inject(DestroyRef);
+  private formUtils = inject(RecipeFormUtilsService);
 
   form = this.fb.group({
     instructions: this.fb.array([]),
@@ -33,13 +35,12 @@ export class InstructionsStep implements OnInit {
   private initInstructions() {
     const recipe = this.recipeState.getRecipe();
 
-    if (recipe.instructions.length > 0) {
-      recipe.instructions.forEach((instruction) => {
-        this.instructions.push(this.createInstruction(instruction));
-      });
-    } else {
-      this.instructions.push(this.createInstruction());
-    }
+    this.formUtils.initializeArrayItems(
+      this.instructions,
+      recipe.instructions,
+      (instruction) => this.createInstruction(instruction),
+      () => this.createInstruction(),
+    );
   }
 
   addInstruction() {
@@ -48,10 +49,7 @@ export class InstructionsStep implements OnInit {
 
   removeInstruction(index: number) {
     this.instructions.removeAt(index);
-
-    if (this.instructions.length === 0) {
-      this.addInstruction();
-    }
+    this.formUtils.ensureMinimumItem(this.instructions, () => this.createInstruction());
   }
 
   ngOnInit() {
