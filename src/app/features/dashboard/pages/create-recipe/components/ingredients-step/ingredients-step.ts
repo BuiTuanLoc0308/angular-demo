@@ -4,11 +4,12 @@ import { RecipeCreateStateService } from '../../../../../../core/services/recipe
 import { IngredientModel } from '../../../../../../core/models/ingredient.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RecipeFormUtilsService } from '../../services/recipe-form-utils.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ingredients-step',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './ingredients-step.html',
   styleUrl: './ingredients-step.scss',
 })

@@ -1,84 +1,101 @@
 <div class="auth-page">
   <div class="auth-container">
     <div class="auth-image">
-      <img src="images/login.png" alt="Login" />
+      <img src="assets/images/login.png" alt="Login" />
     </div>
 
     <div class="auth-card">
       <div class="logo-container">
-        <img src="images/logo.png" alt="Logo" />
+        <img src="assets/images/logo.png" alt="Logo" />
       </div>
 
       <h2 class="auth-title"><i>CulinaryFriend</i></h2>
 
       <div class="auth-header">
-        <p class="auth-text">Đăng nhập</p>
+        <p class="auth-text">{{ 'LOGIN.TITLE' | translate }}</p>
 
-        <p class="auth-subtitle">Rất vui được gặp lại bạn</p>
+        <p class="auth-subtitle">
+          {{ 'LOGIN.SUBTITLE' | translate }}
+        </p>
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">
+            {{ 'LOGIN.USERNAME' | translate }}
+          </label>
 
           <input
             type="email"
             formControlName="userName"
-            placeholder="Enter username"
+            [placeholder]="'LOGIN.USERNAME_PLACEHOLDER' | translate"
             id="username"
           />
 
           @if (userNameInvalid) {
-            <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+            <small class="invalid-text">
+              {{ 'LOGIN.USERNAME_REQUIRED' | translate }}
+            </small>
           }
         </div>
 
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">
+            {{ 'LOGIN.PASSWORD' | translate }}
+          </label>
 
           <input
             type="password"
             formControlName="password"
-            placeholder="Enter password"
+            [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
             id="password"
           />
 
           @if (passwordInvalid) {
-            <small class="invalid-text"> Password bắt buộc </small>
+            <small class="invalid-text">
+              {{ 'LOGIN.PASSWORD_REQUIRED' | translate }}
+            </small>
           }
         </div>
 
         <div class="option-container">
           <label class="remember">
             <input type="checkbox" id="remember" />
-            Ghi nhớ đăng nhập
+
+            {{ 'LOGIN.REMEMBER_ME' | translate }}
           </label>
 
-          <p class="forgot">Quên mật khẩu</p>
+          <p class="forgot">
+            {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
+          </p>
         </div>
 
         <button class="btn-submit" type="submit" [disabled]="loginForm.invalid || isLoading">
-          {{ isLoading ? 'Đang đăng nhập...' : 'Login' }}
+          {{ isLoading ? ('LOGIN.LOGGING_IN' | translate) : ('LOGIN.LOGIN' | translate) }}
         </button>
 
         <div class="divider">
           <span class="line"></span>
 
-          <span class="divider-text"> Hoặc đăng nhập bằng </span>
+          <span class="divider-text">
+            {{ 'LOGIN.OR_CONTINUE_WITH' | translate }}
+          </span>
 
           <span class="line"></span>
         </div>
 
         <div class="btn-group">
-          <button>Google</button>
+          <button>{{ 'LOGIN.GOOGLE' | translate }}</button>
 
-          <button>Facebook</button>
+          <button>{{ 'LOGIN.FACEBOOK' | translate }}</button>
         </div>
 
         <div class="auth-footer">
-          <p>Chưa có tài khoản?</p>
+          <p>{{ 'LOGIN.NO_ACCOUNT' | translate }}</p>
 
-          <a class="auth-link" routerLink="/register"> Đăng ký ngay </a>
+          <a class="auth-link" routerLink="/register">
+            {{ 'LOGIN.REGISTER_NOW' | translate }}
+          </a>
         </div>
       </form>
 

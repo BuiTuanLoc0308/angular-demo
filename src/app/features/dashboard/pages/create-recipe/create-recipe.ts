@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs';
 import { CreateRecipePageStateService } from './services/create-recipe-page-state.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-recipe',
@@ -22,6 +23,7 @@ import { CreateRecipePageStateService } from './services/create-recipe-page-stat
     InstructionsStep,
     ReviewStep,
     AsyncPipe,
+    TranslatePipe,
   ],
   templateUrl: './create-recipe.html',
   styleUrl: './create-recipe.scss',

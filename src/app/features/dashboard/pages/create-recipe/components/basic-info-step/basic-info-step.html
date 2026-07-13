@@ -1,25 +1,40 @@
 <form [formGroup]="form" class="main">
-  <h2 class="header">Thông tin cơ bản</h2>
+  <h2 class="header">
+    {{ 'BASIC_INFO_STEP.TITLE' | translate }}
+  </h2>
 
-  <label class="label" for="recipeName"> Tên món ăn </label>
+  <label class="label" for="recipeName">
+    {{ 'BASIC_INFO_STEP.RECIPE_NAME' | translate }}
+  </label>
 
-  <input type="text" placeholder="Ví dụ: Phở bò" formControlName="recipeName" id="recipeName" />
+  <input
+    type="text"
+    formControlName="recipeName"
+    id="recipeName"
+    [placeholder]="'BASIC_INFO_STEP.RECIPE_NAME_PLACEHOLDER' | translate"
+  />
 
   @if (recipeNameInvalid) {
-    <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+    <small class="invalid-text">
+      {{ 'BASIC_INFO_STEP.RECIPE_NAME_REQUIRED' | translate }}
+    </small>
   }
 
-  <label class="label" for="description"> Mô tả </label>
+  <label class="label" for="description">
+    {{ 'BASIC_INFO_STEP.DESCRIPTION' | translate }}
+  </label>
 
   <textarea
     class="description-input"
-    placeholder="Chia sẻ câu chuyện đằng sau món ăn..."
     formControlName="description"
     id="description"
+    [placeholder]="'BASIC_INFO_STEP.DESCRIPTION_PLACEHOLDER' | translate"
   >
   </textarea>
 
   @if (descriptionInvalid) {
-    <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+    <small class="invalid-text">
+      {{ 'BASIC_INFO_STEP.DESCRIPTION_REQUIRED' | translate }}
+    </small>
   }
 </form>

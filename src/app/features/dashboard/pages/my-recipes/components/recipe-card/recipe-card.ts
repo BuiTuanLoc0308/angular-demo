@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { RecipeModel } from '../../../../../../core/models/recipe.model';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recipe-card',
   standalone: true,
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule, TranslatePipe],
   templateUrl: './recipe-card.html',
   styleUrl: './recipe-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -4,10 +4,11 @@ import { RecipeCreateStateService } from '../../../../../../core/services/recipe
 import { InstructionModel } from '../../../../../../core/models/instruction.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RecipeFormUtilsService } from '../../services/recipe-form-utils.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-instructions-step',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   standalone: true,
   templateUrl: './instructions-step.html',
   styleUrl: './instructions-step.scss',

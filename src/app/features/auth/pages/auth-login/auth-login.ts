@@ -5,11 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LoginRequest } from '../../../../core/models/login-request.model';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslatePipe],
   templateUrl: './auth-login.html',
   styleUrl: './auth-login.scss',
 })
@@ -18,6 +19,7 @@ export class AuthLogin {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private snackbar = inject(SnackbarService);
+  private translate = inject(TranslateService);
 
   message = '';
 
@@ -59,7 +61,7 @@ export class AuthLogin {
     this.authService.login(loginData).subscribe({
       // thanh cong
       next: () => {
-        this.snackbar.success('Đăng nhập thành công');
+        this.snackbar.success(this.translate.instant('LOGIN.LOGIN_SUCCESS'));
 
         this.router.navigate(['/my-recipes']);
       },
@@ -67,9 +69,9 @@ export class AuthLogin {
       // loi
       error: (error) => {
         if (error.status === 401) {
-          this.snackbar.error('Sai tài khoản hoặc mật khẩu');
+          this.snackbar.error(this.translate.instant('LOGIN.LOGIN_FAILED'));
         } else {
-          this.snackbar.error('Đã có lỗi xãy ra');
+          this.snackbar.error(this.translate.instant('SNACKBAR.GENERIC_ERROR'));
         }
       },
 

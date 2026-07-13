@@ -8,11 +8,12 @@ import { CategoryFilter } from './components/category-filter/category-filter';
 import { MyRecipesQueryService } from './services/my-recipes-query.service';
 import { FavoritesStorageService } from './services/favorites-storage.service';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-my-recipes',
   standalone: true,
-  imports: [CommonModule, CategoryFilter, RecipeCardComponent],
+  imports: [CommonModule, CategoryFilter, RecipeCardComponent, TranslatePipe],
   templateUrl: './my-recipes.html',
   styleUrl: './my-recipes.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

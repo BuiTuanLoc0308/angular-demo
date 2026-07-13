@@ -1,5 +1,7 @@
 <div class="main">
-  <h2 class="header">Thông tin nguyên liệu</h2>
+  <h2 class="header">
+    {{ 'INGREDIENTS_STEP.TITLE' | translate }}
+  </h2>
 
   <form [formGroup]="form" class="ingredient-form">
     <div formArrayName="ingredients" class="ingredients-list">
@@ -8,37 +10,57 @@
           <input
             class="ingredient-name"
             type="text"
-            placeholder="Tên nguyên liệu"
             formControlName="ingredientName"
+            [placeholder]="'INGREDIENTS_STEP.INGREDIENT_NAME_PLACEHOLDER' | translate"
           />
 
           <input
             class="ingredient-quantity"
             type="text"
-            placeholder="Số lượng"
             formControlName="quantity"
+            [placeholder]="'INGREDIENTS_STEP.QUANTITY_PLACEHOLDER' | translate"
           />
 
           <select class="ingredient-unit" formControlName="unit">
-            <option value="gram">gram</option>
-            <option value="kg">kg</option>
-            <option value="ml">ml</option>
-            <option value="liter">lít</option>
-            <option value="quả">quả</option>
+            <option value="gram">
+              {{ 'INGREDIENTS_STEP.GRAM' | translate }}
+            </option>
+
+            <option value="kg">
+              {{ 'INGREDIENTS_STEP.KG' | translate }}
+            </option>
+
+            <option value="ml">
+              {{ 'INGREDIENTS_STEP.ML' | translate }}
+            </option>
+
+            <option value="liter">
+              {{ 'INGREDIENTS_STEP.LITER' | translate }}
+            </option>
+
+            <option value="quả">
+              {{ 'INGREDIENTS_STEP.PIECE' | translate }}
+            </option>
           </select>
 
-          <button type="button" class="delete-btn" (click)="removeIngredient(i)">Xóa</button>
+          <button type="button" class="delete-btn" (click)="removeIngredient(i)">
+            {{ 'INGREDIENTS_STEP.DELETE' | translate }}
+          </button>
 
           @if (
             (item.get('ingredientName')?.invalid && item.get('ingredientName')?.touched) ||
             (item.get('quantity')?.invalid && item.get('quantity')?.touched)
           ) {
-            <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+            <small class="invalid-text">
+              {{ 'INGREDIENTS_STEP.REQUIRED' | translate }}
+            </small>
           }
         </div>
       }
     </div>
   </form>
 
-  <button type="button" class="add-btn" (click)="addIngredient()">+ Thêm nguyên liệu</button>
+  <button type="button" class="add-btn" (click)="addIngredient()">
+    {{ 'INGREDIENTS_STEP.ADD' | translate }}
+  </button>
 </div>

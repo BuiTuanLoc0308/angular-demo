@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ThemeService } from './core/services/theme.service';
+import { LanguageService } from './core/services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,6 @@ import { ThemeService } from './core/services/theme.service';
 export class App {
   protected readonly title = signal('angular-demo');
 
-  constructor(private themeService: ThemeService) {}
+  private themeService = inject(ThemeService);
+  private languageService = inject(LanguageService);
 }

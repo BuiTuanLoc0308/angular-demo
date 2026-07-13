@@ -2,28 +2,36 @@
   <div class="header">
     <button class="btn-back" (click)="goBack()">
       <mat-icon>arrow_back</mat-icon>
-      <span>Quay lại</span>
+
+      <span>{{ 'CREATE_RECIPE.BACK' | translate }}</span>
     </button>
 
     <h1>
-      {{ isEdit ? 'Chỉnh sửa công thức' : 'Tạo công thức mới' }}
+      {{
+        isEdit
+          ? ('CREATE_RECIPE.EDIT_TITLE' | translate)
+          : ('CREATE_RECIPE.CREATE_TITLE' | translate)
+      }}
     </h1>
   </div>
 
   <mat-stepper linear #stepper [orientation]="(isMobile$ | async) ? 'vertical' : 'horizontal'">
-    <mat-step label="Thông tin cơ bản" [stepControl]="basicStep.form">
+    <mat-step [label]="'CREATE_RECIPE.BASIC_INFO' | translate" [stepControl]="basicStep.form">
       <app-basic-info-step #basicStep></app-basic-info-step>
 
       <div class="place-btn">
         <button class="btn-next" mat-button matStepperNext [disabled]="basicStep.form.invalid">
-          <span>Tiếp tục</span>
+          <span>{{ 'CREATE_RECIPE.NEXT' | translate }}</span>
 
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </mat-step>
 
-    <mat-step label="Nguyên liệu" [stepControl]="ingredientsStep.form">
+    <mat-step
+      [label]="'CREATE_RECIPE.INGREDIENTS' | translate"
+      [stepControl]="ingredientsStep.form"
+    >
       <app-ingredients-step #ingredientsStep></app-ingredients-step>
 
       <div class="place-btn">
@@ -33,15 +41,18 @@
           matStepperNext
           [disabled]="ingredientsStep.form.invalid"
         >
-          <span>Tiếp tục</span>
+          <span>{{ 'CREATE_RECIPE.NEXT' | translate }}</span>
 
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </mat-step>
 
-    <mat-step label="Các bước nấu" [stepControl]="instructionsStep.form">
-      <app-instructions-step #instructionsStep> </app-instructions-step>
+    <mat-step
+      [label]="'CREATE_RECIPE.INSTRUCTIONS' | translate"
+      [stepControl]="instructionsStep.form"
+    >
+      <app-instructions-step #instructionsStep></app-instructions-step>
 
       <div class="place-btn">
         <button
@@ -50,19 +61,23 @@
           matStepperNext
           [disabled]="instructionsStep.form.invalid"
         >
-          <span>Tiếp tục</span>
+          <span>{{ 'CREATE_RECIPE.NEXT' | translate }}</span>
 
           <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </mat-step>
 
-    <mat-step label="Hoàn tất">
+    <mat-step [label]="'CREATE_RECIPE.REVIEW' | translate">
       <app-review-step></app-review-step>
 
       <div class="place-btn">
         <button class="btn-next" mat-button (click)="submitRecipe()" [disabled]="isProcess">
-          {{ isProcess ? 'Đang xử lý...' : 'Hoàn tất' }}
+          {{
+            isProcess
+              ? ('CREATE_RECIPE.PROCESSING' | translate)
+              : ('CREATE_RECIPE.FINISH' | translate)
+          }}
         </button>
       </div>
     </mat-step>

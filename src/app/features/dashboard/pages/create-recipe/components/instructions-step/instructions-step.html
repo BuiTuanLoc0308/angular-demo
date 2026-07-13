@@ -1,24 +1,36 @@
 <div class="main">
-  <h2 class="header">Các bước thực hiện</h2>
+  <h2 class="header">
+    {{ 'INSTRUCTIONS_STEP.TITLE' | translate }}
+  </h2>
 
   <form [formGroup]="form" class="instruction-form">
     <div formArrayName="instructions" class="instructions-list">
       @for (item of instructions.controls; track item; let i = $index) {
         <div class="instruction-card" [formGroupName]="i">
-          <h3 class="step-title">Bước {{ i + 1 }}</h3>
+          <h3 class="step-title">{{ 'INSTRUCTIONS_STEP.STEP' | translate }} {{ i + 1 }}</h3>
 
-          <textarea class="input-detail" placeholder="Mô tả chi tiết..." formControlName="content">
+          <textarea
+            class="input-detail"
+            formControlName="content"
+            [placeholder]="'INSTRUCTIONS_STEP.CONTENT_PLACEHOLDER' | translate"
+          >
           </textarea>
 
           @if (item.get('content')?.invalid && item.get('content')?.touched) {
-            <small class="invalid-text"> Vui lòng nhập đầy đủ thông tin </small>
+            <small class="invalid-text">
+              {{ 'INSTRUCTIONS_STEP.REQUIRED' | translate }}
+            </small>
           }
 
-          <button type="button" class="delete-btn" (click)="removeInstruction(i)">Xóa bước</button>
+          <button type="button" class="delete-btn" (click)="removeInstruction(i)">
+            {{ 'INSTRUCTIONS_STEP.DELETE' | translate }}
+          </button>
         </div>
       }
     </div>
   </form>
 
-  <button type="button" class="add-btn" (click)="addInstruction()">+ Thêm bước tiếp theo</button>
+  <button type="button" class="add-btn" (click)="addInstruction()">
+    {{ 'INSTRUCTIONS_STEP.ADD' | translate }}
+  </button>
 </div>

@@ -1,20 +1,24 @@
 <div class="main">
   <div class="header">
     <div class="header-text">
-      <p class="main-text">Công thức của tôi</p>
+      <p class="main-text">
+        {{ 'MY_RECIPES.TITLE' | translate }}
+      </p>
 
       <p class="sub-text">
-        Quản lý và tổ chức kho tàng ẩm thực cá nhân của bạn. Mỗi món ăn là một câu chuyện.
+        {{ 'MY_RECIPES.DESCRIPTION' | translate }}
       </p>
     </div>
 
-    <button class="add-btn" (click)="onCreate()">Thêm công thức mới</button>
+    <button class="add-btn" (click)="onCreate()">
+      {{ 'MY_RECIPES.ADD_RECIPE' | translate }}
+    </button>
   </div>
 
   <input
     class="search"
     type="text"
-    placeholder="Tìm công thức..."
+    [placeholder]="'MY_RECIPES.SEARCH_PLACEHOLDER' | translate"
     [value]="search"
     (input)="onSearch($event)"
   />
@@ -29,7 +33,7 @@
   <div class="recipe-container">
     @if (vm$ | async; as vm) {
       @if (vm.isLoading) {
-        <p>Loading...</p>
+        <p>{{ 'MY_RECIPES.LOADING' | translate }}</p>
       } @else {
         @for (recipe of vm.recipes; track recipe.id) {
           <app-recipe-card
@@ -38,18 +42,21 @@
             (favoriteToggled)="toggleFavorite($event)"
           ></app-recipe-card>
         } @empty {
-          <p>Không có recipe nào.</p>
+          <p>{{ 'MY_RECIPES.EMPTY' | translate }}</p>
         }
       }
     }
   </div>
 
-  <!-- Pagination -->
   <div class="pagination">
-    <button (click)="previousPage()" [disabled]="currentPage === 1">← Trước</button>
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      {{ 'MY_RECIPES.PREVIOUS' | translate }}
+    </button>
 
-    <span>Trang {{ currentPage }}</span>
+    <span> {{ 'MY_RECIPES.PAGE' | translate }} {{ currentPage }} </span>
 
-    <button (click)="nextPage()">Tiếp →</button>
+    <button (click)="nextPage()">
+      {{ 'MY_RECIPES.NEXT' | translate }}
+    </button>
   </div>
 </div>

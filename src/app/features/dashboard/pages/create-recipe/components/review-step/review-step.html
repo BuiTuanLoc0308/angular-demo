@@ -1,16 +1,19 @@
 <div class="main">
   <div class="header">
-    <h2 class="title">Hãy cùng nhìn lại nhé!</h2>
+    <h2 class="title">
+      {{ 'REVIEW_STEP.TITLE' | translate }}
+    </h2>
 
     <p class="sub-text">
-      Công thức của bạn đã sẵn sàng được lưu vào thư viện cá nhân để nấu ăn hoặc chia sẻ với cộng
-      đồng.
+      {{ 'REVIEW_STEP.DESCRIPTION' | translate }}
     </p>
   </div>
 
   <div class="recipe">
     <section>
-      <p class="label">TÊN MÓN ĂN</p>
+      <p class="label">
+        {{ 'REVIEW_STEP.RECIPE_NAME' | translate }}
+      </p>
 
       <h3 class="recipe-name">
         {{ recipe().recipeName }}
@@ -20,7 +23,9 @@
     <div class="divider"></div>
 
     <section>
-      <p class="label">MÔ TẢ</p>
+      <p class="label">
+        {{ 'REVIEW_STEP.RECIPE_DESCRIPTION' | translate }}
+      </p>
 
       <p class="description">
         {{ recipe().description }}
@@ -30,7 +35,9 @@
     <div class="divider"></div>
 
     <section>
-      <p class="label">DANH SÁCH NGUYÊN LIỆU</p>
+      <p class="label">
+        {{ 'REVIEW_STEP.INGREDIENTS' | translate }}
+      </p>
 
       @for (ingredient of recipe().ingredients; track $index) {
         <div class="ingredient">
@@ -46,7 +53,9 @@
     <div class="divider"></div>
 
     <section>
-      <p class="label">CÁC BƯỚC THỰC HIỆN</p>
+      <p class="label">
+        {{ 'REVIEW_STEP.INSTRUCTIONS' | translate }}
+      </p>
 
       @for (instruction of recipe().instructions; track $index) {
         <div class="instruction">

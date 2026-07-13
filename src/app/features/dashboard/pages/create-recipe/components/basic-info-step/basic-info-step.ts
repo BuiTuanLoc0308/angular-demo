@@ -9,10 +9,11 @@ import {
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
 import { MatIconModule } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-basic-info-step',
-  imports: [FormsModule, ReactiveFormsModule, MatIconModule],
+  imports: [FormsModule, ReactiveFormsModule, MatIconModule, TranslatePipe],
   templateUrl: './basic-info-step.html',
   styleUrl: './basic-info-step.scss',
 })

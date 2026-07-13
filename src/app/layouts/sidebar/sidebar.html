@@ -1,45 +1,53 @@
 <div class="main">
   <div class="web-name">
-    <p>CulinaryFriend</p>
+    <p>{{ 'SIDEBAR.APP_NAME' | translate }}</p>
   </div>
 
   <div class="user">
     <p class="name">Chef Kyra</p>
 
-    <p class="level">Level 5 Home Cook</p>
+    <p class="level">
+      {{ 'SIDEBAR.USER_LEVEL' | translate }}
+    </p>
   </div>
 
   <div class="page-route">
     <a routerLink="/my-recipes" routerLinkActive="active-route" class="nav-button">
       <mat-icon>restaurant</mat-icon>
-      <span>My Recipes</span>
+
+      <span>{{ 'SIDEBAR.MY_RECIPES' | translate }}</span>
     </a>
 
-    <a routerLink="/cooking-activity" routerLinkActive="active-route" class="nav-button"
-      ><mat-icon>bar_chart</mat-icon>
-      <span>Cooking Activity</span>
+    <a routerLink="/cooking-activity" routerLinkActive="active-route" class="nav-button">
+      <mat-icon>bar_chart</mat-icon>
+
+      <span>{{ 'SIDEBAR.COOKING_ACTIVITY' | translate }}</span>
     </a>
 
-    <a routerLink="/meal-planner" routerLinkActive="active-route" class="nav-button"
-      ><mat-icon>calendar_month</mat-icon>
-      <span>Meal Planner</span>
+    <a routerLink="/meal-planner" routerLinkActive="active-route" class="nav-button">
+      <mat-icon>calendar_month</mat-icon>
+
+      <span>{{ 'SIDEBAR.MEAL_PLANNER' | translate }}</span>
     </a>
 
-    <a routerLink="/account-settings" routerLinkActive="active-route" class="nav-button"
-      ><mat-icon>settings</mat-icon>
-      <span>Account Settings</span>
+    <a routerLink="/account-settings" routerLinkActive="active-route" class="nav-button">
+      <mat-icon>settings</mat-icon>
+
+      <span>{{ 'SIDEBAR.ACCOUNT_SETTINGS' | translate }}</span>
     </a>
   </div>
 
   <div class="footer">
     <a class="nav-button">
       <mat-icon>help_outline</mat-icon>
-      <span>Help & Support</span>
+
+      <span>{{ 'SIDEBAR.HELP_SUPPORT' | translate }}</span>
     </a>
 
     <a class="nav-button" (click)="logout()" routerLink="/login">
       <mat-icon>logout</mat-icon>
-      <span>Logout</span>
+
+      <span>{{ 'SIDEBAR.LOGOUT' | translate }}</span>
     </a>
   </div>
 </div>

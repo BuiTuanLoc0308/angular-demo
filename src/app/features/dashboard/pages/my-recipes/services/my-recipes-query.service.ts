@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ParamMap, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MyRecipesQueryService {
   readonly defaultLimit = 10;
-  readonly categories = ['Tất cả', 'Bữa sáng', 'Bữa trưa', 'Bữa tối', 'Tráng miệng', 'Đồ uống'];
+
+  readonly categories = ['ALL', 'BREAKFAST', 'LUNCH', 'DINNER', 'DESSERT', 'DRINK'];
 
   buildQuery(params: ParamMap, defaultLimit: number = this.defaultLimit) {
     return {
       search: params.get('search') ?? '',
-      category: params.get('category') ?? 'Tất cả',
+      category: params.get('category') ?? 'ALL',
       page: Number(params.get('page') ?? 1),
       limit: Number(params.get('limit') ?? defaultLimit),
     };
@@ -32,7 +33,7 @@ export class MyRecipesQueryService {
     router.navigate([], {
       relativeTo: route,
       queryParams: {
-        category: category === 'Tất cả' ? null : category,
+        category: category === 'ALL' ? null : category,
         page: 1,
       },
       queryParamsHandling: 'merge',

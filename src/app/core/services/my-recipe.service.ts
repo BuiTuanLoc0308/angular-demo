@@ -18,7 +18,7 @@ export class RecipeService {
       params = params.set('search', query.search);
     }
 
-    if (query.category !== 'Tất cả') {
+    if (query.category !== 'ALL') {
       params = params.set('category', query.category);
     }
 

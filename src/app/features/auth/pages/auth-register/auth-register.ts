@@ -12,10 +12,11 @@ import { Router, RouterLink } from '@angular/router';
 import { RegisterRequest } from '../../../../core/models/register-request.model';
 import { CommonModule } from '@angular/common';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth-register',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslatePipe],
   standalone: true,
   templateUrl: './auth-register.html',
   styleUrl: './auth-register.scss',
@@ -25,6 +26,7 @@ export class AuthRegister {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private snackbar = inject(SnackbarService);
+  private translate = inject(TranslateService);
 
   message = '';
 
@@ -94,7 +96,7 @@ export class AuthRegister {
 
     this.authService.register(registerData).subscribe({
       next: () => {
-        this.snackbar.success('Đăng ký thành công tài khoản mới');
+        this.snackbar.success(this.translate.instant('REGISTER.REGISTER_SUCCESS'));
 
         this.router.navigate(['/login']);
       },
@@ -103,9 +105,9 @@ export class AuthRegister {
         this.isLoading = false;
 
         if (error.status === 409) {
-          this.snackbar.error('Tài khoản đã tồn tại');
+          this.snackbar.error(this.translate.instant('REGISTER.REGISTER_FAILED'));
         } else {
-          this.snackbar.error('Có lỗi xảy ra');
+          this.snackbar.error(this.translate.instant('REGISTER.GENERIC_ERROR'));
         }
       },
 

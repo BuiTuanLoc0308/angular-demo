@@ -7,10 +7,11 @@ import { RecipeCreateStateService } from '../../../../core/services/recipe-creat
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
 import { map } from 'rxjs';
 import { RecipeModel } from '../../../../core/models/recipe.model';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [MatIconModule, AsyncPipe],
+  imports: [MatIconModule, AsyncPipe, TranslatePipe],
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +23,7 @@ export class RecipeDetail {
   private router = inject(Router);
   private recipeCreateState = inject(RecipeCreateStateService);
   private snackbar = inject(SnackbarService);
+  private translate = inject(TranslateService);
 
   isDeleting = false;
 
@@ -36,14 +38,14 @@ export class RecipeDetail {
 
     this.recipeService.deleteRecipe(id).subscribe({
       next: () => {
-        this.snackbar.success('Xóa thành công công thức');
+        this.snackbar.success(this.translate.instant('RECIPE_DETAIL.DELETE_SUCCESS'));
 
         this.isDeleting = false;
 
         this.router.navigate(['/my-recipes']);
       },
       error: () => {
-        this.snackbar.error('Có lỗi xãy ra');
+        this.snackbar.error(this.translate.instant('RECIPE_DETAIL.GENERIC_ERROR'));
 
         this.isDeleting = false;
       },

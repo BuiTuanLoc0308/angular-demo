@@ -2,7 +2,10 @@
   <div class="header">
     <button (click)="goBack()" class="btn-back">
       <mat-icon>arrow_back</mat-icon>
-      <span><p>Chi tiết công thức</p></span>
+
+      <span>
+        <p>{{ 'RECIPE_DETAIL.TITLE' | translate }}</p>
+      </span>
     </button>
   </div>
 
@@ -18,7 +21,9 @@
 
       <div class="body">
         <div class="recipe-ingredient">
-          <p class="label">Nguyên liệu</p>
+          <p class="label">
+            {{ 'RECIPE_DETAIL.INGREDIENTS' | translate }}
+          </p>
 
           @for (ingredient of recipe.ingredients; track $index; let last = $last) {
             <div class="ingredient">
@@ -36,7 +41,9 @@
         </div>
 
         <div class="recipe-instruction">
-          <p class="label">Các bước nấu</p>
+          <p class="label">
+            {{ 'RECIPE_DETAIL.INSTRUCTIONS' | translate }}
+          </p>
 
           <div class="recipe-steps">
             @for (step of recipe.instructions; track $index; let last = $last) {
@@ -61,7 +68,9 @@
       </div>
 
       <div class="recipe-review">
-        <p class="label">Đánh giá</p>
+        <p class="label">
+          {{ 'RECIPE_DETAIL.REVIEWS' | translate }}
+        </p>
 
         @if (recipe.reviews.length > 0) {
           @for (review of recipe.reviews; track $index; let last = $last) {
@@ -88,7 +97,9 @@
             </div>
           }
         } @else {
-          <p class="empty-review">Chưa có đánh giá nào.</p>
+          <p class="empty-review">
+            {{ 'RECIPE_DETAIL.NO_REVIEWS' | translate }}
+          </p>
         }
       </div>
     </div>
@@ -97,13 +108,15 @@
       <button class="btn btn-delete" (click)="onDelete(recipe.id)" [disabled]="isDeleting">
         <mat-icon>delete_outline</mat-icon>
 
-        {{ isDeleting ? 'Đang xóa...' : 'Xóa' }}
+        {{
+          isDeleting ? ('RECIPE_DETAIL.DELETING' | translate) : ('RECIPE_DETAIL.DELETE' | translate)
+        }}
       </button>
 
       <button class="btn btn-edit" (click)="onEdit(recipe)">
         <mat-icon>edit</mat-icon>
 
-        Sửa
+        {{ 'RECIPE_DETAIL.EDIT' | translate }}
       </button>
     </div>
   }

@@ -1,9 +1,10 @@
 import { Component, input, output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-category-filter',
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './category-filter.html',
   styleUrl: './category-filter.scss',
 })

@@ -2,9 +2,9 @@
   <div class="settings-card">
     <div class="settings-header">
       <div>
-        <h2>Account settings</h2>
+        <h2>{{ 'SETTINGS.TITLE' | translate }}</h2>
 
-        <p>Customize your experience</p>
+        <p>{{ 'SETTINGS.DESCRIPTION' | translate }}</p>
       </div>
 
       <button
@@ -14,18 +14,50 @@
         aria-label="Toggle dark mode"
       >
         <span>{{ theme.isDarkMode() ? '🌙' : '☀️' }}</span>
-        <span>{{ theme.isDarkMode() ? 'Dark Mode' : 'Light Mode' }}</span>
+
+        <span>
+          {{
+            theme.isDarkMode()
+              ? ('SETTINGS.DARK_MODE' | translate)
+              : ('SETTINGS.LIGHT_MODE' | translate)
+          }}
+        </span>
       </button>
     </div>
 
     <div class="settings-content">
       <div class="setting-item">
         <div>
-          <h3>Appearance</h3>
+          <h3>{{ 'SETTINGS.APPEARANCE' | translate }}</h3>
 
-          <p>Switch between light and dark themes.</p>
+          <p>{{ 'SETTINGS.APPEARANCE_DESC' | translate }}</p>
         </div>
-        <span class="status-pill">{{ theme.isDarkMode() ? 'Dark' : 'Light' }}</span>
+
+        <span class="status-pill">
+          {{ theme.isDarkMode() ? ('SETTINGS.DARK' | translate) : ('SETTINGS.LIGHT' | translate) }}
+        </span>
+      </div>
+
+      <div class="setting-item">
+        <div>
+          <h3>{{ 'SETTINGS.LANGUAGE' | translate }}</h3>
+
+          <p>{{ 'SETTINGS.LANGUAGE_DESC' | translate }}</p>
+        </div>
+
+        <select
+          class="language-select"
+          (change)="changeLanguage($event)"
+          [value]="selectedLanguage"
+        >
+          <option value="en">
+            {{ 'SETTINGS.ENGLISH' | translate }}
+          </option>
+
+          <option value="vi">
+            {{ 'SETTINGS.VIETNAMESE' | translate }}
+          </option>
+        </select>
       </div>
     </div>
   </div>
