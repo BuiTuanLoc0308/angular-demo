@@ -163,7 +163,10 @@
 
     "DESCRIPTION": "Mô tả",
     "DESCRIPTION_PLACEHOLDER": "Chia sẻ câu chuyện đằng sau món ăn...",
-    "DESCRIPTION_REQUIRED": "Vui lòng nhập mô tả."
+    "DESCRIPTION_REQUIRED": "Vui lòng nhập mô tả.",
+
+    "CATEGORIES": "Danh mục",
+    "CATEGORIES_REQUIRED": "Vui lòng chọn ít nhất một danh mục"
   },
 
   "INGREDIENTS_STEP": {
@@ -180,11 +183,13 @@
 
     "REQUIRED": "Vui lòng nhập đầy đủ thông tin.",
 
-    "GRAM": "gram",
-    "KG": "kg",
+    "GRAM": "Gam",
+    "KG": "Kilôgam",
     "ML": "ml",
-    "LITER": "lít",
-    "PIECE": "quả"
+    "LITER": "Lít",
+    "PIECE": "Quả",
+    "TBSP": "Muỗng canh",
+    "TSP": "Muỗng cà phê"
   },
 
   "INSTRUCTIONS_STEP": {

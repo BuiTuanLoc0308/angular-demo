@@ -30,7 +30,7 @@ export class MyRecipes {
 
   categories = this.queryService.categories;
   search = '';
-  category = 'Tất cả';
+  selectedCategory = 'ALL';
   currentPage = 1;
   limit = this.queryService.defaultLimit;
 
@@ -39,7 +39,7 @@ export class MyRecipes {
       const query = this.queryService.buildQuery(params, this.limit);
 
       this.search = query.search;
-      this.category = query.category;
+      this.selectedCategory = query.categories;
       this.currentPage = query.page;
       this.limit = query.limit;
 
@@ -76,8 +76,8 @@ export class MyRecipes {
     this.queryService.updateSearch(this.route, this.router, value);
   }
 
-  onCategoryChange(category: string) {
-    this.queryService.updateCategory(this.route, this.router, category);
+  onCategoryChange(categories: string) {
+    this.queryService.updateCategory(this.route, this.router, categories);
   }
 
   previousPage() {

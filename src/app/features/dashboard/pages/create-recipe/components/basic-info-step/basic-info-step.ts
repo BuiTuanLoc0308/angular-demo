@@ -7,13 +7,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
-import { MatIconModule } from '@angular/material/icon';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { MatChipsModule } from '@angular/material/chips';
+import { MyRecipesQueryService } from '../../../my-recipes/services/my-recipes-query.service';
+
 @Component({
   selector: 'app-basic-info-step',
-  imports: [FormsModule, ReactiveFormsModule, MatIconModule, TranslatePipe],
+  imports: [FormsModule, ReactiveFormsModule, TranslatePipe, MatChipsModule],
   templateUrl: './basic-info-step.html',
   styleUrl: './basic-info-step.scss',
 })
@@ -21,6 +23,9 @@ export class BasicInfoStep implements OnInit {
   private recipeState = inject(RecipeCreateStateService);
   private destroyRef = inject(DestroyRef);
   private fb = inject(FormBuilder);
+  private queryService = inject(MyRecipesQueryService);
+
+  readonly categories = this.queryService.categories.filter((c) => c !== 'ALL');
 
   form: FormGroup;
 
@@ -29,8 +34,8 @@ export class BasicInfoStep implements OnInit {
 
     this.form = this.fb.group({
       recipeName: [recipe.recipeName, Validators.required],
-
       description: [recipe.description, Validators.required],
+      categories: [recipe.categories ?? [], Validators.required],
     });
   }
 
@@ -42,12 +47,20 @@ export class BasicInfoStep implements OnInit {
     return this.form.get('description');
   }
 
+  get categoriesControl() {
+    return this.form.get('categories');
+  }
+
   get recipeNameInvalid(): boolean {
     return !!(this.recipeName?.invalid && this.recipeName?.touched);
   }
 
   get descriptionInvalid(): boolean {
     return !!(this.description?.invalid && this.description?.touched);
+  }
+
+  get categoriesInvalid(): boolean {
+    return !!(this.categoriesControl?.invalid && this.categoriesControl?.touched);
   }
 
   ngOnInit() {

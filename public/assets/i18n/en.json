@@ -163,7 +163,10 @@
 
     "DESCRIPTION": "Description",
     "DESCRIPTION_PLACEHOLDER": "Share the story behind your dish...",
-    "DESCRIPTION_REQUIRED": "Please enter a description."
+    "DESCRIPTION_REQUIRED": "Please enter a description.",
+
+    "CATEGORIES": "Categories",
+    "CATEGORIES_REQUIRED": "Select at least one category"
   },
 
   "INGREDIENTS_STEP": {
@@ -180,11 +183,13 @@
 
     "REQUIRED": "Please fill in all required fields.",
 
-    "GRAM": "gram",
-    "KG": "kg",
-    "ML": "ml",
-    "LITER": "liter",
-    "PIECE": "piece"
+    "GRAM": "Gram",
+    "KG": "Kilogram",
+    "ML": "Milliliter",
+    "LITER": "Liter",
+    "PIECE": "Piece",
+    "TBSP": "Tablespoon",
+    "TSP": "Teaspoon"
   },
 
   "INSTRUCTIONS_STEP": {

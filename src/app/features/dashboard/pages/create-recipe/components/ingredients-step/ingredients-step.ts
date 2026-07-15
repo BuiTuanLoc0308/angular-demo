@@ -31,7 +31,7 @@ export class IngredientsStep implements OnInit {
     return this.fb.group({
       ingredientName: [ingredient?.ingredientName ?? '', Validators.required],
       quantity: [ingredient?.quantity ?? '', Validators.required],
-      unit: [ingredient?.unit ?? 'gram', Validators.required],
+      unit: [ingredient?.unit ?? 'GRAM', Validators.required],
     });
   }
 

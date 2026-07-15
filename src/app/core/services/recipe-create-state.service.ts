@@ -12,7 +12,7 @@ export class RecipeCreateStateService {
       recipeName: '',
       image: '',
       description: '',
-      category: '',
+      categories: [],
 
       ingredients: [],
       instructions: [],

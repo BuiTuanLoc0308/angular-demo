@@ -12,7 +12,7 @@ export class MyRecipesQueryService {
   buildQuery(params: ParamMap, defaultLimit: number = this.defaultLimit) {
     return {
       search: params.get('search') ?? '',
-      category: params.get('category') ?? 'ALL',
+      categories: params.get('categories') ?? 'ALL',
       page: Number(params.get('page') ?? 1),
       limit: Number(params.get('limit') ?? defaultLimit),
     };
@@ -29,11 +29,11 @@ export class MyRecipesQueryService {
     });
   }
 
-  updateCategory(route: ActivatedRoute, router: Router, category: string): void {
+  updateCategory(route: ActivatedRoute, router: Router, categories: string): void {
     router.navigate([], {
       relativeTo: route,
       queryParams: {
-        category: category === 'ALL' ? null : category,
+        categories: categories === 'ALL' ? null : categories,
         page: 1,
       },
       queryParamsHandling: 'merge',

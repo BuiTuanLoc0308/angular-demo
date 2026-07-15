@@ -37,4 +37,22 @@
       {{ 'BASIC_INFO_STEP.DESCRIPTION_REQUIRED' | translate }}
     </small>
   }
+
+  <label class="label" for="categories">
+    {{ 'BASIC_INFO_STEP.CATEGORIES' | translate }}
+  </label>
+
+  <mat-chip-listbox formControlName="categories" multiple class="categories">
+    @for (category of categories; track category) {
+      <mat-chip-option [value]="category">
+        {{ 'CATEGORIES.' + category | translate }}
+      </mat-chip-option>
+    }
+  </mat-chip-listbox>
+
+  @if (categoriesInvalid) {
+    <small class="invalid-text">
+      {{ 'BASIC_INFO_STEP.CATEGORIES_REQUIRED' | translate }}
+    </small>
+  }
 </form>

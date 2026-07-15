@@ -1,6 +1,6 @@
 export interface RecipeQuery {
   search: string;
-  category: string;
+  categories: string;
   page: number;
   limit: number;
 }
