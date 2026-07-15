@@ -33,7 +33,7 @@
   <div class="recipe-container">
     @if (vm$ | async; as vm) {
       @if (vm.isLoading) {
-        <p>{{ 'MY_RECIPES.LOADING' | translate }}</p>
+        <p>{{ 'COMMON.LOADING' | translate }}</p>
       } @else {
         @for (recipe of vm.recipes; track recipe.id) {
           <app-recipe-card
@@ -49,14 +49,22 @@
   </div>
 
   <div class="pagination">
-    <button (click)="previousPage()" [disabled]="currentPage === 1">
-      {{ 'MY_RECIPES.PREVIOUS' | translate }}
+    <button class="btn" (click)="previousPage()" [disabled]="currentPage === 1">
+      <mat-icon>arrow_back</mat-icon>
+
+      <span>
+        <p>{{ 'PAGINATION.PREVIOUS' | translate }}</p>
+      </span>
     </button>
 
-    <span> {{ 'MY_RECIPES.PAGE' | translate }} {{ currentPage }} </span>
+    <span> {{ 'PAGINATION.PAGE' | translate }} {{ currentPage }} </span>
 
-    <button (click)="nextPage()">
-      {{ 'MY_RECIPES.NEXT' | translate }}
+    <button class="btn" (click)="nextPage()">
+      <span>
+        <p>{{ 'PAGINATION.NEXT' | translate }}</p>
+      </span>
+
+      <mat-icon>arrow_forward</mat-icon>
     </button>
   </div>
 </div>

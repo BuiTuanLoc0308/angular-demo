@@ -61,7 +61,7 @@ export class AuthLogin {
     this.authService.login(loginData).subscribe({
       // thanh cong
       next: () => {
-        this.snackbar.success(this.translate.instant('LOGIN.LOGIN_SUCCESS'));
+        this.snackbar.success(this.translate.instant('SUCCESS.LOGIN'));
 
         this.router.navigate(['/my-recipes']);
       },
@@ -69,9 +69,9 @@ export class AuthLogin {
       // loi
       error: (error) => {
         if (error.status === 401) {
-          this.snackbar.error(this.translate.instant('LOGIN.LOGIN_FAILED'));
+          this.snackbar.error(this.translate.instant('FAILED.LOGIN'));
         } else {
-          this.snackbar.error(this.translate.instant('SNACKBAR.GENERIC_ERROR'));
+          this.snackbar.error(this.translate.instant('ERRORS.GENERIC'));
         }
       },
 

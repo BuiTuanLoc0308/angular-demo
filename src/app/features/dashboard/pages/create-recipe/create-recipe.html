@@ -3,7 +3,7 @@
     <button class="btn-back" (click)="goBack()">
       <mat-icon>arrow_back</mat-icon>
 
-      <span>{{ 'CREATE_RECIPE.BACK' | translate }}</span>
+      <span>{{ 'COMMON.BACK' | translate }}</span>
     </button>
 
     <h1>
@@ -21,7 +21,7 @@
 
       <div class="place-btn">
         <button class="btn-next" mat-button matStepperNext [disabled]="basicStep.form.invalid">
-          <span>{{ 'CREATE_RECIPE.NEXT' | translate }}</span>
+          <span>{{ 'COMMON.NEXT' | translate }}</span>
 
           <mat-icon>arrow_forward</mat-icon>
         </button>
@@ -41,7 +41,7 @@
           matStepperNext
           [disabled]="ingredientsStep.form.invalid"
         >
-          <span>{{ 'CREATE_RECIPE.NEXT' | translate }}</span>
+          <span>{{ 'COMMON.NEXT' | translate }}</span>
 
           <mat-icon>arrow_forward</mat-icon>
         </button>
@@ -61,7 +61,7 @@
           matStepperNext
           [disabled]="instructionsStep.form.invalid"
         >
-          <span>{{ 'CREATE_RECIPE.NEXT' | translate }}</span>
+          <span>{{ 'COMMON.NEXT' | translate }}</span>
 
           <mat-icon>arrow_forward</mat-icon>
         </button>
@@ -73,11 +73,7 @@
 
       <div class="place-btn">
         <button class="btn-next" mat-button (click)="submitRecipe()" [disabled]="isProcess">
-          {{
-            isProcess
-              ? ('CREATE_RECIPE.PROCESSING' | translate)
-              : ('CREATE_RECIPE.FINISH' | translate)
-          }}
+          {{ isProcess ? ('COMMON.PROCESSING' | translate) : ('COMMON.FINISH' | translate) }}
         </button>
       </div>
     </mat-step>

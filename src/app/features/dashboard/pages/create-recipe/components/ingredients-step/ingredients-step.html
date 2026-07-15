@@ -22,37 +22,37 @@
           />
 
           <select class="ingredient-unit" formControlName="unit">
-            <option value="gram">
-              {{ 'INGREDIENTS_STEP.GRAM' | translate }}
+            <option value="GRAM">
+              {{ 'UNITS.GRAM' | translate }}
             </option>
 
-            <option value="kg">
-              {{ 'INGREDIENTS_STEP.KG' | translate }}
+            <option value="KG">
+              {{ 'UNITS.KG' | translate }}
             </option>
 
-            <option value="ml">
-              {{ 'INGREDIENTS_STEP.ML' | translate }}
+            <option value="ML">
+              {{ 'UNITS.ML' | translate }}
             </option>
 
-            <option value="liter">
-              {{ 'INGREDIENTS_STEP.LITER' | translate }}
+            <option value="LITER">
+              {{ 'UNITS.LITER' | translate }}
             </option>
 
-            <option value="piece">
-              {{ 'INGREDIENTS_STEP.PIECE' | translate }}
+            <option value="PIECE">
+              {{ 'UNITS.PIECE' | translate }}
             </option>
 
-            <option value="tbsp">
-              {{ 'INGREDIENTS_STEP.TBSP' | translate }}
+            <option value="TBSP">
+              {{ 'UNITS.TBSP' | translate }}
             </option>
 
-            <option value="tsp">
-              {{ 'INGREDIENTS_STEP.TSP' | translate }}
+            <option value="TSP">
+              {{ 'UNITS.TSP' | translate }}
             </option>
           </select>
 
           <button type="button" class="delete-btn" (click)="removeIngredient(i)">
-            {{ 'INGREDIENTS_STEP.DELETE' | translate }}
+            {{ 'COMMON.DELETE' | translate }}
           </button>
 
           @if (
@@ -60,7 +60,7 @@
             (item.get('quantity')?.invalid && item.get('quantity')?.touched)
           ) {
             <small class="invalid-text">
-              {{ 'INGREDIENTS_STEP.REQUIRED' | translate }}
+              {{ 'VALIDATION.REQUIRED_FIELDS' | translate }}
             </small>
           }
         </div>

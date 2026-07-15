@@ -9,11 +9,12 @@ import { MyRecipesQueryService } from './services/my-recipes-query.service';
 import { FavoritesStorageService } from './services/favorites-storage.service';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card';
 import { TranslatePipe } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-my-recipes',
   standalone: true,
-  imports: [CommonModule, CategoryFilter, RecipeCardComponent, TranslatePipe],
+  imports: [CommonModule, CategoryFilter, RecipeCardComponent, TranslatePipe, MatIconModule],
   templateUrl: './my-recipes.html',
   styleUrl: './my-recipes.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

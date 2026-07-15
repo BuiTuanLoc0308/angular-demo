@@ -38,14 +38,14 @@ export class RecipeDetail {
 
     this.recipeService.deleteRecipe(id).subscribe({
       next: () => {
-        this.snackbar.success(this.translate.instant('RECIPE_DETAIL.DELETE_SUCCESS'));
+        this.snackbar.success(this.translate.instant('SUCCESS.DELETE_RECIPE'));
 
         this.isDeleting = false;
 
         this.router.navigate(['/my-recipes']);
       },
       error: () => {
-        this.snackbar.error(this.translate.instant('RECIPE_DETAIL.GENERIC_ERROR'));
+        this.snackbar.error(this.translate.instant('ERRORS.GENERIC'));
 
         this.isDeleting = false;
       },

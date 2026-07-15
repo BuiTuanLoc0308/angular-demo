@@ -18,12 +18,12 @@
 
           @if (item.get('content')?.invalid && item.get('content')?.touched) {
             <small class="invalid-text">
-              {{ 'INSTRUCTIONS_STEP.REQUIRED' | translate }}
+              {{ 'VALIDATION.REQUIRED_FIELDS' | translate }}
             </small>
           }
 
           <button type="button" class="delete-btn" (click)="removeInstruction(i)">
-            {{ 'INSTRUCTIONS_STEP.DELETE' | translate }}
+            {{ 'COMMON.DELETE' | translate }}
           </button>
         </div>
       }

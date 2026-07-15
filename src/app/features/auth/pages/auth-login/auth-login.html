@@ -22,38 +22,38 @@
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <div class="form-group">
           <label for="username">
-            {{ 'LOGIN.USERNAME' | translate }}
+            {{ 'AUTH.USERNAME' | translate }}
           </label>
 
           <input
             type="email"
             formControlName="userName"
-            [placeholder]="'LOGIN.USERNAME_PLACEHOLDER' | translate"
+            [placeholder]="'AUTH.USERNAME_PLACEHOLDER' | translate"
             id="username"
           />
 
           @if (userNameInvalid) {
             <small class="invalid-text">
-              {{ 'LOGIN.USERNAME_REQUIRED' | translate }}
+              {{ 'VALIDATION.USERNAME_REQUIRED' | translate }}
             </small>
           }
         </div>
 
         <div class="form-group">
           <label for="password">
-            {{ 'LOGIN.PASSWORD' | translate }}
+            {{ 'AUTH.PASSWORD' | translate }}
           </label>
 
           <input
             type="password"
             formControlName="password"
-            [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
+            [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
             id="password"
           />
 
           @if (passwordInvalid) {
             <small class="invalid-text">
-              {{ 'LOGIN.PASSWORD_REQUIRED' | translate }}
+              {{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}
             </small>
           }
         </div>
@@ -62,7 +62,7 @@
           <label class="remember">
             <input type="checkbox" id="remember" />
 
-            {{ 'LOGIN.REMEMBER_ME' | translate }}
+            {{ 'AUTH.REMEMBER_ME' | translate }}
           </label>
 
           <p class="forgot">
@@ -85,9 +85,9 @@
         </div>
 
         <div class="btn-group">
-          <button>{{ 'LOGIN.GOOGLE' | translate }}</button>
+          <button>{{ 'SOCIAL.FACEBOOK' | translate }}</button>
 
-          <button>{{ 'LOGIN.FACEBOOK' | translate }}</button>
+          <button>{{ 'SOCIAL.GOOGLE' | translate }}</button>
         </div>
 
         <div class="auth-footer">

@@ -29,7 +29,9 @@
             <div class="ingredient">
               <p class="name">{{ ingredient.ingredientName }}</p>
 
-              <p class="quantity">{{ ingredient.quantity }} {{ ingredient.unit }}</p>
+              <p class="quantity">
+                {{ ingredient.quantity }} {{ 'UNITS.' + ingredient.unit | translate }}
+              </p>
             </div>
 
             @if (!last) {
@@ -108,15 +110,13 @@
       <button class="btn btn-delete" (click)="onDelete(recipe.id)" [disabled]="isDeleting">
         <mat-icon>delete_outline</mat-icon>
 
-        {{
-          isDeleting ? ('RECIPE_DETAIL.DELETING' | translate) : ('RECIPE_DETAIL.DELETE' | translate)
-        }}
+        {{ isDeleting ? ('COMMON.DELETING' | translate) : ('COMMON.DELETE' | translate) }}
       </button>
 
       <button class="btn btn-edit" (click)="onEdit(recipe)">
         <mat-icon>edit</mat-icon>
 
-        {{ 'RECIPE_DETAIL.EDIT' | translate }}
+        {{ 'COMMON.EDIT' | translate }}
       </button>
     </div>
   }

@@ -18,12 +18,12 @@ export class CreateRecipeActionsService {
     if (isEdit) {
       this.recipeService.updateRecipe(recipe.id, recipe).subscribe({
         next: () => {
-          this.snackbar.success(this.translate.instant('CREATE_RECIPE.UPDATE_SUCCESS'));
+          this.snackbar.success(this.translate.instant('SUCCESS.RECIPE_UPDATED'));
           onComplete?.();
           this.router.navigate(['/my-recipes']);
         },
         error: () => {
-          this.snackbar.error(this.translate.instant('CREATE_RECIPE.GENERIC_ERROR'));
+          this.snackbar.error(this.translate.instant('ERRORS.GENERIC'));
           onComplete?.();
         },
       });
@@ -33,12 +33,12 @@ export class CreateRecipeActionsService {
 
     this.recipeService.createRecipe(recipe).subscribe({
       next: () => {
-        this.snackbar.success(this.translate.instant('CREATE_RECIPE.CREATE_SUCCESS'));
+        this.snackbar.success(this.translate.instant('SUCCESS.RECIPE_CREATED'));
         onComplete?.();
         this.router.navigate(['/my-recipes']);
       },
       error: () => {
-        this.snackbar.error(this.translate.instant('CREATE_RECIPE.GENERIC_ERROR'));
+        this.snackbar.error(this.translate.instant('ERRORS.GENERIC'));
         onComplete?.();
       },
     });

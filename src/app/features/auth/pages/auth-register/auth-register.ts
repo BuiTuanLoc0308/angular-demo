@@ -96,7 +96,7 @@ export class AuthRegister {
 
     this.authService.register(registerData).subscribe({
       next: () => {
-        this.snackbar.success(this.translate.instant('REGISTER.REGISTER_SUCCESS'));
+        this.snackbar.success(this.translate.instant('SUCCESS.REGISTER'));
 
         this.router.navigate(['/login']);
       },
@@ -105,9 +105,9 @@ export class AuthRegister {
         this.isLoading = false;
 
         if (error.status === 409) {
-          this.snackbar.error(this.translate.instant('REGISTER.REGISTER_FAILED'));
+          this.snackbar.error(this.translate.instant('FAILED.REGISTER'));
         } else {
-          this.snackbar.error(this.translate.instant('REGISTER.GENERIC_ERROR'));
+          this.snackbar.error(this.translate.instant('ERRORS.GENERIC'));
         }
       },
 

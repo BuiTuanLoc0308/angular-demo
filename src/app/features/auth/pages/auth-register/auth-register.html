@@ -17,11 +17,11 @@
 
       <div class="btn-group">
         <button type="button">
-          {{ 'REGISTER.GOOGLE' | translate }}
+          {{ 'SOCIAL.GOOGLE' | translate }}
         </button>
 
         <button type="button">
-          {{ 'REGISTER.FACEBOOK' | translate }}
+          {{ 'SOCIAL.FACEBOOK' | translate }}
         </button>
       </div>
 
@@ -38,38 +38,38 @@
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
         <div class="form-group">
           <label for="userName">
-            {{ 'REGISTER.USERNAME' | translate }}
+            {{ 'AUTH.USERNAME' | translate }}
           </label>
 
           <input
             type="email"
             formControlName="userName"
-            [placeholder]="'REGISTER.USERNAME_PLACEHOLDER' | translate"
+            [placeholder]="'AUTH.USERNAME_PLACEHOLDER' | translate"
             id="userName"
           />
 
           @if (userNameInvalid) {
             <small class="invalid-text">
-              {{ 'REGISTER.USERNAME_REQUIRED' | translate }}
+              {{ 'VALIDATION.USERNAME_REQUIRED' | translate }}
             </small>
           }
         </div>
 
         <div class="form-group">
           <label for="password">
-            {{ 'REGISTER.PASSWORD' | translate }}
+            {{ 'AUTH.PASSWORD' | translate }}
           </label>
 
           <input
             type="password"
             formControlName="password"
-            [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate"
+            [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
             id="password"
           />
 
           @if (passwordInvalid) {
             <small class="invalid-text">
-              {{ 'REGISTER.PASSWORD_REQUIRED' | translate }}
+              {{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}
             </small>
           }
         </div>
@@ -88,9 +88,9 @@
 
           <small class="invalid-text" [class.show]="confirmPasswordInvalid || passwordMismatch">
             @if (confirmPasswordInvalid) {
-              {{ 'REGISTER.CONFIRM_PASSWORD_REQUIRED' | translate }}
+              {{ 'VALIDATION.CONFIRM_PASSWORD_REQUIRED' | translate }}
             } @else if (passwordMismatch) {
-              {{ 'REGISTER.PASSWORD_MISMATCH' | translate }}
+              {{ 'VALIDATION.PASSWORD_MISMATCH' | translate }}
             }
           </small>
         </div>
