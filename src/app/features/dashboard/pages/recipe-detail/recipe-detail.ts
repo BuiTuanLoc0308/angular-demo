@@ -12,6 +12,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-recipe-detail',
   imports: [MatIconModule, AsyncPipe, TranslatePipe],
+  standalone: true,
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

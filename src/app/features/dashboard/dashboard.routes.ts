@@ -1,42 +1,45 @@
 import { Routes } from '@angular/router';
-import { MyRecipes } from './pages/my-recipes/my-recipes';
-import { CookingActivity } from './pages/cooking-activity/cooking-activity';
-import { MealPlanner } from './pages/meal-planner/meal-planner';
-import { AccountSettings } from './pages/account-settings/account-settings';
-import { CreateRecipe } from './pages/create-recipe/create-recipe';
-import { RecipeDetail } from './pages/recipe-detail/recipe-detail';
 import { recipeDetailResolver } from '../../core/resolver/recipe-detail.resolver';
 
 export const dashboardRoutes: Routes = [
   {
     path: 'my-recipes',
-    component: MyRecipes,
+    loadComponent: () => import('./pages/my-recipes/my-recipes').then((m) => m.MyRecipes),
   },
+
   {
     path: 'cooking-activity',
-    component: CookingActivity,
+    loadComponent: () =>
+      import('./pages/cooking-activity/cooking-activity').then((m) => m.CookingActivity),
   },
+
   {
     path: 'meal-planner',
-    component: MealPlanner,
+    loadComponent: () => import('./pages/meal-planner/meal-planner').then((m) => m.MealPlanner),
   },
+
   {
     path: 'account-settings',
-    component: AccountSettings,
+    loadComponent: () =>
+      import('./pages/account-settings/account-settings').then((m) => m.AccountSettings),
   },
+
   {
     path: 'create-recipe',
-    component: CreateRecipe,
+    loadComponent: () => import('./pages/create-recipe/create-recipe').then((m) => m.CreateRecipe),
   },
+
   {
     path: 'my-recipes/:id',
-    component: RecipeDetail,
+    loadComponent: () => import('./pages/recipe-detail/recipe-detail').then((m) => m.RecipeDetail),
+
     resolve: {
       recipe: recipeDetailResolver,
     },
   },
+
   {
     path: 'create-recipe/:id',
-    component: CreateRecipe,
+    loadComponent: () => import('./pages/create-recipe/create-recipe').then((m) => m.CreateRecipe),
   },
 ];

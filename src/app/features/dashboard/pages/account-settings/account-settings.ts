@@ -7,6 +7,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-account-settings',
   templateUrl: './account-settings.html',
   imports: [TranslatePipe],
+  standalone: true,
   styleUrl: './account-settings.scss',
 })
 export class AccountSettings {

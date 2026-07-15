@@ -10,7 +10,7 @@ export class SnackbarService {
   private translate = inject(TranslateService);
 
   success(message: string) {
-    this.snackBar.open(message, this.translate.instant('SNACKBAR.CLOSE'), {
+    this.snackBar.open(message, this.translate.instant('COMMON.CLOSE'), {
       duration: 3000,
       horizontalPosition: 'right',
       verticalPosition: 'top',
@@ -19,7 +19,7 @@ export class SnackbarService {
   }
 
   error(message: string) {
-    this.snackBar.open(message, this.translate.instant('SNACKBAR.CLOSE'), {
+    this.snackBar.open(message, this.translate.instant('COMMON.CLOSE'), {
       duration: 3000,
       horizontalPosition: 'right',
       verticalPosition: 'top',

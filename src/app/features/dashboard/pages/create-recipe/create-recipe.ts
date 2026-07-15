@@ -25,6 +25,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     AsyncPipe,
     TranslatePipe,
   ],
+  standalone: true,
   templateUrl: './create-recipe.html',
   styleUrl: './create-recipe.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
