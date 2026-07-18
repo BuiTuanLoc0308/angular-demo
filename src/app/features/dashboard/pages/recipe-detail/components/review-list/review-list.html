@@ -1,0 +1,48 @@
+<div class="recipe-review">
+  <div class="review-title">
+    <p class="label">
+      {{ 'RECIPE_DETAIL.REVIEWS' | translate }}
+    </p>
+
+    <button class="btn-add-review" (click)="toggleReviewForm()">
+      <mat-icon>add</mat-icon>
+      {{ 'RECIPE_DETAIL.ADD_REVIEW' | translate }}
+    </button>
+  </div>
+
+  @if (showReviewForm) {
+    <app-review-form (canceled)="closeReviewForm()" (submitted)="addReview($event)"
+      >></app-review-form
+    >
+  }
+
+  @if (recipe().reviews.length > 0) {
+    @for (review of recipe().reviews; track $index; let last = $last) {
+      <div class="review-item">
+        <div class="review-header">
+          <div class="stars">
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <mat-icon>
+                {{ star <= review.rating ? 'star' : 'star_border' }}
+              </mat-icon>
+            }
+          </div>
+        </div>
+
+        <p class="comment">
+          {{ review.comment }}
+        </p>
+
+        @if (!last) {
+          <div class="divider">
+            <span class="line"></span>
+          </div>
+        }
+      </div>
+    }
+  } @else {
+    <p class="empty-review">
+      {{ 'RECIPE_DETAIL.NO_REVIEWS' | translate }}
+    </p>
+  }
+</div>

@@ -18,7 +18,7 @@ export class CreateRecipeActionsService {
     if (isEdit) {
       this.recipeService.updateRecipe(recipe.id, recipe).subscribe({
         next: () => {
-          this.snackbar.success(this.translate.instant('SUCCESS.RECIPE_UPDATED'));
+          this.snackbar.success(this.translate.instant('SUCCESS.UPDATE_RECIPE'));
           onComplete?.();
           this.router.navigate(['/my-recipes']);
         },
@@ -33,7 +33,7 @@ export class CreateRecipeActionsService {
 
     this.recipeService.createRecipe(recipe).subscribe({
       next: () => {
-        this.snackbar.success(this.translate.instant('SUCCESS.RECIPE_CREATED'));
+        this.snackbar.success(this.translate.instant('SUCCESS.CREATE_RECIPE'));
         onComplete?.();
         this.router.navigate(['/my-recipes']);
       },

@@ -1,0 +1,17 @@
+<div class="review-form">
+  <div class="rating">
+    @for (star of [1, 2, 3, 4, 5]; track star) {
+      <mat-icon (click)="rating = star">
+        {{ star <= rating ? 'star' : 'star_border' }}
+      </mat-icon>
+    }
+  </div>
+
+  <textarea [(ngModel)]="comment" placeholder="Write your review"> </textarea>
+
+  <div class="btn-group">
+    <button class="btn-cancel" (click)="onCancel()">Cancel</button>
+
+    <button class="btn-submit" (click)="onSubmit()">Submit</button>
+  </div>
+</div>

@@ -36,17 +36,13 @@
       </div>
 
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-        <div class="form-group">
-          <label for="userName">
-            {{ 'AUTH.USERNAME' | translate }}
-          </label>
-
-          <input
-            type="email"
-            formControlName="userName"
-            [placeholder]="'AUTH.USERNAME_PLACEHOLDER' | translate"
-            id="userName"
-          />
+        <div class="field">
+          <app-form-field
+            label="AUTH.USERNAME"
+            placeholder="AUTH.USERNAME_PLACEHOLDER"
+            [control]="userNameControl"
+          >
+          </app-form-field>
 
           @if (userNameInvalid) {
             <small class="invalid-text">
@@ -55,17 +51,14 @@
           }
         </div>
 
-        <div class="form-group">
-          <label for="password">
-            {{ 'AUTH.PASSWORD' | translate }}
-          </label>
-
-          <input
+        <div class="field">
+          <app-form-field
+            label="AUTH.PASSWORD"
+            placeholder="AUTH.PASSWORD_PLACEHOLDER"
             type="password"
-            formControlName="password"
-            [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
-            id="password"
-          />
+            [control]="passwordControl"
+          >
+          </app-form-field>
 
           @if (passwordInvalid) {
             <small class="invalid-text">
@@ -74,25 +67,22 @@
           }
         </div>
 
-        <div class="form-group">
-          <label for="confirmPassword">
-            {{ 'REGISTER.CONFIRM_PASSWORD' | translate }}
-          </label>
-
-          <input
+        <div class="field">
+          <app-form-field
+            label="REGISTER.CONFIRM_PASSWORD"
+            placeholder="REGISTER.CONFIRM_PASSWORD_PLACEHOLDER"
             type="password"
-            formControlName="confirmPassword"
-            [placeholder]="'REGISTER.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
-            id="confirmPassword"
-          />
+            [control]="confirmPasswordControl"
+          >
+          </app-form-field>
 
-          <small class="invalid-text" [class.show]="confirmPasswordInvalid || passwordMismatch">
-            @if (confirmPasswordInvalid) {
-              {{ 'VALIDATION.CONFIRM_PASSWORD_REQUIRED' | translate }}
-            } @else if (passwordMismatch) {
-              {{ 'VALIDATION.PASSWORD_MISMATCH' | translate }}
-            }
-          </small>
+          @if (confirmPasswordInvalid) {
+            <small class="invalid-text">{{
+              'VALIDATION.CONFIRM_PASSWORD_REQUIRED' | translate
+            }}</small>
+          } @else if (passwordMismatch) {
+            <small class="invalid-text">{{ 'VALIDATION.PASSWORD_MISMATCH' | translate }}</small>
+          }
         </div>
 
         <div class="option-container">

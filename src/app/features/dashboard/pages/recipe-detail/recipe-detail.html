@@ -69,41 +69,7 @@
         </div>
       </div>
 
-      <div class="recipe-review">
-        <p class="label">
-          {{ 'RECIPE_DETAIL.REVIEWS' | translate }}
-        </p>
-
-        @if (recipe.reviews.length > 0) {
-          @for (review of recipe.reviews; track $index; let last = $last) {
-            <div class="review-item">
-              <div class="review-header">
-                <div class="stars">
-                  @for (star of [1, 2, 3, 4, 5]; track star) {
-                    <mat-icon>
-                      {{ star <= review.rating ? 'star' : 'star_border' }}
-                    </mat-icon>
-                  }
-                </div>
-              </div>
-
-              <p class="comment">
-                {{ review.comment }}
-              </p>
-
-              @if (!last) {
-                <div class="divider">
-                  <span class="line"></span>
-                </div>
-              }
-            </div>
-          }
-        } @else {
-          <p class="empty-review">
-            {{ 'RECIPE_DETAIL.NO_REVIEWS' | translate }}
-          </p>
-        }
-      </div>
+      <app-review-list [recipe]="recipe" (reviewAdded)="onReviewAdded()"> </app-review-list>
     </div>
 
     <div class="btn-group">

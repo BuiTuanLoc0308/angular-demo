@@ -167,59 +167,6 @@
   word-break: break-word;
 }
 
-/* ================= REVIEW ================= */
-
-.recipe-review {
-  margin-top: 24px;
-
-  background: var(--container-color);
-
-  border-radius: 12px;
-
-  padding: 20px;
-}
-
-.review-item {
-  padding: 8px 0;
-}
-
-.review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-bottom: 10px;
-}
-
-.stars {
-  display: flex;
-  gap: 2px;
-}
-
-.stars mat-icon {
-  color: #ffc107;
-  font-size: 20px;
-
-  width: 20px;
-  height: 20px;
-}
-
-.comment {
-  margin: 0;
-
-  line-height: 1.6;
-
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.empty-review {
-  margin: 0;
-
-  color: #888;
-  font-style: italic;
-}
-
 /* ================= BUTTON ================= */
 
 .btn-group {

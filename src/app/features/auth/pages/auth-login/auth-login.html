@@ -20,36 +20,29 @@
       </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <div class="form-group">
-          <label for="username">
-            {{ 'AUTH.USERNAME' | translate }}
-          </label>
-
-          <input
-            type="email"
-            formControlName="userName"
-            [placeholder]="'AUTH.USERNAME_PLACEHOLDER' | translate"
-            id="username"
-          />
+        <div class="field">
+          <app-form-field
+            label="AUTH.USERNAME"
+            placeholder="AUTH.USERNAME_PLACEHOLDER"
+            [control]="userNameControl"
+          >
+          </app-form-field>
 
           @if (userNameInvalid) {
             <small class="invalid-text">
-              {{ 'VALIDATION.USERNAME_REQUIRED' | translate }}
+              {{ 'VALIDATION.PASSWORD_REQUIRED' | translate }}
             </small>
           }
         </div>
 
-        <div class="form-group">
-          <label for="password">
-            {{ 'AUTH.PASSWORD' | translate }}
-          </label>
-
-          <input
+        <div class="field">
+          <app-form-field
+            label="AUTH.PASSWORD"
+            placeholder="AUTH.PASSWORD_PLACEHOLDER"
             type="password"
-            formControlName="password"
-            [placeholder]="'AUTH.PASSWORD_PLACEHOLDER' | translate"
-            id="password"
-          />
+            [control]="passwordControl"
+          >
+          </app-form-field>
 
           @if (passwordInvalid) {
             <small class="invalid-text">

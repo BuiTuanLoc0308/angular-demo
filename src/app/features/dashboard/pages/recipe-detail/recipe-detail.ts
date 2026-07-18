@@ -5,13 +5,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
-import { map } from 'rxjs';
+import { BehaviorSubject, switchMap } from 'rxjs';
 import { RecipeModel } from '../../../../core/models/recipe.model';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { ReviewList } from './components/review-list/review-list';
 
 @Component({
   selector: 'app-recipe-detail',
-  imports: [MatIconModule, AsyncPipe, TranslatePipe],
+  imports: [MatIconModule, AsyncPipe, TranslatePipe, ReviewList],
   standalone: true,
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.scss',
@@ -25,10 +26,21 @@ export class RecipeDetail {
   private recipeCreateState = inject(RecipeCreateStateService);
   private snackbar = inject(SnackbarService);
   private translate = inject(TranslateService);
+  private refresh$ = new BehaviorSubject<void>(undefined);
 
   isDeleting = false;
 
-  recipe$ = this.route.data.pipe(map((data) => data['recipe'] as RecipeModel));
+  recipe$ = this.refresh$.pipe(
+    switchMap(() => {
+      const id = this.route.snapshot.paramMap.get('id')!;
+
+      return this.recipeService.getRecipeById(id);
+    }),
+  );
+
+  onReviewAdded() {
+    this.refresh$.next();
+  }
 
   goBack() {
     this.location.back();

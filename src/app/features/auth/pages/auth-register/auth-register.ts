@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
@@ -13,10 +14,11 @@ import { RegisterRequest } from '../../../../core/models/register-request.model'
 import { CommonModule } from '@angular/common';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { FormField } from '../../../../shared/components/form-field/form-field';
 
 @Component({
   selector: 'app-auth-register',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslatePipe, FormField],
   standalone: true,
   templateUrl: './auth-register.html',
   styleUrl: './auth-register.scss',
@@ -83,6 +85,18 @@ export class AuthRegister {
 
   get confirmPasswordInvalid() {
     return !!(this.confirmPassword?.invalid && this.confirmPassword?.touched);
+  }
+
+  get userNameControl() {
+    return this.registerForm.get('userName') as FormControl;
+  }
+
+  get passwordControl() {
+    return this.registerForm.get('password') as FormControl;
+  }
+
+  get confirmPasswordControl() {
+    return this.registerForm.get('confirmPassword') as FormControl;
   }
 
   get passwordMismatch() {

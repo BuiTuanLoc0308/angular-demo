@@ -1,0 +1,35 @@
+/* ========================================= */
+/* Form */
+/* ========================================= */
+
+form {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  box-sizing: border-box;
+
+  font-size: 16px;
+
+  transition: 0.25s;
+}
+
+.form-group input:focus {
+  outline: none;
+}

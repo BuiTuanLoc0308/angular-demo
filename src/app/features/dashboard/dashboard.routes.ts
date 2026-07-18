@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { recipeDetailResolver } from '../../core/resolver/recipe-detail.resolver';
+// import { recipeDetailResolver } from '../../core/resolver/recipe-detail.resolver';
 
 export const dashboardRoutes: Routes = [
   {
@@ -33,9 +33,9 @@ export const dashboardRoutes: Routes = [
     path: 'my-recipes/:id',
     loadComponent: () => import('./pages/recipe-detail/recipe-detail').then((m) => m.RecipeDetail),
 
-    resolve: {
-      recipe: recipeDetailResolver,
-    },
+    // resolve: {
+    //   recipe: recipeDetailResolver,
+    // },
   },
 
   {

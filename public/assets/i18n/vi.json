@@ -72,6 +72,11 @@
     "PAGE": "Trang"
   },
 
+  "SOCIAL": {
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook"
+  },
+
   "UNITS": {
     "GRAM": "Gam",
     "KG": "Kilôgam",
@@ -167,7 +172,9 @@
     "INSTRUCTIONS": "Các bước nấu",
     "REVIEWS": "Đánh giá",
 
-    "NO_REVIEWS": "Chưa có đánh giá nào"
+    "NO_REVIEWS": "Chưa có đánh giá nào",
+
+    "ADD_REVIEW": "Thêm đánh giá"
   },
 
   "CREATE_RECIPE": {

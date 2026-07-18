@@ -1,16 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { LoginRequest } from '../../../../core/models/login-request.model';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { FormField } from '../../../../shared/components/form-field/form-field';
 
 @Component({
   selector: 'app-auth-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslatePipe, FormField],
   templateUrl: './auth-login.html',
   styleUrl: './auth-login.scss',
 })
@@ -51,6 +58,14 @@ export class AuthLogin {
     return !!(this.password?.invalid && this.password?.touched);
   }
 
+  get userNameControl() {
+    return this.loginForm.get('userName') as FormControl;
+  }
+
+  get passwordControl() {
+    return this.loginForm.get('password') as FormControl;
+  }
+
   onLogin() {
     this.isLoading = true;
 
@@ -68,15 +83,13 @@ export class AuthLogin {
 
       // loi
       error: (error) => {
+        this.isLoading = false;
+
         if (error.status === 401) {
           this.snackbar.error(this.translate.instant('FAILED.LOGIN'));
         } else {
           this.snackbar.error(this.translate.instant('ERRORS.GENERIC'));
         }
-      },
-
-      complete: () => {
-        this.isLoading = false;
       },
     });
   }

@@ -172,7 +172,9 @@
     "INSTRUCTIONS": "Cooking Steps",
     "REVIEWS": "Reviews",
 
-    "NO_REVIEWS": "No reviews yet"
+    "NO_REVIEWS": "No reviews yet",
+
+    "ADD_REVIEW": "Add Review"
   },
 
   "CREATE_RECIPE": {
