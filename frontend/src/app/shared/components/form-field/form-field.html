@@ -1,0 +1,21 @@
+<div class="form-group">
+  <label for="{{ control }}">
+    {{ label | translate }}
+  </label>
+
+  <div class="input-wrapper">
+    <input
+      [type]="type === 'password' ? (showPassword ? 'text' : 'password') : type"
+      [formControl]="control"
+      [placeholder]="placeholder | translate"
+    />
+
+    @if (type === 'password') {
+      <button type="button" class="toggle-password" (click)="togglePassword()">
+        <mat-icon>
+          {{ showPassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+      </button>
+    }
+  </div>
+</div>

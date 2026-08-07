@@ -1,0 +1,248 @@
+{
+  "COMMON": {
+    "ADD": "Thêm",
+    "EDIT": "Sửa",
+
+    "DELETE": "Xóa",
+    "DELETING": "Đang xóa...",
+
+    "BACK": "Quay lại",
+
+    "NEXT": "Tiếp tục",
+    "PREVIOUS": "Trước",
+
+    "FINISH": "Hoàn tất",
+
+    "CLOSE": "Đóng",
+
+    "SEARCH": "Tìm kiếm",
+
+    "LOADING": "Đang tải dữ liệu...",
+    "PROCESSING": "Đang xử lý..."
+  },
+
+  "AUTH": {
+    "USERNAME": "Tên đăng nhập",
+    "USERNAME_PLACEHOLDER": "Nhập tên đăng nhập",
+
+    "PASSWORD": "Mật khẩu",
+    "PASSWORD_PLACEHOLDER": "Nhập mật khẩu",
+
+    "REMEMBER_ME": "Ghi nhớ đăng nhập",
+
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook"
+  },
+
+  "VALIDATION": {
+    "USERNAME_REQUIRED": "Vui lòng nhập tên đăng nhập",
+    "PASSWORD_REQUIRED": "Vui lòng nhập mật khẩu",
+    "CONFIRM_PASSWORD_REQUIRED": "Vui lòng nhập lại mật khẩu",
+    "PASSWORD_MISMATCH": "Mật khẩu nhập lại không khớp",
+
+    "DESCRIPTION_REQUIRED": "Vui lòng nhập mô tả",
+    "RECIPE_NAME_REQUIRED": "Vui lòng nhập tên món ăn",
+
+    "CATEGORIES_REQUIRED": "Vui lòng chọn ít nhất một danh mục",
+
+    "REQUIRED_FIELDS": "Vui lòng nhập đầy đủ thông tin"
+  },
+
+  "ERRORS": {
+    "GENERIC": "Đã xảy ra lỗi. Vui lòng thử lại sau"
+  },
+
+  "SUCCESS": {
+    "LOGIN": "Đăng nhập thành công",
+    "REGISTER": "Đăng ký thành công",
+
+    "CREATE_RECIPE": "Tạo công thức thành công",
+    "UPDATE_RECIPE": "Cập nhật công thức thành công",
+    "DELETE_RECIPE": "Xóa công thức thành công"
+  },
+
+  "FAILED": {
+    "LOGIN": "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập của bạn",
+    "REGISTER": "Đăng ký thất bại. Tên đăng nhập đã được sử dụng. Vui lòng thử lại với tên đăng nhập khác"
+  },
+
+  "PAGINATION": {
+    "PREVIOUS": "Trước",
+    "NEXT": "Tiếp",
+    "PAGE": "Trang"
+  },
+
+  "SOCIAL": {
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook"
+  },
+
+  "UNITS": {
+    "GRAM": "Gam",
+    "KG": "Kilôgam",
+    "ML": "ml",
+    "LITER": "Lít",
+    "PIECE": "Phần",
+    "TBSP": "Muỗng canh",
+    "TSP": "Muỗng cà phê"
+  },
+
+  "CATEGORIES": {
+    "ALL": "Tất cả",
+    "BREAKFAST": "Bữa sáng",
+    "LUNCH": "Bữa trưa",
+    "DINNER": "Bữa tối",
+    "DESSERT": "Món tráng miệng",
+    "DRINK": "Đồ uống"
+  },
+
+  "SETTINGS": {
+    "TITLE": "Cài đặt tài khoản",
+    "DESCRIPTION": "Tùy chỉnh trải nghiệm của bạn",
+
+    "APPEARANCE": "Giao diện",
+    "APPEARANCE_DESC": "Chuyển đổi giữa giao diện sáng và tối",
+
+    "LANGUAGE": "Ngôn ngữ",
+    "LANGUAGE_DESC": "Chọn ngôn ngữ được sử dụng trong toàn bộ ứng dụng",
+
+    "LIGHT_MODE": "Chế độ sáng",
+    "DARK_MODE": "Chế độ tối",
+
+    "LIGHT": "Sáng",
+    "DARK": "Tối",
+
+    "ENGLISH": "Tiếng Anh",
+    "VIETNAMESE": "Tiếng Việt"
+  },
+
+  "LOGIN": {
+    "TITLE": "Đăng nhập",
+    "SUBTITLE": "Rất vui được gặp lại bạn",
+
+    "LOGIN": "Đăng nhập",
+    "LOGGING_IN": "Đang đăng nhập...",
+
+    "FORGOT_PASSWORD": "Quên mật khẩu?",
+
+    "OR_CONTINUE_WITH": "Hoặc tiếp tục với",
+
+    "NO_ACCOUNT": "Chưa có tài khoản?",
+    "REGISTER_NOW": "Đăng ký ngay"
+  },
+
+  "REGISTER": {
+    "TITLE": "Tạo tài khoản mới",
+    "SUBTITLE": "Bắt đầu hành trình khám phá ẩm thực của bạn ngay hôm nay",
+
+    "CONFIRM_PASSWORD": "Xác nhận mật khẩu",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "Nhập lại mật khẩu",
+
+    "AGREE": "Tôi đồng ý với",
+    "TERMS": "Điều khoản dịch vụ",
+    "AND": "và",
+    "PRIVACY": "Chính sách bảo mật",
+
+    "REGISTER": "Đăng ký",
+    "REGISTERING": "Đang đăng ký...",
+
+    "OR_REGISTER_WITH": "Hoặc đăng ký bằng tài khoản",
+
+    "HAVE_ACCOUNT": "Đã có tài khoản?",
+    "LOGIN_NOW": "Đăng nhập ngay"
+  },
+
+  "MY_RECIPES": {
+    "TITLE": "Công thức của tôi",
+    "DESCRIPTION": "Quản lý và tổ chức kho tàng ẩm thực cá nhân của bạn. Mỗi món ăn là một câu chuyện",
+
+    "ADD_RECIPE": "Thêm công thức mới",
+
+    "SEARCH_PLACEHOLDER": "Tìm công thức...",
+
+    "RECIPE_DETAIL": "Chi tiết",
+
+    "EMPTY": "Hiện tại không có công thức nào"
+  },
+
+  "RECIPE_DETAIL": {
+    "TITLE": "Chi tiết công thức",
+
+    "INGREDIENTS": "Nguyên liệu",
+    "INSTRUCTIONS": "Các bước nấu",
+    "REVIEWS": "Đánh giá",
+
+    "NO_REVIEWS": "Chưa có đánh giá nào",
+
+    "ADD_REVIEW": "Thêm đánh giá"
+  },
+
+  "CREATE_RECIPE": {
+    "CREATE_TITLE": "Tạo công thức mới",
+    "EDIT_TITLE": "Chỉnh sửa công thức",
+
+    "BASIC_INFO": "Thông tin cơ bản",
+    "INGREDIENTS": "Nguyên liệu",
+    "INSTRUCTIONS": "Các bước nấu",
+    "REVIEW": "Hoàn tất"
+  },
+
+  "BASIC_INFO_STEP": {
+    "TITLE": "Thông tin cơ bản",
+
+    "RECIPE_NAME": "Tên món ăn",
+    "RECIPE_NAME_PLACEHOLDER": "Ví dụ: Phở bò",
+
+    "DESCRIPTION": "Mô tả",
+    "DESCRIPTION_PLACEHOLDER": "Chia sẻ câu chuyện đằng sau món ăn...",
+
+    "CATEGORIES": "Danh mục"
+  },
+
+  "INGREDIENTS_STEP": {
+    "TITLE": "Thông tin nguyên liệu",
+
+    "INGREDIENT_NAME": "Tên nguyên liệu",
+    "INGREDIENT_NAME_PLACEHOLDER": "Tên nguyên liệu",
+
+    "QUANTITY": "Số lượng",
+    "QUANTITY_PLACEHOLDER": "Số lượng",
+
+    "ADD": "+ Thêm nguyên liệu"
+  },
+
+  "INSTRUCTIONS_STEP": {
+    "TITLE": "Các bước thực hiện",
+
+    "STEP": "Bước",
+
+    "CONTENT_PLACEHOLDER": "Mô tả chi tiết...",
+
+    "ADD": "+ Thêm bước nấu ăn"
+  },
+
+  "REVIEW_STEP": {
+    "TITLE": "Hãy cùng nhìn lại nhé!",
+    "DESCRIPTION": "Công thức của bạn đã sẵn sàng được lưu vào thư viện cá nhân để nấu ăn hoặc chia sẻ với cộng đồng",
+
+    "RECIPE_NAME": "TÊN MÓN ĂN",
+    "RECIPE_DESCRIPTION": "MÔ TẢ",
+    "INGREDIENTS": "DANH SÁCH NGUYÊN LIỆU",
+    "INSTRUCTIONS": "CÁC BƯỚC THỰC HIỆN"
+  },
+
+  "SIDEBAR": {
+    "APP_NAME": "CulinaryFriend",
+
+    "USER_LEVEL": "Đầu bếp tại gia cấp 5",
+
+    "MY_RECIPES": "Công thức của tôi",
+    "COOKING_ACTIVITY": "Hoạt động nấu ăn",
+    "MEAL_PLANNER": "Kế hoạch bữa ăn",
+    "ACCOUNT_SETTINGS": "Cài đặt tài khoản",
+
+    "HELP_SUPPORT": "Trợ giúp & Hỗ trợ",
+
+    "LOGOUT": "Đăng xuất"
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "COMMON": {
+    "ADD": "Add",
+    "EDIT": "Edit",
+
+    "DELETE": "Delete",
+    "DELETING": "Deleting...",
+
+    "BACK": "Back",
+
+    "NEXT": "Next",
+    "PREVIOUS": "Previous",
+
+    "FINISH": "Finish",
+
+    "CLOSE": "Close",
+
+    "SEARCH": "Search",
+
+    "LOADING": "Loading...",
+    "PROCESSING": "Processing..."
+  },
+
+  "AUTH": {
+    "USERNAME": "Username",
+    "USERNAME_PLACEHOLDER": "Enter username",
+
+    "PASSWORD": "Password",
+    "PASSWORD_PLACEHOLDER": "Enter password",
+
+    "REMEMBER_ME": "Remember me",
+
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook"
+  },
+
+  "VALIDATION": {
+    "USERNAME_REQUIRED": "Please enter your username",
+    "PASSWORD_REQUIRED": "Password is required",
+    "CONFIRM_PASSWORD_REQUIRED": "Please confirm your password",
+    "PASSWORD_MISMATCH": "Passwords do not match",
+
+    "DESCRIPTION_REQUIRED": "Please enter a description",
+    "RECIPE_NAME_REQUIRED": "Please enter the recipe name",
+
+    "CATEGORIES_REQUIRED": "Select at least one category",
+
+    "REQUIRED_FIELDS": "Please fill in all required fields"
+  },
+
+  "ERRORS": {
+    "GENERIC": "An error occurred. Please try again later"
+  },
+
+  "SUCCESS": {
+    "LOGIN": "Login successful",
+    "REGISTER": "Registration successful",
+
+    "CREATE_RECIPE": "Recipe created successfully",
+    "UPDATE_RECIPE": "Recipe updated successfully",
+    "DELETE_RECIPE": "Recipe deleted successfully"
+  },
+
+  "FAILED": {
+    "LOGIN": "Login failed. Please check your credentials",
+    "REGISTER": "Registration failed. Username already is in use. Please try again with a different username"
+  },
+
+  "PAGINATION": {
+    "PREVIOUS": "Previous",
+    "NEXT": "Next",
+    "PAGE": "Page"
+  },
+
+  "SOCIAL": {
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook"
+  },
+
+  "UNITS": {
+    "GRAM": "Gram",
+    "KG": "Kilogram",
+    "ML": "Milliliter",
+    "LITER": "Liter",
+    "PIECE": "Piece",
+    "TBSP": "Tablespoon",
+    "TSP": "Teaspoon"
+  },
+
+  "CATEGORIES": {
+    "ALL": "All",
+    "BREAKFAST": "Breakfast",
+    "LUNCH": "Lunch",
+    "DINNER": "Dinner",
+    "DESSERT": "Dessert",
+    "DRINK": "Drink"
+  },
+
+  "SETTINGS": {
+    "TITLE": "Account Settings",
+    "DESCRIPTION": "Customize your experience",
+
+    "APPEARANCE": "Appearance",
+    "APPEARANCE_DESC": "Switch between light and dark themes",
+
+    "LANGUAGE": "Language",
+    "LANGUAGE_DESC": "Select the language used throughout the application",
+
+    "LIGHT_MODE": "Light Mode",
+    "DARK_MODE": "Dark Mode",
+
+    "LIGHT": "Light",
+    "DARK": "Dark",
+
+    "ENGLISH": "English",
+    "VIETNAMESE": "Vietnamese"
+  },
+
+  "LOGIN": {
+    "TITLE": "Sign In",
+    "SUBTITLE": "Welcome back",
+
+    "LOGIN": "Login",
+    "LOGGING_IN": "Logging in...",
+
+    "FORGOT_PASSWORD": "Forgot password?",
+
+    "OR_CONTINUE_WITH": "Or continue with",
+
+    "NO_ACCOUNT": "Don't have an account?",
+    "REGISTER_NOW": "Sign up now"
+  },
+
+  "REGISTER": {
+    "TITLE": "Create a new account",
+    "SUBTITLE": "Start your culinary journey today",
+
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "Confirm password",
+
+    "AGREE": "I agree to the",
+    "TERMS": "Terms of Service",
+    "AND": "and",
+    "PRIVACY": "Privacy Policy",
+
+    "REGISTER": "Register",
+    "REGISTERING": "Creating account...",
+
+    "OR_REGISTER_WITH": "Or register with username",
+
+    "HAVE_ACCOUNT": "Already have an account?",
+    "LOGIN_NOW": "Sign in now"
+  },
+
+  "MY_RECIPES": {
+    "TITLE": "My Recipes",
+    "DESCRIPTION": "Manage and organize your personal recipe collection. Every dish tells a story",
+
+    "ADD_RECIPE": "Add New Recipe",
+
+    "SEARCH_PLACEHOLDER": "Search recipes...",
+
+    "RECIPE_DETAIL": "Detail",
+
+    "EMPTY": "No recipes found"
+  },
+
+  "RECIPE_DETAIL": {
+    "TITLE": "Recipe Details",
+
+    "INGREDIENTS": "Ingredients",
+    "INSTRUCTIONS": "Cooking Steps",
+    "REVIEWS": "Reviews",
+
+    "NO_REVIEWS": "No reviews yet",
+
+    "ADD_REVIEW": "Add Review"
+  },
+
+  "CREATE_RECIPE": {
+    "CREATE_TITLE": "Create New Recipe",
+    "EDIT_TITLE": "Edit Recipe",
+
+    "BASIC_INFO": "Basic Information",
+    "INGREDIENTS": "Ingredients",
+    "INSTRUCTIONS": "Cooking Steps",
+    "REVIEW": "Review"
+  },
+
+  "BASIC_INFO_STEP": {
+    "TITLE": "Basic Information",
+
+    "RECIPE_NAME": "Recipe Name",
+    "RECIPE_NAME_PLACEHOLDER": "e.g. Beef Pho",
+
+    "DESCRIPTION": "Description",
+    "DESCRIPTION_PLACEHOLDER": "Share the story behind your dish...",
+
+    "CATEGORIES": "Categories"
+  },
+
+  "INGREDIENTS_STEP": {
+    "TITLE": "Ingredients",
+
+    "INGREDIENT_NAME": "Ingredient Name",
+    "INGREDIENT_NAME_PLACEHOLDER": "Ingredient name",
+
+    "QUANTITY": "Quantity",
+    "QUANTITY_PLACEHOLDER": "Quantity",
+
+    "ADD": "+ Add Ingredient"
+  },
+
+  "INSTRUCTIONS_STEP": {
+    "TITLE": "Cooking Steps",
+
+    "STEP": "Step",
+
+    "CONTENT_PLACEHOLDER": "Describe this step...",
+
+    "ADD": "+ Add Instruction"
+  },
+
+  "REVIEW_STEP": {
+    "TITLE": "Let's Review!",
+    "DESCRIPTION": "Your recipe is ready to be saved to your personal collection or shared with the community",
+
+    "RECIPE_NAME": "RECIPE NAME",
+    "RECIPE_DESCRIPTION": "DESCRIPTION",
+    "INGREDIENTS": "INGREDIENTS",
+    "INSTRUCTIONS": "COOKING STEPS"
+  },
+
+  "SIDEBAR": {
+    "APP_NAME": "CulinaryFriend",
+
+    "USER_LEVEL": "Level 5 Home Cook",
+
+    "MY_RECIPES": "My Recipes",
+    "COOKING_ACTIVITY": "Cooking Activity",
+    "MEAL_PLANNER": "Meal Planner",
+    "ACCOUNT_SETTINGS": "Account Settings",
+
+    "HELP_SUPPORT": "Help & Support",
+
+    "LOGOUT": "Logout"
+  }
+}
