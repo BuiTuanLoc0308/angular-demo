@@ -1,49 +1,57 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const app = express();
-
-app.use(express.json());
-
-const PORT = 3000;
-
-// eneble cors for all routes
-app.use(cors());
-
-//eneble json parsing for all routes
-app.use(express.json());
-
-// import routes
 const authRoutes = require("./routes/auth-route");
 const recipeRoutes = require("./routes/recipe-route");
 
-// use routes
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/recipe", recipeRoutes);
 
+// Test route
 app.get("/", (req, res) => {
-  res.send("Hello, World! Welcome to the backend server.");
+  res.json({
+    message: "Recipe backend is running!",
+  });
 });
 
-app.listen(PORT, (error) => {
-  if (error) {
-    console.error("Error starting the server:", error);
-  } else {
-    console.log("Server is running on port:", PORT);
+// Database connection
+let isConnected = false;
+
+async function connectToDatabase() {
+  if (isConnected) {
+    return;
+  }
+
+  await mongoose.connect(process.env.MONGODB_URI);
+
+  mongoose.set("strictQuery", true);
+
+  isConnected = true;
+
+  console.log("MongoDB connected");
+}
+
+// Connect to database before handling request
+app.use(async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    res.status(500).json({
+      message: "Database connection failed",
+    });
   }
 });
 
-connectToDatabase().catch((error) => {
-  console.error("Error connecting to the database:", error);
-
-  process.exit(1); // Exit the process with an error code
-});
-
-async function connectToDatabase() {
-  const connectionString = process.env.MONGODB_URI;
-
-  await mongoose.connect(connectionString);
-
-  mongoose.set("strictQuery", true);
-}
+module.exports = app;

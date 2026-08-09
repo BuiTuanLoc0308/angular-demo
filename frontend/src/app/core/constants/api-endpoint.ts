@@ -8,8 +8,8 @@ export const api_endpoint = {
   },
 
   recipe: {
-    myRecipe: `${environment.apiUrl}/my-recipe`,
+    myRecipe: `${environment.apiUrl}/recipe`,
 
-    recipeDetail: (id: string) => `${environment.apiUrl}/my-recipe/${id}`,
+    recipeDetail: (id: string) => `${environment.apiUrl}/recipe/${id}`,
   },
 };
