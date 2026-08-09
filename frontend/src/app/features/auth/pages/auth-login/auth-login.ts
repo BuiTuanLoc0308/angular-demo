@@ -85,8 +85,6 @@ export class AuthLogin {
       error: (error) => {
         this.isLoading = false;
 
-        console.log('isLoading =', this.isLoading);
-
         if (error.status === 400) {
           this.snackbar.error(this.translate.instant('FAILED.LOGIN'));
         } else {
