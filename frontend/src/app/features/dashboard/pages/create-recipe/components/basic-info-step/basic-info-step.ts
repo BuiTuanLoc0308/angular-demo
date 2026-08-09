@@ -11,7 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { MatChipsModule } from '@angular/material/chips';
-import { MyRecipesQueryService } from '../../../my-recipes/services/my-recipes-query.service';
+import { MyRecipesQueryService } from '../../../../../../core/services/my-recipes-query.service';
 
 @Component({
   selector: 'app-basic-info-step',

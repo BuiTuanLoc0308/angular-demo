@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs';
-import { LoginResponse } from '../../features/auth/pages/auth-login/models/login-response.model';
+import { LoginResponse } from '../models/login-response.model';
 import { api_endpoint } from '../constants/api-endpoint';
-import { LoginRequest } from '../../features/auth/pages/auth-login/models/login-request.model';
+import { LoginRequest } from '../models/login-request.model';
 import { TokenService } from './token.service';
-import { RegisterRequest } from '../../features/auth/pages/auth-register/models/register-request.model';
+import { RegisterRequest } from '../models/register-request.model';
 
 @Injectable({
   providedIn: 'root',

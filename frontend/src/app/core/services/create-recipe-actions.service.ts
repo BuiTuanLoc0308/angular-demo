@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecipeModel } from '../../../../../core/models/recipe.model';
-import { RecipeService } from '../../../../../core/services/my-recipe.service';
-import { SnackbarService } from '../../../../../core/services/snack-bar.service';
+import { RecipeModel } from '../models/recipe.model';
+import { RecipeService } from './my-recipe.service';
+import { SnackbarService } from './snack-bar.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({

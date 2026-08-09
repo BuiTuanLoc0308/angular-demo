@@ -10,11 +10,11 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
-import { RegisterRequest } from './models/register-request.model';
+import { RegisterRequest } from '../../../../core/models/register-request.model';
 import { CommonModule } from '@angular/common';
 import { SnackbarService } from '../../../../core/services/snack-bar.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { FormField } from '../../../../shared/components/form-field/form-field';
+import { FormField } from '../../components/form-field/form-field';
 
 @Component({
   selector: 'app-auth-register',

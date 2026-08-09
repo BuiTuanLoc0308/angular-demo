@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../../../core/services/my-recipe.service';
 import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
 import { CategoryFilter } from './components/category-filter/category-filter';
-import { MyRecipesQueryService } from './services/my-recipes-query.service';
-import { FavoritesStorageService } from './services/favorites-storage.service';
+import { MyRecipesQueryService } from '../../../../core/services/my-recipes-query.service';
+import { FavoritesStorageService } from '../../../../core/services/favorites-storage.service';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -53,7 +53,7 @@ export class MyRecipes {
     query: this.query$,
   }).pipe(
     switchMap(({ query }) =>
-      this.recipeService.getMyRecipe(query).pipe(
+      this.recipeService.getRecipe(query).pipe(
         map((recipes) => ({
           recipes,
           isLoading: false,

@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RecipeModel } from '../../../../../core/models/recipe.model';
-import { ReviewModel } from '../../../../../core/models/review.model';
-import { api_endpoint } from '../../../../../core/constants/api-endpoint';
+import { RecipeModel } from '../models/recipe.model';
+import { ReviewModel } from '../models/review.model';
+import { api_endpoint } from '../constants/api-endpoint';
 
 @Injectable({
   providedIn: 'root',

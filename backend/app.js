@@ -16,9 +16,11 @@ app.use(express.json());
 
 // import routes
 const authRoutes = require("./routes/auth-route");
+const recipeRoutes = require("./routes/recipe-route");
 
 // use routes
 app.use("/api/auth", authRoutes);
+app.use("/api/recipe", recipeRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, World! Welcome to the backend server.");
@@ -39,8 +41,7 @@ connectToDatabase().catch((error) => {
 });
 
 async function connectToDatabase() {
-  const connectionString =
-    "mongodb+srv://Vercel-Admin-AngularDemoDB:jQeB2UcITg3gT2n1@angulardemodb.njojwgn.mongodb.net/?retryWrites=true&w=majority";
+  const connectionString = process.env.MONGODB_URI;
 
   await mongoose.connect(connectionString);
 

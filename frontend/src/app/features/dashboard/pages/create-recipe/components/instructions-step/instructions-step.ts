@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
 import { InstructionModel } from '../../../../../../core/models/instruction.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RecipeFormUtilsService } from '../../services/recipe-form-utils.service';
+import { RecipeFormUtilsService } from '../../../../../../core/services/recipe-form-utils.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

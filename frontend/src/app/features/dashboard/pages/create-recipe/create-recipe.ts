@@ -10,7 +10,7 @@ import { RecipeCreateStateService } from '../../../../core/services/recipe-creat
 import { ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs';
-import { CreateRecipePageStateService } from './services/create-recipe-page-state.service';
+import { CreateRecipePageStateService } from '../../../../core/services/create-recipe-page-state.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { RecipeModel } from '../../../../../core/models/recipe.model';
+import { RecipeModel } from '../models/recipe.model';
 import { CreateRecipeActionsService } from './create-recipe-actions.service';
 
 @Injectable({

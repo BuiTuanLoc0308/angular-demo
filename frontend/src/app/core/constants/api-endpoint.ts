@@ -1,4 +1,4 @@
-import { environment } from '../../environments/environments';
+import { environment } from '../../environments/environment';
 
 export const api_endpoint = {
   auth: {

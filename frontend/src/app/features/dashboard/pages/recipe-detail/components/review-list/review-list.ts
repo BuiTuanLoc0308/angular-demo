@@ -4,7 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { RecipeModel } from '../../../../../../core/models/recipe.model';
 import { ReviewModel } from '../../../../../../core/models/review.model';
 import { ReviewForm } from '../review-form/review-form';
-import { ReviewService } from '../../services/review.service';
+import { ReviewService } from '../../../../../../core/services/review.service';
 
 @Component({
   selector: 'app-review-list',

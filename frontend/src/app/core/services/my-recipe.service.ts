@@ -11,7 +11,7 @@ import { RecipeQuery } from '../models/recipe-query.model';
 export class RecipeService {
   private http = inject(HttpClient);
 
-  getMyRecipe(query: RecipeQuery): Observable<RecipeModel[]> {
+  getRecipe(query: RecipeQuery): Observable<RecipeModel[]> {
     let params = new HttpParams().set('page', query.page).set('limit', query.limit);
 
     if (query.search) {
