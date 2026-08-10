@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { RecipeModel } from '../../../../../../core/models/recipe.model';
 import { TranslatePipe } from '@ngx-translate/core';
+import { RecipeModel } from '../../../../../../core/models/recipes/recipe.model';
 
 @Component({
   selector: 'app-recipe-card',
@@ -20,6 +20,7 @@ export class RecipeCardComponent {
 
   onFavoriteClick(event: MouseEvent): void {
     event.stopPropagation();
-    this.favoriteToggled.emit(this.recipe.id);
+
+    this.favoriteToggled.emit(this.recipe._id);
   }
 }

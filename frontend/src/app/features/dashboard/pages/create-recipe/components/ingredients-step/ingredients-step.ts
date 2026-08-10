@@ -1,9 +1,8 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
-import { IngredientModel } from '../../../../../../core/models/ingredient.model';
+import { RecipeCreateStateService } from '../../../../../../core/services/recipes/recipe-create-state.service';
+import { IngredientModel } from '../../../../../../core/models/recipes/ingredient.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RecipeFormUtilsService } from '../../../../../../core/services/recipe-form-utils.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -17,7 +16,6 @@ export class IngredientsStep implements OnInit {
   private fb = inject(FormBuilder);
   private recipeState = inject(RecipeCreateStateService);
   private destroyRef = inject(DestroyRef);
-  private formUtils = inject(RecipeFormUtilsService);
 
   form = this.fb.group({
     ingredients: this.fb.array([]),
@@ -35,27 +33,33 @@ export class IngredientsStep implements OnInit {
     });
   }
 
-  private initIngredients() {
+  private initIngredients(): void {
     const recipe = this.recipeState.getRecipe();
 
-    this.formUtils.initializeArrayItems(
-      this.ingredients,
-      recipe.ingredients,
-      (ingredient) => this.createIngredient(ingredient),
-      () => this.createIngredient(),
-    );
-  }
+    if (recipe.ingredients.length > 0) {
+      recipe.ingredients.forEach((ingredient) => {
+        this.ingredients.push(this.createIngredient(ingredient));
+      });
 
-  addIngredient() {
+      return;
+    }
+
     this.ingredients.push(this.createIngredient());
   }
 
-  removeIngredient(index: number) {
-    this.ingredients.removeAt(index);
-    this.formUtils.ensureMinimumItem(this.ingredients, () => this.createIngredient());
+  addIngredient(): void {
+    this.ingredients.push(this.createIngredient());
   }
 
-  ngOnInit() {
+  removeIngredient(index: number): void {
+    this.ingredients.removeAt(index);
+
+    if (this.ingredients.length === 0) {
+      this.ingredients.push(this.createIngredient());
+    }
+  }
+
+  ngOnInit(): void {
     this.initIngredients();
 
     this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {

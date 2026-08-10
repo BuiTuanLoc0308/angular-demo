@@ -7,8 +7,8 @@ export const api_endpoint = {
     register: `${environment.apiUrl}/auth/register`,
   },
 
-  recipe: {
-    myRecipe: `${environment.apiUrl}/recipe`,
+  recipes: {
+    recipe: `${environment.apiUrl}/recipe`,
 
     recipeDetail: (id: string) => `${environment.apiUrl}/recipe/${id}`,
   },

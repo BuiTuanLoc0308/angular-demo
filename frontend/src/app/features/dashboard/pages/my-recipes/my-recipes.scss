@@ -118,7 +118,12 @@
   margin: 10px 0;
 }
 
-.pagination button {
+.pagination .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination .btn {
   padding: 0px 12px;
 
   border-radius: 8px;

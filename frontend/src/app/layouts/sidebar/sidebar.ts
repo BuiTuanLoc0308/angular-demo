@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { TokenService } from '../../core/services/token.service';
+import { TokenService } from '../../core/services/auth/token.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

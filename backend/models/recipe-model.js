@@ -4,7 +4,6 @@ const recipeSchema = new mongoose.Schema({
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
-    required: true,
   },
   recipeName: {
     type: String,
@@ -22,10 +21,8 @@ const recipeSchema = new mongoose.Schema({
 
   categories: [
     {
-      categoryName: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
     },
   ],
 

@@ -35,10 +35,10 @@
       @if (vm.isLoading) {
         <p>{{ 'COMMON.LOADING' | translate }}</p>
       } @else {
-        @for (recipe of vm.recipes; track recipe.id) {
+        @for (recipe of vm.recipes; track recipe._id) {
           <app-recipe-card
             [recipe]="recipe"
-            [isFavorite]="isFavorite(recipe.id)"
+            [isFavorite]="isFavorite(recipe._id)"
             (favoriteToggled)="toggleFavorite($event)"
           ></app-recipe-card>
         } @empty {
@@ -48,23 +48,29 @@
     }
   </div>
 
-  <div class="pagination">
-    <button class="btn" (click)="previousPage()" [disabled]="currentPage === 1">
-      <mat-icon>arrow_back</mat-icon>
+  @if (vm$ | async; as vm) {
+    <div class="pagination">
+      <button class="btn" (click)="previousPage(vm.page)" [disabled]="vm.page <= 1">
+        <mat-icon>arrow_back</mat-icon>
 
-      <span>
-        <p>{{ 'PAGINATION.PREVIOUS' | translate }}</p>
-      </span>
-    </button>
+        <span>
+          <p>{{ 'PAGINATION.PREVIOUS' | translate }}</p>
+        </span>
+      </button>
 
-    <span> {{ 'PAGINATION.PAGE' | translate }} {{ currentPage }} </span>
+      <span> {{ 'PAGINATION.PAGE' | translate }} {{ vm.page }} </span>
 
-    <button class="btn" (click)="nextPage()">
-      <span>
-        <p>{{ 'PAGINATION.NEXT' | translate }}</p>
-      </span>
+      <button
+        class="btn"
+        (click)="nextPage(vm.page, vm.totalPages)"
+        [disabled]="vm.page >= vm.totalPages"
+      >
+        <span>
+          <p>{{ 'PAGINATION.NEXT' | translate }}</p>
+        </span>
 
-      <mat-icon>arrow_forward</mat-icon>
-    </button>
-  </div>
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  }
 </div>

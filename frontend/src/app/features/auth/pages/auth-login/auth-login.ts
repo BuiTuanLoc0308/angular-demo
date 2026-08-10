@@ -8,11 +8,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../../core/services/auth.service';
-import { LoginRequest } from '../../../../core/models/login-request.model';
-import { SnackbarService } from '../../../../core/services/snack-bar.service';
+import { LoginRequest } from '../../../../core/models/auth/login-request.model';
+import { SnackbarService } from '../../../../core/services/snackbar/snack-bar.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { FormField } from '../../components/form-field/form-field';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-auth-login',

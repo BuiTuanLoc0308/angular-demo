@@ -1,5 +1,5 @@
 import { Component, output } from '@angular/core';
-import { ReviewModel } from '../../../../../../core/models/review.model';
+import { ReviewModel } from '../../../../../../core/models/recipes/review.model';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 

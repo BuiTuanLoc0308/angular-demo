@@ -12,7 +12,7 @@
   <div class="recipe-detail">
     <p class="name">{{ recipe.recipeName }}</p>
 
-    <a class="detail" [routerLink]="['/my-recipes', recipe.id]">{{
+    <a class="detail" [routerLink]="['/my-recipes', recipe._id]">{{
       'MY_RECIPES.RECIPE_DETAIL' | translate
     }}</a>
   </div>

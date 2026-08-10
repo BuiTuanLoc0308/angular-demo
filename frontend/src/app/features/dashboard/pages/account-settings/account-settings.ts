@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { ThemeService } from '../../../../core/services/theme.service';
-import { LanguageService } from '../../../../core/services/language.service';
+import { ThemeService } from '../../../../core/services/shared/theme.service';
+import { LanguageService } from '../../../../core/services/shared/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

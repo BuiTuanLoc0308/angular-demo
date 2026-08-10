@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs';
-import { LoginResponse } from '../models/login-response.model';
-import { api_endpoint } from '../constants/api-endpoint';
-import { LoginRequest } from '../models/login-request.model';
 import { TokenService } from './token.service';
-import { RegisterRequest } from '../models/register-request.model';
+import { LoginRequest } from '../../models/auth/login-request.model';
+import { LoginResponse } from '../../models/auth/login-response.model';
+import { api_endpoint } from '../../constants/api-endpoint';
+import { RegisterRequest } from '../../models/auth/register-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +19,6 @@ export class AuthService {
       .post<LoginResponse>(api_endpoint.auth.login, data)
       .pipe(tap((res) => this.tokenService.setToken(res.accessToken)));
   }
-
-  // login(data: LoginRequest): Observable<LoginResponse> {
-  //   return this.http.post<LoginResponse>(api_endpoint.auth.login, data);
-  // }
 
   register(data: RegisterRequest) {
     return this.http.post(api_endpoint.auth.register, data);

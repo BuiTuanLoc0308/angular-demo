@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
+import { RecipeCreateStateService } from '../../../../../../core/services/recipes/recipe-create-state.service';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
 

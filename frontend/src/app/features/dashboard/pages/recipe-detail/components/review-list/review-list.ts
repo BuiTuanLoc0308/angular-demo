@@ -1,10 +1,10 @@
 import { Component, inject, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
-import { RecipeModel } from '../../../../../../core/models/recipe.model';
-import { ReviewModel } from '../../../../../../core/models/review.model';
+import { ReviewModel } from '../../../../../../core/models/recipes/review.model';
 import { ReviewForm } from '../review-form/review-form';
-import { ReviewService } from '../../../../../../core/services/review.service';
+import { ReviewService } from '../../../../../../core/services/reviews/review.service';
+import { RecipeModel } from '../../../../../../core/models/recipes/recipe.model';
 
 @Component({
   selector: 'app-review-list',

@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
-export class MyRecipesQueryService {
+export class RecipesQueryService {
   readonly defaultLimit = 10;
 
   readonly categories = ['ALL', 'BREAKFAST', 'LUNCH', 'DINNER', 'DESSERT', 'DRINK'];
@@ -54,7 +54,11 @@ export class MyRecipesQueryService {
     });
   }
 
-  nextPage(route: ActivatedRoute, router: Router, currentPage: number): void {
+  nextPage(route: ActivatedRoute, router: Router, currentPage: number, totalPages: number): void {
+    if (currentPage >= totalPages) {
+      return;
+    }
+
     router.navigate([], {
       relativeTo: route,
       queryParams: {

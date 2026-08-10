@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { RecipeModel } from '../models/recipe.model';
+import { RecipeModel } from '../../models/recipes/recipe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +7,7 @@ import { RecipeModel } from '../models/recipe.model';
 export class RecipeCreateStateService {
   private createEmptyRecipe(): RecipeModel {
     return {
-      id: '',
+      _id: '',
 
       recipeName: '',
       image: '',

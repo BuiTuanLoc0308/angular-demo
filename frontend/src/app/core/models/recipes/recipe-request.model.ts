@@ -1,11 +1,8 @@
 import { CategoryModel } from './category.model';
 import { IngredientModel } from './ingredient.model';
 import { InstructionModel } from './instruction.model';
-import { ReviewModel } from './review.model';
 
-export interface RecipeModel {
-  id: string;
-
+export interface RecipeRequestModel {
   recipeName: string;
   image: string;
   description: string;
@@ -15,6 +12,4 @@ export interface RecipeModel {
   ingredients: IngredientModel[];
 
   instructions: InstructionModel[];
-
-  reviews: ReviewModel[];
 }

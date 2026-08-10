@@ -6,12 +6,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RecipeCreateStateService } from '../../../../../../core/services/recipe-create-state.service';
+import { RecipeCreateStateService } from '../../../../../../core/services/recipes/recipe-create-state.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { MatChipsModule } from '@angular/material/chips';
-import { MyRecipesQueryService } from '../../../../../../core/services/my-recipes-query.service';
+import { RecipesQueryService } from '../../../../../../core/services/recipes/recipes-query.service';
 
 @Component({
   selector: 'app-basic-info-step',
@@ -23,7 +23,7 @@ export class BasicInfoStep implements OnInit {
   private recipeState = inject(RecipeCreateStateService);
   private destroyRef = inject(DestroyRef);
   private fb = inject(FormBuilder);
-  private queryService = inject(MyRecipesQueryService);
+  private queryService = inject(RecipesQueryService);
 
   readonly categories = this.queryService.categories.filter((c) => c !== 'ALL');
 

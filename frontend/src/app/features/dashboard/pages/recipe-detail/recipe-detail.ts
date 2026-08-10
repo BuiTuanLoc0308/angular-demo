@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location, AsyncPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { RecipeService } from '../../../../core/services/my-recipe.service';
-import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
-import { SnackbarService } from '../../../../core/services/snack-bar.service';
+import { RecipeCreateStateService } from '../../../../core/services/recipes/recipe-create-state.service';
+import { SnackbarService } from '../../../../core/services/snackbar/snack-bar.service';
 import { BehaviorSubject, switchMap } from 'rxjs';
-import { RecipeModel } from '../../../../core/models/recipe.model';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ReviewList } from './components/review-list/review-list';
+import { RecipeModel } from '../../../../core/models/recipes/recipe.model';
+import { RecipeService } from '../../../../core/services/recipes/recipe.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -68,6 +68,6 @@ export class RecipeDetail {
   onEdit(recipe: RecipeModel) {
     this.recipeCreateState.setRecipe(recipe);
 
-    this.router.navigate(['/create-recipe', recipe.id]);
+    this.router.navigate(['/create-recipe', recipe._id]);
   }
 }

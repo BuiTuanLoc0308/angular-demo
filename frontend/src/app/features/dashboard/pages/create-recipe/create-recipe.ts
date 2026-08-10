@@ -6,12 +6,12 @@ import { BasicInfoStep } from './components/basic-info-step/basic-info-step';
 import { IngredientsStep } from './components/ingredients-step/ingredients-step';
 import { InstructionsStep } from './components/instructions-step/instructions-step';
 import { ReviewStep } from './components/review-step/review-step';
-import { RecipeCreateStateService } from '../../../../core/services/recipe-create-state.service';
+import { RecipeCreateStateService } from '../../../../core/services/recipes/recipe-create-state.service';
 import { ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs';
-import { CreateRecipePageStateService } from '../../../../core/services/create-recipe-page-state.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { RecipeEditorService } from '../../../../core/services/recipes/recipe-editor.service';
 
 @Component({
   selector: 'app-create-recipe',
@@ -35,7 +35,7 @@ export class CreateRecipe implements OnInit {
   private location = inject(Location);
   private recipeState = inject(RecipeCreateStateService);
   private route = inject(ActivatedRoute);
-  private pageState = inject(CreateRecipePageStateService);
+  private pageState = inject(RecipeEditorService);
 
   isMobile$ = this.breakpointObserver.observe('(max-width: 768px)').pipe(
     map((result) => result.matches),

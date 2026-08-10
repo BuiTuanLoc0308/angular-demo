@@ -73,7 +73,7 @@
     </div>
 
     <div class="btn-group">
-      <button class="btn btn-delete" (click)="onDelete(recipe.id)" [disabled]="isDeleting">
+      <button class="btn btn-delete" (click)="onDelete(recipe._id)" [disabled]="isDeleting">
         <mat-icon>delete_outline</mat-icon>
 
         {{ isDeleting ? ('COMMON.DELETING' | translate) : ('COMMON.DELETE' | translate) }}

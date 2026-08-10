@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RecipeModel } from '../models/recipe.model';
-import { ReviewModel } from '../models/review.model';
-import { api_endpoint } from '../constants/api-endpoint';
+import { ReviewModel } from '../../models/recipes/review.model';
+import { api_endpoint } from '../../constants/api-endpoint';
+import { RecipeModel } from '../../models/recipes/recipe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,6 @@ export class ReviewService {
       reviews: [...recipe.reviews, review],
     };
 
-    return this.http.put<RecipeModel>(api_endpoint.recipe.recipeDetail(recipe.id), updatedRecipe);
+    return this.http.put<RecipeModel>(api_endpoint.recipes.recipeDetail(recipe._id), updatedRecipe);
   }
 }
