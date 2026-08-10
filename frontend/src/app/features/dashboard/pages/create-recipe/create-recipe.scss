@@ -81,6 +81,7 @@ mat-stepper {
 }
 
 .btn-next:hover:not(:disabled) {
+  background: green;
   transform: translateY(-2px);
 }
 

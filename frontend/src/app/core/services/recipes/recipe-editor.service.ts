@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SnackbarService } from '../snackbar/snack-bar.service';
 import { RecipeModel } from '../../models/recipes/recipe.model';
 import { RecipeService } from './recipe.service';
+import { RecipeRequestModel } from '../../models/recipes/recipe-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +22,13 @@ export class RecipeEditorService {
     this.isEdit.set(id !== null);
   }
 
-  submitRecipe(recipe: RecipeModel): void {
+  submitRecipe(recipe: RecipeRequestModel | RecipeModel): void {
     this.isProcess.set(true);
 
     if (this.isEdit()) {
-      this.recipeService.updateRecipe(recipe._id, recipe).subscribe({
+      const recipeModel = recipe as RecipeModel;
+
+      this.recipeService.updateRecipe(recipeModel._id, recipeModel).subscribe({
         next: () => {
           this.snackbar.success(this.translate.instant('SUCCESS.UPDATE_RECIPE'));
 
@@ -43,7 +46,7 @@ export class RecipeEditorService {
       return;
     }
 
-    this.recipeService.createRecipe(recipe).subscribe({
+    this.recipeService.createRecipe(recipe as RecipeRequestModel).subscribe({
       next: () => {
         this.snackbar.success(this.translate.instant('SUCCESS.CREATE_RECIPE'));
 

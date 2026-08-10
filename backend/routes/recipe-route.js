@@ -13,7 +13,10 @@ router.get("/", async (req, res) => {
     const skip = (page - 1) * limit;
 
     // Lấy recipes
-    const recipes = await Recipe.find().skip(skip).limit(limit);
+    const recipes = await Recipe.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     // Đếm tổng số recipes
     const totalCount = await Recipe.countDocuments();

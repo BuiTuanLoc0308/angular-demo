@@ -32,10 +32,6 @@ export const dashboardRoutes: Routes = [
   {
     path: 'my-recipes/:id',
     loadComponent: () => import('./pages/recipe-detail/recipe-detail').then((m) => m.RecipeDetail),
-
-    // resolve: {
-    //   recipe: recipeDetailResolver,
-    // },
   },
 
   {

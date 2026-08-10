@@ -1,14 +1,12 @@
 import { Injectable, signal } from '@angular/core';
-import { RecipeModel } from '../../models/recipes/recipe.model';
+import { RecipeRequestModel } from '../../models/recipes/recipe-request.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeCreateStateService {
-  private createEmptyRecipe(): RecipeModel {
+  private createEmptyRecipe(): RecipeRequestModel {
     return {
-      _id: '',
-
       recipeName: '',
       image: '',
       description: '',
@@ -16,25 +14,23 @@ export class RecipeCreateStateService {
 
       ingredients: [],
       instructions: [],
-
-      reviews: [],
     };
   }
 
-  readonly recipe = signal<RecipeModel>(this.createEmptyRecipe());
+  readonly recipe = signal<RecipeRequestModel>(this.createEmptyRecipe());
 
-  getRecipe(): RecipeModel {
+  getRecipe(): RecipeRequestModel {
     return this.recipe();
   }
 
-  updateRecipe(data: Partial<RecipeModel>): void {
+  updateRecipe(data: Partial<RecipeRequestModel>): void {
     this.recipe.update((recipe) => ({
       ...recipe,
       ...data,
     }));
   }
 
-  setRecipe(recipe: RecipeModel): void {
+  setRecipe(recipe: RecipeRequestModel): void {
     this.recipe.set({ ...recipe });
   }
 

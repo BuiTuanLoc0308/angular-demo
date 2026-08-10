@@ -61,6 +61,7 @@
 }
 
 .add-btn:hover {
+  background: green;
   transform: translateY(-2px);
 }
 
@@ -121,6 +122,10 @@
 .pagination .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.pagination .btn:hover:not(:disabled) {
+  transform: translateY(-2px);
 }
 
 .pagination .btn {

@@ -5,6 +5,7 @@ import { RecipeQuery } from '../../models/recipes/recipe-query.model';
 import { RecipeResponse } from '../../models/recipes/recipe-response.model';
 import { api_endpoint } from '../../constants/api-endpoint';
 import { RecipeModel } from '../../models/recipes/recipe.model';
+import { RecipeRequestModel } from '../../models/recipes/recipe-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,12 +33,12 @@ export class RecipeService {
     return this.http.get<RecipeModel>(`${api_endpoint.recipes.recipe}/${id}`);
   }
 
-  createRecipe(recipe: RecipeModel) {
-    return this.http.post(api_endpoint.recipes.recipe, recipe);
+  createRecipe(recipe: RecipeRequestModel): Observable<RecipeModel> {
+    return this.http.post<RecipeModel>(api_endpoint.recipes.recipe, recipe);
   }
 
-  updateRecipe(id: string, data: RecipeModel) {
-    return this.http.put(`${api_endpoint.recipes.recipe}/${id}`, data);
+  updateRecipe(id: string, data: RecipeRequestModel): Observable<RecipeModel> {
+    return this.http.put<RecipeModel>(`${api_endpoint.recipes.recipe}/${id}`, data);
   }
 
   deleteRecipe(id: string) {
