@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const reviewSchema = require("./review-model");
 
 const recipeSchema = new mongoose.Schema(
   {
@@ -53,25 +54,7 @@ const recipeSchema = new mongoose.Schema(
       },
     ],
 
-    reviews: [
-      {
-        userId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "user",
-          required: true,
-        },
-        rating: {
-          type: Number,
-          required: true,
-          min: 1,
-          max: 5,
-        },
-        comment: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+    reviews: [reviewSchema],
   },
   {
     timestamps: true,
