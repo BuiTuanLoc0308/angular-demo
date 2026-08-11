@@ -12,14 +12,36 @@ router.get("/", async (req, res) => {
     // Tính số document cần bỏ qua
     const skip = (page - 1) * limit;
 
-    // Lấy recipes
-    const recipes = await Recipe.find()
+    // Search
+    const search = req.query.search?.trim() || "";
+
+    // Category
+    const categories = req.query.categories || "ALL";
+
+    // Tạo filter object gửi vào query
+    const filter = {};
+
+    // Search theo recipeName
+    if (search) {
+      filter.recipeName = {
+        $regex: search,
+        $options: "i",
+      };
+    }
+
+    // Filter category
+    if (categories && categories !== "ALL") {
+      filter.categories = categories;
+    }
+
+    // Lấy recipes từ database với filter
+    const recipes = await Recipe.find(filter)
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
 
-    // Đếm tổng số recipes
-    const totalCount = await Recipe.countDocuments();
+    // Đếm tổng số recipes theo filter
+    const totalCount = await Recipe.countDocuments(filter);
 
     // Tính tổng số trang
     const totalPages = Math.ceil(totalCount / limit);
