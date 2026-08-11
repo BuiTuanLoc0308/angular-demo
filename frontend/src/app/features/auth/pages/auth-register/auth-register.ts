@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -32,7 +32,7 @@ export class AuthRegister {
 
   message = '';
 
-  isLoading = false;
+  isLoading = signal(false);
 
   registerForm: FormGroup;
 
@@ -104,7 +104,7 @@ export class AuthRegister {
   }
 
   onRegister() {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     const registerData: RegisterRequest = this.registerForm.value;
 
@@ -116,7 +116,7 @@ export class AuthRegister {
       },
 
       error: (error) => {
-        this.isLoading = false;
+        this.isLoading.set(false);
 
         if (error.status === 409) {
           this.snackbar.error(this.translate.instant('FAILED.REGISTER'));
@@ -126,7 +126,7 @@ export class AuthRegister {
       },
 
       complete: () => {
-        this.isLoading = false;
+        this.isLoading.set(false);
       },
     });
   }

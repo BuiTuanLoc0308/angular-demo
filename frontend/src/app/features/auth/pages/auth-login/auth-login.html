@@ -63,8 +63,8 @@
           </p>
         </div>
 
-        <button class="btn-submit" type="submit" [disabled]="loginForm.invalid || isLoading">
-          {{ isLoading ? ('LOGIN.LOGGING_IN' | translate) : ('LOGIN.LOGIN' | translate) }}
+        <button class="btn-submit" type="submit" [disabled]="loginForm.invalid || isLoading()">
+          {{ isLoading() ? ('LOGIN.LOGGING_IN' | translate) : ('LOGIN.LOGIN' | translate) }}
         </button>
 
         <div class="divider">

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -30,7 +30,7 @@ export class AuthLogin {
 
   message = '';
 
-  isLoading = false;
+  isLoading = signal(false);
 
   loginForm: FormGroup;
 
@@ -67,7 +67,7 @@ export class AuthLogin {
   }
 
   onLogin() {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     // lay data
     const loginData: LoginRequest = this.loginForm.value;
@@ -83,7 +83,7 @@ export class AuthLogin {
 
       // loi
       error: (error) => {
-        this.isLoading = false;
+        this.isLoading.set(false);
 
         if (error.status === 400) {
           this.snackbar.error(this.translate.instant('FAILED.LOGIN'));
@@ -93,7 +93,7 @@ export class AuthLogin {
       },
 
       complete: () => {
-        this.isLoading = false;
+        this.isLoading.set(false);
       },
     });
   }

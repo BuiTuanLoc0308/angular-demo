@@ -105,8 +105,10 @@
           </div>
         </div>
 
-        <button class="btn-submit" type="submit" [disabled]="registerForm.invalid || isLoading">
-          {{ isLoading ? ('REGISTER.REGISTERING' | translate) : ('REGISTER.REGISTER' | translate) }}
+        <button class="btn-submit" type="submit" [disabled]="registerForm.invalid || isLoading()">
+          {{
+            isLoading() ? ('REGISTER.REGISTERING' | translate) : ('REGISTER.REGISTER' | translate)
+          }}
         </button>
 
         <div class="auth-footer">
