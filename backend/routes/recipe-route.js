@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/recipe-model");
+const authMiddleware = require("../middleware/auth-middleware");
 
-//GET: list all recipes
-router.get("/", async (req, res) => {
+//GET: list all owned recipes
+router.get("/", authMiddleware, async (req, res) => {
   try {
     // Lấy thông tin phân trang từ query parameters
     const page = Number(req.query.page) || 1;
@@ -19,7 +20,7 @@ router.get("/", async (req, res) => {
     const categories = req.query.categories || "ALL";
 
     // Tạo filter object gửi vào query
-    const filter = {};
+    const filter = { ownerId: req.user.userId };
 
     // Search theo recipeName
     if (search) {
@@ -63,9 +64,12 @@ router.get("/", async (req, res) => {
 });
 
 //GET: get a recipe by id
-router.get("/:id", async (req, res) => {
+router.get("/:id", authMiddleware, async (req, res) => {
   try {
-    const recipe = await Recipe.findById(req.params.id);
+    const recipe = await Recipe.findOne({
+      _id: req.params.id,
+      ownerId: req.user.userId,
+    });
 
     if (!recipe) {
       return res.status(404).json({
@@ -83,9 +87,12 @@ router.get("/:id", async (req, res) => {
 });
 
 //POST: create a new recipe
-router.post("/", async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
-    const recipe = new Recipe(req.body);
+    const recipe = new Recipe({
+      ...req.body,
+      ownerId: req.user.userId,
+    });
 
     const savedRecipe = await recipe.save();
 
@@ -99,12 +106,22 @@ router.post("/", async (req, res) => {
 });
 
 //PUT: update a recipe by id
-router.put("/:id", async (req, res) => {
+router.put("/:id", authMiddleware, async (req, res) => {
   try {
-    const recipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const recipe = await Recipe.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        ownerId: req.user.userId,
+      },
+      {
+        ...req.body,
+        ownerId: req.user.userId,
+      },
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
 
     if (!recipe) {
       return res.status(404).json({
@@ -122,9 +139,12 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE: delete a recipe by id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, async (req, res) => {
   try {
-    const recipe = await Recipe.findByIdAndDelete(req.params.id);
+    const recipe = await Recipe.findOneAndDelete({
+      _id: req.params.id,
+      ownerId: req.user.userId,
+    });
 
     if (!recipe) {
       return res.status(404).json({

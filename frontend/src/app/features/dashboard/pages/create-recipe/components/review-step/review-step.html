@@ -45,7 +45,9 @@
             {{ ingredient.ingredientName }}
           </span>
 
-          <span class="quantity"> {{ ingredient.quantity }} {{ ingredient.unit }} </span>
+          <span class="quantity">
+            {{ ingredient.quantity }} {{ 'UNITS.' + ingredient.unit | translate }}
+          </span>
         </div>
       }
     </section>
