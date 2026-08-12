@@ -7,7 +7,11 @@
     }
   </button>
 
-  <img [src]="recipe.image" [alt]="recipe.recipeName" class="img" />
+  <img
+    [src]="recipe.image || 'assets/images/recipe-no-image.jpg'"
+    [alt]="recipe.recipeName"
+    class="img"
+  />
 
   <div class="recipe-detail">
     <p class="name">{{ recipe.recipeName }}</p>

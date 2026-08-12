@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./routes/auth-route");
 const recipeRoutes = require("./routes/recipe-route");
@@ -10,8 +11,25 @@ const recipeRoutes = require("./routes/recipe-route");
 const app = express();
 
 // Middleware
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:4200",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  }),
+);
 app.use(express.json());
+app.use(cookieParser());
 
 // Database connection (lazy, per-invocation for serverless environments)
 let isConnected = false;

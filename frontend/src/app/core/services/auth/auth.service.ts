@@ -16,8 +16,30 @@ export class AuthService {
 
   login(data: LoginRequest) {
     return this.http
-      .post<LoginResponse>(api_endpoint.auth.login, data)
-      .pipe(tap((res) => this.tokenService.setToken(res.accessToken)));
+      .post<LoginResponse>(api_endpoint.auth.login, data, {
+        withCredentials: true,
+      })
+      .pipe(
+        tap((res) => {
+          this.tokenService.setToken(res.accessToken);
+        }),
+      );
+  }
+
+  refreshToken() {
+    return this.http
+      .post<{ accessToken: string }>(
+        api_endpoint.auth.refresh,
+        {},
+        {
+          withCredentials: true,
+        },
+      )
+      .pipe(
+        tap((res) => {
+          this.tokenService.setToken(res.accessToken);
+        }),
+      );
   }
 
   register(data: RegisterRequest) {
@@ -26,5 +48,15 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.tokenService.getToken();
+  }
+
+  logout() {
+    return this.http.post(
+      api_endpoint.auth.logout,
+      {},
+      {
+        withCredentials: true,
+      },
+    );
   }
 }

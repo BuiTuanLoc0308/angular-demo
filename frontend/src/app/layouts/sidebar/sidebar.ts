@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { TokenService } from '../../core/services/auth/token.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { AuthService } from '../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,8 +13,19 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class Sidebar {
   private tokenService = inject(TokenService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  logout(): void {
-    this.tokenService.clear();
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.tokenService.removeToken();
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.tokenService.removeToken();
+        this.router.navigate(['/login']);
+      },
+    });
   }
 }

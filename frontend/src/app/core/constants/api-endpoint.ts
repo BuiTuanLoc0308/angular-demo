@@ -4,7 +4,11 @@ export const api_endpoint = {
   auth: {
     login: `${environment.apiUrl}/auth/login`,
 
+    refresh: `${environment.apiUrl}/auth/refresh`,
+
     register: `${environment.apiUrl}/auth/register`,
+
+    logout: `${environment.apiUrl}/auth/logout`,
   },
 
   recipes: {
