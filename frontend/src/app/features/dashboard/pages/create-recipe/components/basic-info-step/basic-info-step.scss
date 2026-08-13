@@ -63,6 +63,69 @@ textarea {
   resize: none;
 }
 
+/* ===== SELECT IMAGE ===== */
+
+.select-image-input {
+  display: none;
+}
+
+.select-image-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  width: fit-content;
+
+  padding: 16px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font: inherit;
+
+  color: inherit;
+
+  transition: 0.2s;
+}
+
+.select-image-label:hover:not(:has(.remove-img-btn:hover)) {
+  background-color: color-mix(in srgb, Canvas 90%, currentColor);
+}
+
+.image-preview {
+  width: 600px;
+
+  aspect-ratio: 5 / 3;
+  overflow: hidden;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-img-btn {
+  padding: 8px;
+  margin-top: 16px;
+
+  border-radius: 8px;
+  border: 1px solid var(--danger-border);
+
+  color: var(--danger-color);
+  background: var(--danger-bg);
+
+  transition: all 0.2s ease;
+}
+
+.remove-img-btn:hover {
+  cursor: pointer;
+
+  transform: translateY(-2px);
+}
+
 /* ===== ERROR ===== */
 .invalid-text {
   color: #dc2626;

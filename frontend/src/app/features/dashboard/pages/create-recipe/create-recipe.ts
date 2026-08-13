@@ -61,6 +61,8 @@ export class CreateRecipe implements OnInit {
 
   submitRecipe() {
     const recipe = this.recipeState.getRecipe();
-    this.pageState.submitRecipe(recipe);
+    const imageFile = this.recipeState.getImageFile();
+
+    this.pageState.submitRecipe(recipe, imageFile);
   }
 }

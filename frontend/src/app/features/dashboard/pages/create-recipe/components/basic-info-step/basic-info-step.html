@@ -38,6 +38,36 @@
     </small>
   }
 
+  <label class="label" for="recipeImage">
+    {{ 'BASIC_INFO_STEP.RECIPE_IMAGE' | translate }}
+  </label>
+
+  <input
+    class="select-image-input"
+    type="file"
+    id="recipeImage"
+    accept="image/*"
+    (change)="onImageSelected($event)"
+  />
+
+  <label class="select-image-label" for="recipeImage">
+    @if (imagePreview) {
+      <div class="image-preview">
+        <img [src]="imagePreview" alt="Recipe preview" />
+      </div>
+
+      <button class="remove-img-btn" (click)="removeImage()">Remove image</button>
+    } @else {
+      {{ 'BASIC_INFO_STEP.CHOOSE_IMAGE' | translate }}
+    }
+  </label>
+
+  @if (imageError) {
+    <small class="invalid-text">
+      {{ imageError }}
+    </small>
+  }
+
   <label class="label" for="categories">
     {{ 'BASIC_INFO_STEP.CATEGORIES' | translate }}
   </label>

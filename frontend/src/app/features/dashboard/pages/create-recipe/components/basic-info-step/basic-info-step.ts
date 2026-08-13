@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { RecipeCreateStateService } from '../../../../../../core/services/recipes/recipe-create-state.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { MatChipsModule } from '@angular/material/chips';
 import { RecipesQueryService } from '../../../../../../core/services/recipes/recipes-query.service';
@@ -23,11 +23,16 @@ export class BasicInfoStep implements OnInit {
   private recipeState = inject(RecipeCreateStateService);
   private destroyRef = inject(DestroyRef);
   private fb = inject(FormBuilder);
+  private translate = inject(TranslateService);
   private queryService = inject(RecipesQueryService);
 
   readonly categories = this.queryService.categories.filter((c) => c !== 'ALL');
 
   form: FormGroup;
+
+  imageFile: File | null = null;
+  imagePreview: string | null = null;
+  imageError: string | null = null;
 
   constructor() {
     const recipe = this.recipeState.getRecipe();
@@ -37,6 +42,8 @@ export class BasicInfoStep implements OnInit {
       description: [recipe.description, Validators.required],
       categories: [recipe.categories ?? [], Validators.required],
     });
+
+    this.imageFile = this.recipeState.getImageFile();
   }
 
   get recipeName() {
@@ -67,5 +74,64 @@ export class BasicInfoStep implements OnInit {
     this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
       this.recipeState.updateRecipe(value);
     });
+  }
+
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files || input.files.length === 0) {
+      return;
+    }
+
+    const file = input.files[0];
+
+    this.imageError = null;
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    const maxSize = 5 * 1024 * 1024; // 5 MB
+
+    // Kiểm tra loại file
+    if (!allowedTypes.includes(file.type)) {
+      this.imageError = this.translate.instant('ERRORS.IMAGE_FILE');
+      this.imageFile = null;
+      this.imagePreview = null;
+
+      input.value = '';
+
+      return;
+    }
+
+    // Kiểm tra dung lượng
+    if (file.size > maxSize) {
+      this.imageError = this.translate.instant('ERRORS.IMAGE_SIZE');
+      this.imageFile = null;
+      this.imagePreview = null;
+
+      input.value = '';
+
+      return;
+    }
+
+    if (this.imagePreview) {
+      URL.revokeObjectURL(this.imagePreview);
+    }
+
+    // File hợp lệ
+    this.imageFile = file;
+    this.recipeState.setImageFile(file);
+
+    this.imagePreview = URL.createObjectURL(file);
+  }
+
+  removeImage() {
+    if (this.imagePreview) {
+      URL.revokeObjectURL(this.imagePreview);
+    }
+
+    this.imageFile = null;
+    this.imagePreview = null;
+    this.imageError = null;
+
+    this.recipeState.setImageFile(null);
   }
 }

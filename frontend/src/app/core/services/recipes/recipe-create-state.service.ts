@@ -19,6 +19,8 @@ export class RecipeCreateStateService {
 
   readonly recipe = signal<RecipeRequestModel>(this.createEmptyRecipe());
 
+  private imageFile = signal<File | null>(null);
+
   getRecipe(): RecipeRequestModel {
     return this.recipe();
   }
@@ -34,7 +36,17 @@ export class RecipeCreateStateService {
     this.recipe.set({ ...recipe });
   }
 
+  getImageFile(): File | null {
+    return this.imageFile();
+  }
+
+  setImageFile(file: File | null): void {
+    this.imageFile.set(file);
+  }
+
   resetRecipe(): void {
     this.recipe.set(this.createEmptyRecipe());
+
+    this.imageFile.set(null);
   }
 }

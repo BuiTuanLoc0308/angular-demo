@@ -22,13 +22,13 @@ export class RecipeEditorService {
     this.isEdit.set(id !== null);
   }
 
-  submitRecipe(recipe: RecipeRequestModel | RecipeModel): void {
+  submitRecipe(recipe: RecipeRequestModel | RecipeModel, imageFile: File | null = null): void {
     this.isProcess.set(true);
 
     if (this.isEdit()) {
       const recipeModel = recipe as RecipeModel;
 
-      this.recipeService.updateRecipe(recipeModel._id, recipeModel).subscribe({
+      this.recipeService.updateRecipe(recipeModel._id, recipeModel, imageFile).subscribe({
         next: () => {
           this.snackbar.success(this.translate.instant('SUCCESS.UPDATE_RECIPE'));
 
@@ -46,7 +46,7 @@ export class RecipeEditorService {
       return;
     }
 
-    this.recipeService.createRecipe(recipe as RecipeRequestModel).subscribe({
+    this.recipeService.createRecipe(recipe as RecipeRequestModel, imageFile).subscribe({
       next: () => {
         this.snackbar.success(this.translate.instant('SUCCESS.CREATE_RECIPE'));
 

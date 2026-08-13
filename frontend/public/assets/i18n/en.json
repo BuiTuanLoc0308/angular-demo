@@ -49,7 +49,10 @@
   },
 
   "ERRORS": {
-    "GENERIC": "An error occurred. Please try again later"
+    "GENERIC": "An error occurred. Please try again later",
+
+    "IMAGE_FILE": "Only JPG, PNG and WEBP images are allowed",
+    "IMAGE_SIZE": "Image size must not exceed 5 MB"
   },
 
   "SUCCESS": {
@@ -196,7 +199,10 @@
     "DESCRIPTION": "Description",
     "DESCRIPTION_PLACEHOLDER": "Share the story behind your dish...",
 
-    "CATEGORIES": "Categories"
+    "CATEGORIES": "Categories",
+
+    "RECIPE_IMAGE": "Recipe Image",
+    "CHOOSE_IMAGE": "Choose Image"
   },
 
   "INGREDIENTS_STEP": {

@@ -49,7 +49,10 @@
   },
 
   "ERRORS": {
-    "GENERIC": "Đã xảy ra lỗi. Vui lòng thử lại sau"
+    "GENERIC": "Đã xảy ra lỗi. Vui lòng thử lại sau",
+
+    "IMAGE_FILE": "Chỉ cho phép hình ảnh JPG, PNG và WEBP",
+    "IMAGE_SIZE": "Kích thước hình ảnh không được vượt quá 5 MB"
   },
 
   "SUCCESS": {
@@ -196,7 +199,10 @@
     "DESCRIPTION": "Mô tả",
     "DESCRIPTION_PLACEHOLDER": "Chia sẻ câu chuyện đằng sau món ăn...",
 
-    "CATEGORIES": "Danh mục"
+    "CATEGORIES": "Danh mục",
+
+    "RECIPE_IMAGE": "Hình ảnh món ăn",
+    "CHOOSE_IMAGE": "Chọn hình ảnh"
   },
 
   "INGREDIENTS_STEP": {

@@ -42,8 +42,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           isRefreshing = true;
           refreshTokenSubject.next(null);
 
-          console.log('Access token expired. Refreshing...');
-
           return authService.refreshToken().pipe(
             switchMap((res) => {
               isRefreshing = false;

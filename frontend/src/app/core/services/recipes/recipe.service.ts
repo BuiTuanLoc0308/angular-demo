@@ -33,12 +33,44 @@ export class RecipeService {
     return this.http.get<RecipeModel>(`${api_endpoint.recipes.recipe}/${id}`);
   }
 
-  createRecipe(recipe: RecipeRequestModel): Observable<RecipeModel> {
-    return this.http.post<RecipeModel>(api_endpoint.recipes.recipe, recipe);
+  createRecipe(recipe: RecipeRequestModel, imageFile: File | null): Observable<RecipeModel> {
+    const formData = new FormData();
+
+    formData.append('recipeName', recipe.recipeName);
+    formData.append('description', recipe.description);
+
+    formData.append('categories', JSON.stringify(recipe.categories));
+    formData.append('ingredients', JSON.stringify(recipe.ingredients));
+    formData.append('instructions', JSON.stringify(recipe.instructions));
+
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+
+    return this.http.post<RecipeModel>(api_endpoint.recipes.recipe, formData);
   }
 
-  updateRecipe(id: string, data: RecipeRequestModel): Observable<RecipeModel> {
-    return this.http.put<RecipeModel>(`${api_endpoint.recipes.recipe}/${id}`, data);
+  updateRecipe(
+    id: string,
+    recipe: RecipeRequestModel,
+    imageFile: File | null,
+  ): Observable<RecipeModel> {
+    const formData = new FormData();
+
+    formData.append('recipeName', recipe.recipeName);
+    formData.append('description', recipe.description);
+
+    formData.append('categories', JSON.stringify(recipe.categories));
+
+    formData.append('ingredients', JSON.stringify(recipe.ingredients));
+
+    formData.append('instructions', JSON.stringify(recipe.instructions));
+
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+
+    return this.http.put<RecipeModel>(`${api_endpoint.recipes.recipe}/${id}`, formData);
   }
 
   deleteRecipe(id: string) {

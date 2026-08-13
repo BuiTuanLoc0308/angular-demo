@@ -16,6 +16,11 @@ const recipeSchema = new mongoose.Schema(
       type: String,
     },
 
+    imagePublicId: {
+      type: String,
+      default: null,
+    },
+
     description: {
       type: String,
       required: true,

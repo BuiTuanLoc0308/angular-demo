@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/recipe-model");
 const authMiddleware = require("../middleware/auth-middleware");
+const upload = require("../middleware/upload-middleware");
+const uploadToCloudinary = require("../utils/upload-to-cloudinary");
+const parseJsonField = require("../utils/parse-json-field");
+const { DEFAULT_RECIPE_IMAGE } = require("../constants/recipe-constants");
+const deleteFromCloudinary = require("../utils/delete-from-cloudinary");
 
 //GET: list all owned recipes
 router.get("/", authMiddleware, async (req, res) => {
@@ -87,10 +92,30 @@ router.get("/:id", authMiddleware, async (req, res) => {
 });
 
 //POST: create a new recipe
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
   try {
+    let image = DEFAULT_RECIPE_IMAGE;
+    let imagePublicId = null;
+
+    if (req.file) {
+      const result = await uploadToCloudinary(req.file.buffer, "recipes");
+
+      image = result.secure_url;
+      imagePublicId = result.public_id;
+    }
+
+    const categories = parseJsonField(req.body.categories, []);
+    const ingredients = parseJsonField(req.body.ingredients, []);
+    const instructions = parseJsonField(req.body.instructions, []);
+
     const recipe = new Recipe({
-      ...req.body,
+      recipeName: req.body.recipeName,
+      description: req.body.description,
+      categories,
+      ingredients,
+      instructions,
+      image,
+      imagePublicId,
       ownerId: req.user.userId,
     });
 
@@ -98,6 +123,8 @@ router.post("/", authMiddleware, async (req, res) => {
 
     res.status(201).json(savedRecipe);
   } catch (error) {
+    console.error("Create recipe error:", error);
+
     res.status(500).json({
       message: "Failed to create recipe",
       error: error.message,
@@ -106,42 +133,9 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 //PUT: update a recipe by id
-router.put("/:id", authMiddleware, async (req, res) => {
+router.put("/:id", authMiddleware, upload.single("image"), async (req, res) => {
   try {
-    const recipe = await Recipe.findOneAndUpdate(
-      {
-        _id: req.params.id,
-        ownerId: req.user.userId,
-      },
-      {
-        ...req.body,
-        ownerId: req.user.userId,
-      },
-      {
-        new: true,
-        runValidators: true,
-      },
-    );
-
-    if (!recipe) {
-      return res.status(404).json({
-        message: "Recipe not found",
-      });
-    }
-
-    res.status(200).json(recipe);
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed to update recipe",
-      error: error.message,
-    });
-  }
-});
-
-//DELETE: delete a recipe by id
-router.delete("/:id", authMiddleware, async (req, res) => {
-  try {
-    const recipe = await Recipe.findOneAndDelete({
+    const recipe = await Recipe.findOne({
       _id: req.params.id,
       ownerId: req.user.userId,
     });
@@ -152,10 +146,75 @@ router.delete("/:id", authMiddleware, async (req, res) => {
       });
     }
 
+    const categories = parseJsonField(req.body.categories, []);
+
+    const ingredients = parseJsonField(req.body.ingredients, []);
+
+    const instructions = parseJsonField(req.body.instructions, []);
+
+    let image = DEFAULT_RECIPE_IMAGE;
+    let imagePublicId = null;
+
+    // Upload ảnh mới nếu user chọn
+    if (req.file) {
+      const result = await uploadToCloudinary(req.file.buffer, "recipes");
+
+      image = result.secure_url;
+      imagePublicId = result.public_id;
+    }
+
+    // Xóa ảnh cũ nếu đó là ảnh riêng của recipe
+    if (recipe.imagePublicId) {
+      await deleteFromCloudinary(recipe.imagePublicId);
+    }
+
+    recipe.recipeName = req.body.recipeName;
+    recipe.description = req.body.description;
+    recipe.categories = categories;
+    recipe.ingredients = ingredients;
+    recipe.instructions = instructions;
+    recipe.image = image;
+    recipe.imagePublicId = imagePublicId;
+
+    const updatedRecipe = await recipe.save();
+
+    res.status(200).json(updatedRecipe);
+  } catch (error) {
+    console.error("Update recipe error:", error);
+
+    res.status(500).json({
+      message: "Failed to update recipe",
+      error: error.message,
+    });
+  }
+});
+
+//DELETE: delete a recipe by id
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const recipe = await Recipe.findOne({
+      _id: req.params.id,
+      ownerId: req.user.userId,
+    });
+
+    if (!recipe) {
+      return res.status(404).json({
+        message: "Recipe not found",
+      });
+    }
+
+    if (recipe.imagePublicId) {
+      await deleteFromCloudinary(recipe.imagePublicId);
+    }
+
+    await recipe.deleteOne();
+
     res.status(200).json({
       message: "Recipe deleted successfully",
     });
   } catch (error) {
+    console.error("Delete recipe error:", error);
+
     res.status(500).json({
       message: "Failed to delete recipe",
       error: error.message,

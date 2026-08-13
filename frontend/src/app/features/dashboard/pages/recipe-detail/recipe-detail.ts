@@ -67,6 +67,7 @@ export class RecipeDetail {
 
   onEdit(recipe: RecipeModel) {
     this.recipeCreateState.setRecipe(recipe);
+    this.recipeCreateState.setImageFile(null);
 
     this.router.navigate(['/create-recipe', recipe._id]);
   }
