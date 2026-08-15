@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { catchError, combineLatest, map, of, startWith, Subject, switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeCreateStateService } from '../../../../core/services/recipes/recipe-create-state.service';
@@ -18,15 +24,15 @@ import { RecipeService } from '../../../../core/services/recipes/recipe.service'
   styleUrl: './my-recipes.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MyRecipes {
+export class MyRecipes implements OnInit {
   private recipeService = inject(RecipeService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private recipeState = inject(RecipeCreateStateService);
   private queryService = inject(RecipesQueryService);
+  private cdr = inject(ChangeDetectorRef);
 
-  private readonly storageKey = 'favoriteRecipes';
-  private favorites = this.readFavorites();
+  private favorites = new Set<string>();
 
   private refresh$ = new Subject<void>();
 
@@ -111,39 +117,56 @@ export class MyRecipes {
     this.router.navigate(['/create-recipe']);
   }
 
+  ngOnInit(): void {
+    this.loadFavorites();
+  }
+
+  private loadFavorites(): void {
+    this.recipeService.getFavoriteRecipes().subscribe({
+      next: (recipes) => {
+        this.favorites = new Set(recipes.map((recipe) => recipe._id));
+        this.cdr.markForCheck();
+      },
+      error: (error) => {
+        console.error('Failed to load favorite recipes:', error);
+      },
+    });
+  }
+
   isFavorite(id: string): boolean {
-    return this.favorites.includes(id);
+    return this.favorites.has(id);
   }
 
   toggleFavorite(id: string): void {
     if (this.isFavorite(id)) {
-      this.favorites = this.favorites.filter((favoriteId) => favoriteId !== id);
-    } else {
-      this.favorites = [...this.favorites, id];
+      this.recipeService.removeFavorite(id).subscribe({
+        next: () => {
+          const favorites = new Set(this.favorites);
+          favorites.delete(id);
+
+          this.favorites = favorites;
+          this.cdr.markForCheck();
+        },
+        error: (error) => {
+          console.error('Failed to remove favorite:', error);
+        },
+      });
+
+      return;
     }
 
-    this.persistFavorites();
+    this.recipeService.addFavorite(id).subscribe({
+      next: () => {
+        this.favorites = new Set(this.favorites).add(id);
+        this.cdr.markForCheck();
+      },
+      error: (error) => {
+        console.error('Failed to add favorite:', error);
+      },
+    });
   }
 
   getFavorites(): string[] {
     return [...this.favorites];
-  }
-
-  private readFavorites(): string[] {
-    if (typeof localStorage === 'undefined') {
-      return [];
-    }
-
-    const storedValue = localStorage.getItem(this.storageKey);
-
-    return storedValue ? JSON.parse(storedValue) : [];
-  }
-
-  private persistFavorites(): void {
-    if (typeof localStorage === 'undefined') {
-      return;
-    }
-
-    localStorage.setItem(this.storageKey, JSON.stringify(this.favorites));
   }
 }

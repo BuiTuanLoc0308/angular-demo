@@ -7,6 +7,7 @@ const uploadToCloudinary = require("../utils/upload-to-cloudinary");
 const parseJsonField = require("../utils/parse-json-field");
 const { DEFAULT_RECIPE_IMAGE } = require("../constants/recipe-constants");
 const deleteFromCloudinary = require("../utils/delete-from-cloudinary");
+const User = require("../models/user-model");
 
 //GET: list all owned recipes
 router.get("/", authMiddleware, async (req, res) => {
@@ -63,6 +64,92 @@ router.get("/", authMiddleware, async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Failed to fetch recipes",
+      error: error.message,
+    });
+  }
+});
+
+//GET: get favorite recipes
+router.get("/favorites", authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId).populate(
+      "favoriteRecipes",
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    res.status(200).json(user.favoriteRecipes);
+  } catch (error) {
+    console.error("Get favorite recipes error:", error);
+
+    res.status(500).json({
+      message: "Failed to fetch favorite recipes",
+      error: error.message,
+    });
+  }
+});
+
+//POST: add recipe to favorites
+router.post("/:id/favorite", authMiddleware, async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id);
+
+    if (!recipe) {
+      return res.status(404).json({
+        message: "Recipe not found",
+      });
+    }
+
+    await User.findByIdAndUpdate(req.user.userId, {
+      $addToSet: {
+        favoriteRecipes: recipe._id,
+      },
+    });
+
+    res.status(200).json({
+      message: "Recipe added to favorites",
+      isFavorite: true,
+    });
+  } catch (error) {
+    console.error("Add favorite error:", error);
+
+    res.status(500).json({
+      message: "Failed to add recipe to favorites",
+      error: error.message,
+    });
+  }
+});
+
+//DELETE: remove recipe from favorites
+router.delete("/:id/favorite", authMiddleware, async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id);
+
+    if (!recipe) {
+      return res.status(404).json({
+        message: "Recipe not found",
+      });
+    }
+
+    await User.findByIdAndUpdate(req.user.userId, {
+      $pull: {
+        favoriteRecipes: recipe._id,
+      },
+    });
+
+    res.status(200).json({
+      message: "Recipe removed from favorites",
+      isFavorite: false,
+    });
+  } catch (error) {
+    console.error("Remove favorite error:", error);
+
+    res.status(500).json({
+      message: "Failed to remove recipe from favorites",
       error: error.message,
     });
   }

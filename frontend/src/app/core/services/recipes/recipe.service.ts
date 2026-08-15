@@ -6,6 +6,7 @@ import { RecipeResponse } from '../../models/recipes/recipe-response.model';
 import { api_endpoint } from '../../constants/api-endpoint';
 import { RecipeModel } from '../../models/recipes/recipe.model';
 import { RecipeRequestModel } from '../../models/recipes/recipe-request.model';
+import { FavoriteResponse } from '../../models/recipes/favorite-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -75,5 +76,17 @@ export class RecipeService {
 
   deleteRecipe(id: string) {
     return this.http.delete(`${api_endpoint.recipes.recipe}/${id}`);
+  }
+
+  getFavoriteRecipes(): Observable<RecipeModel[]> {
+    return this.http.get<RecipeModel[]>(`${api_endpoint.recipes.recipe}/favorites`);
+  }
+
+  addFavorite(id: string): Observable<FavoriteResponse> {
+    return this.http.post<FavoriteResponse>(`${api_endpoint.recipes.recipe}/${id}/favorite`, {});
+  }
+
+  removeFavorite(id: string): Observable<FavoriteResponse> {
+    return this.http.delete<FavoriteResponse>(`${api_endpoint.recipes.recipe}/${id}/favorite`);
   }
 }
